@@ -57,6 +57,6 @@ jobs:
           cp android/app/build/outputs/apk/release/app-release.apk Rotina.apk
           gh release delete apk-latest --cleanup-tag --yes || true
           gh release create apk-latest Rotina.apk \
-            --title "Rotina (Android)" \
-            --notes "APK mais recente do app Rotina & Protocolo (compilação ${{ github.run_number }}). Baixe o arquivo Rotina.apk e instale no celular." \
+            --title "Rotina Fitness (Android)" \
+            --notes "APK mais recente do app Rotina Fitness (compilação ${{ github.run_number }}). Baixe o arquivo Rotina.apk e instale no celular." \
             --target "$GITHUB_SHA"

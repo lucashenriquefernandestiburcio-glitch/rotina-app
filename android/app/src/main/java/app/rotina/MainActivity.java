@@ -26,7 +26,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 /**
- * Casca do app Rotina & Protocolo: mostra o index.html guardado dentro do APK
+ * Casca do app Rotina Fitness: mostra o index.html guardado dentro do APK
  * (assets) num WebView, sem precisar de internet. Os dados ficam no aparelho.
  *
  * O WebView não sabe salvar downloads gerados pela página (backup, relatórios,

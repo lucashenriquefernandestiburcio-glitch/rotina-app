@@ -9,11 +9,11 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-title" content="Rotina">
+<meta name="apple-mobile-web-app-title" content="Rotina Fitness">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="application-name" content="Rotina">
+<meta name="application-name" content="Rotina Fitness">
 <meta name="description" content="Rotina diária, dieta, treino, água e progresso.">
-<title>Rotina & Protocolo</title>
+<title>Rotina Fitness</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
 <style>
 :root{
@@ -467,7 +467,7 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
 
   <!-- HOJE -->
   <section class="aba on" id="a-hoje">
-    <h1>Rotina &amp; Protocolo</h1>
+    <h1>Rotina Fitness</h1>
     <p class="pfn" id="pfNomeHoje" hidden></p>
     <p class="regra" id="regra"></p>
     <p class="dtit" id="dtit"></p>
@@ -2788,7 +2788,7 @@ function icsPrimeiraData(dias){
   return d;
 }
 function icsTexto(evs,ant){
-  var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Rotina e Protocolo//PT-BR//','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+icsEsc('Rotina'+(pf.lista.length>1?' - '+nomePerfil():''))];
+  var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Rotina Fitness//PT-BR//','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+icsEsc('Rotina'+(pf.lista.length>1?' - '+nomePerfil():''))];
   var st=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,''),pid=perfilAtual().id;
   evs.forEach(function(ev,n){
     var d=icsPrimeiraData(ev.dias),m0=minutos(ev.h),dur=ev.agua?10:(/^treino/.test(ev.i.id)?60:30);
