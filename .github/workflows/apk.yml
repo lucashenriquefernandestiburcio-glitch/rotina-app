@@ -55,8 +55,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp android/app/build/outputs/apk/release/app-release.apk Rotina.apk
+          printf '%s\n' \
+            'Rotina Fitness (Android)' \
+            '' \
+            '1. Extraia este zip (no app Arquivos, toque no zip e em Extrair).' \
+            '2. Toque no arquivo Rotina.apk.' \
+            '3. Se o Android pedir, toque em Configuracoes e permita instalar apps desta fonte. Volte e toque em Instalar.' \
+            '4. Se o Play Protect avisar, toque em Mais detalhes e em Instalar mesmo assim.' \
+            > LEIA-ME.txt
+          zip -q Rotina-apk.zip Rotina.apk LEIA-ME.txt
           gh release delete apk-latest --cleanup-tag --yes || true
-          gh release create apk-latest Rotina.apk \
+          gh release create apk-latest Rotina.apk Rotina-apk.zip \
             --title "Rotina Fitness (Android)" \
-            --notes "APK mais recente do app Rotina Fitness (compilação ${{ github.run_number }}). Baixe o arquivo Rotina.apk e instale no celular." \
+            --notes "App Rotina Fitness para Android (compilação ${{ github.run_number }}). Se o navegador bloquear o Rotina.apk, baixe o Rotina-apk.zip, extraia e instale o Rotina.apk que está dentro." \
             --target "$GITHUB_SHA"
