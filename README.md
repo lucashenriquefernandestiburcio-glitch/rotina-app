@@ -6,7 +6,8 @@ App de rotina diária, dieta, treino, água e progresso, com lembretes para o ca
 Funciona no navegador, instala na tela inicial e abre sem internet. Os registros ficam guardados só no aparelho de quem usa.
 
 Treino: musculação, natação, ciclismo e corrida, até 2 treinos por dia (por exemplo, academia de manhã e natação à noite) e treino em jejum, com o café da manhã reorganizado para depois do treino.
-Caneta emagrecedora: cadastro do medicamento e da dose; o app reduz as porções, divide a comida em 6 refeições pequenas, mantém a proteína e lembra do dia da aplicação. Informação geral, não substitui orientação médica.
+Plano alimentar com caneta (Mounjaro, Ozempic, Wegovy e parecidas): na aba Dieta › Meu plano, informe o medicamento e a dose; o app reduz as porções, divide a comida em 6 refeições pequenas (com mini-refeição proteica), mantém a proteína, ajusta as metas e a lista de compras e lembra do dia da aplicação. Informação geral, não substitui orientação médica.
+Perfil com foto: tirar foto ou escolher da galeria, recorte quadrado, guardada só neste aparelho (não entra no backup).
 
 - `logo/`: logo e ícone do app
 - `index.html`: o app (arquivo único)

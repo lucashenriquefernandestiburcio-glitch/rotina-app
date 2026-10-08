@@ -38,9 +38,11 @@ public class MainActivity extends Activity {
     private static final String HOST = "appassets.androidplatform.net";
     private static final String INICIO = "https://" + HOST + "/assets/index.html";
     private static final int PEDIDO_ARQUIVO = 1;
+    private static final int PEDIDO_CAMERA = 2;
 
     private WebView web;
     private ValueCallback<Uri[]> escolha;
+    private Uri fotoUri;
 
     @Override
     protected void onCreate(Bundle estado) {
@@ -82,6 +84,9 @@ public class MainActivity extends Activity {
                     escolha.onReceiveValue(null);
                 }
                 escolha = retorno;
+                if (params.isCaptureEnabled() && pedeImagem(params.getAcceptTypes()) && abrirCamera()) {
+                    return true;
+                }
                 try {
                     startActivityForResult(params.createIntent(), PEDIDO_ARQUIVO);
                 } catch (Exception e) {
@@ -97,8 +102,60 @@ public class MainActivity extends Activity {
         web.loadUrl(INICIO);
     }
 
+    private static boolean pedeImagem(String[] tipos) {
+        if (tipos == null) return false;
+        for (String t : tipos) {
+            if (t != null && t.startsWith("image")) return true;
+        }
+        return false;
+    }
+
+    /** Abre o app de câmera para a foto do perfil. Se algo falhar, volta ao seletor de arquivos. */
+    private boolean abrirCamera() {
+        try {
+            ContentValues v = new ContentValues();
+            v.put(MediaStore.Images.Media.DISPLAY_NAME, "rotina_" + System.currentTimeMillis() + ".jpg");
+            v.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+            v.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/Rotina Fitness");
+            fotoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, v);
+            if (fotoUri == null) return false;
+            Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            it.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+            it.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivityForResult(it, PEDIDO_CAMERA);
+            return true;
+        } catch (Exception e) {
+            descartarFoto();
+            return false;
+        }
+    }
+
+    private void descartarFoto() {
+        if (fotoUri != null) {
+            try {
+                getContentResolver().delete(fotoUri, null, null);
+            } catch (Exception ignorado) {
+                // sem problema: a foto vazia some sozinha
+            }
+            fotoUri = null;
+        }
+    }
+
     @Override
     protected void onActivityResult(int pedido, int resultado, Intent dados) {
+        if (pedido == PEDIDO_CAMERA) {
+            if (escolha != null) {
+                if (resultado == RESULT_OK && fotoUri != null) {
+                    escolha.onReceiveValue(new Uri[]{fotoUri});
+                } else {
+                    descartarFoto();
+                    escolha.onReceiveValue(null);
+                }
+                escolha = null;
+            }
+            fotoUri = null;
+            return;
+        }
         if (pedido == PEDIDO_ARQUIVO) {
             if (escolha != null) {
                 escolha.onReceiveValue(

@@ -429,13 +429,8 @@ nav button[aria-selected="true"]{color:var(--pool)}
 /* refeições: faixa colorida e ícone por tipo */
 li.m-despertar{--ic:#2f9bea}li.m-treino1{--ic:#f76707}li.m-cafe{--ic:#f59f00}li.m-almoco{--ic:#2f9e44}
 li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m-ceia{--ic:#4263eb}
-.item{border-left:6px solid var(--ic,var(--line));padding-left:10px}
-.item.prox{border-left:6px solid var(--ic,var(--pool));padding-left:9px}
-.item.on{border-color:var(--done);border-left-width:6px}
-.trbar,.trs{border-left:6px solid var(--ic,var(--line))}
-.m-despertar .tit::before{content:'💧 '}.m-treino1 .tit::before{content:'🏋️ '}.m-cafe .tit::before{content:'☕ '}
-.m-almoco .tit::before{content:'🍗 '}.m-lanche .tit::before{content:'🍎 '}.m-treino2 .tit::before{content:'🏊 '}
-.m-jantar .tit::before{content:'🍽️ '}.m-ceia .tit::before{content:'🥛 '}
+.item{align-items:flex-start;padding:12px}
+.item.prox{padding:11px}
 .hora{color:var(--ic,var(--pool))}
 .item.on .hora{color:var(--done)}
 
@@ -456,16 +451,15 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
 
 /* ---------- v12: agenda de treinos, caneta, menus recolhíveis, ícones ---------- */
 .dia{padding:6px 0 5px}
-.dia .ic{display:block;min-height:13px;font-size:11px;line-height:13px;letter-spacing:-1px;white-space:nowrap}
+.dia .ic{display:flex;justify-content:center;align-items:center;gap:1px;min-height:14px;line-height:1}
 .dia.nat::after{display:none}
 .mod-musc,li.mod-musc{--ic:#f76707}.mod-nat,li.mod-nat{--ic:#1c7ed6}.mod-cic,li.mod-cic{--ic:#0ca678}.mod-corr,li.mod-corr{--ic:#e03131}
-.mod-musc .tit::before{content:'🏋️ '}.mod-nat .tit::before{content:'🏊 '}.mod-cic .tit::before{content:'🚴 '}.mod-corr .tit::before{content:'🏃 '}
-.m-mini .tit::before{content:'🥣 '}li.m-mini{--ic:#12b886}
+li.m-mini,.ref.m-mini{--ic:#12b886}
 .h1l{display:flex;align-items:center;gap:10px}
 .h1l .lg{width:36px;height:36px;border-radius:9px;flex:none}
 .sessbox{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
 .sessbox .sess{flex:1 1 150px;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--ic,var(--pool));border-radius:14px;padding:10px 12px}
-.sess .si{font-size:26px;line-height:1}
+.sess .si{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--pool-soft);color:var(--ic,var(--pool))}
 .sess .sb b{display:block;font-size:17px;line-height:1.15}
 .sess .sb small{color:var(--mute);font-size:14px}
 .sess .tag{margin:0 0 0 auto}
@@ -474,7 +468,7 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
 .agsem{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:10px 0 4px}
 .agd{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:6px 0;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer}
 .agd .s{font-size:13px;font-weight:600;color:var(--mute)}
-.agd .ic{font-size:13px;line-height:1.1;letter-spacing:-1px;min-height:15px;white-space:nowrap}
+.agd .ic{display:flex;justify-content:center;align-items:center;gap:1px;min-height:15px;line-height:1;color:var(--pool)}
 .agd.sel{background:var(--pool);border-color:var(--pool)}
 .agd.sel .s{color:var(--on-pool)}
 .edf select{font:inherit;font-size:17px;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0;width:100%}
@@ -506,6 +500,97 @@ details.acc[open]>summary::after{transform:rotate(180deg)}
 details.acc[open]>summary{border-bottom:1px solid var(--line);margin-bottom:12px}
 details.acc>*:last-child{margin-bottom:16px}
 @media (prefers-reduced-motion: reduce){details.acc>summary::after{transition:none}}
+
+/* ---------- v15: ícones SVG, selos coloridos e Mounjaro no plano ---------- */
+svg.i{width:1.2em;height:1.2em;flex:none;vertical-align:-.22em}
+nav button .ni{display:grid;place-items:center;width:58px;height:30px;border-radius:15px;font-size:0;line-height:0;margin:0;padding:0;transition:background-color .15s}
+nav button .ni svg{width:24px;height:24px}
+nav button[aria-selected="true"] .ni{background:var(--pool-soft);margin-top:0;padding:0}
+.ib{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--pool-soft);color:var(--ic,var(--pool))}
+.ib svg{width:24px;height:24px}
+.item .ib{order:1}.item .itx{order:2;flex:1;min-width:0}.item .box{order:3;margin-top:8px}
+.item .box svg{width:16px;height:16px;stroke-width:3.2}
+.cp .box svg{width:16px;height:16px;stroke-width:3.2}
+.item.on .ib{opacity:.5}
+.item .hora,.item .tit{vertical-align:middle}
+.ii{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;margin-right:10px;background:var(--pool-soft);color:var(--ic,var(--pool))}
+.ii svg{width:20px;height:20px}
+.ii[data-i=alvo]{--ic:#e03131}.ii[data-i=musc]{--ic:#f76707}.ii[data-i=rotina]{--ic:#1c7ed6}.ii[data-i=sino]{--ic:#e67700}.ii[data-i=nuvem]{--ic:#4263eb}.ii[data-i=salvar]{--ic:#2f9e44}.ii[data-i=seringa]{--ic:#7048e8}
+details.acc>summary{justify-content:flex-start}
+details.acc>summary::after{margin-left:auto}
+.h2i{display:flex;align-items:center}
+.edic{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;margin-right:6px;vertical-align:middle;background:var(--pool-soft);color:var(--ic,var(--pool))}
+.edic svg{width:17px;height:17px}
+.dia .ic svg{width:13px;height:13px;stroke-width:2.4}
+.agd .ic svg{width:14px;height:14px;stroke-width:2.3}
+.wkm{display:flex;justify-content:center;gap:2px}
+.wm{display:inline-grid;place-items:center}.wm svg{width:14px;height:14px}
+.wm.wa{color:#1971c2}.wm.tr{color:#f76707}
+.tbtn{display:grid;place-items:center;padding:0}
+.tbtn svg{width:22px;height:22px}
+.fbar label svg,.fbar button svg{width:17px;height:17px;margin-right:4px}
+.rec{display:flex;align-items:center;gap:8px}
+.rec svg{width:18px;height:18px;flex:none}
+.mp-l.al svg{width:17px;height:17px;margin-right:2px}
+.pflk{display:inline-grid;place-items:center;color:var(--mute);vertical-align:middle}.pflk svg{width:16px;height:16px}
+.cnhoje b{display:flex;align-items:center;gap:8px}
+.cnhoje b svg{width:20px;height:20px;color:#7048e8}
+.cnflag{display:flex;align-items:flex-start;gap:8px;background:#efe9fd;color:#4b2db3;border-radius:12px;padding:10px 12px;margin:0 0 10px;font-size:14.5px;line-height:1.35}
+.cnflag svg{width:20px;height:20px;flex:none;margin-top:1px}
+.cncard{border-top-color:#7048e8}
+.cncard>h2{color:#6741d9}
+.cninfo{background:var(--bg);border-radius:10px;padding:8px 10px;margin:8px 0}
+.cnesc{display:grid;grid-template-columns:repeat(auto-fit,minmax(44px,1fr));gap:6px;margin:10px 0 4px}
+.cnesc button{font:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50px;padding:6px 2px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--mute);cursor:pointer;line-height:1.1}
+.cnesc button b{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:20px;font-weight:700}
+.cnesc button small{font-size:11.5px;font-weight:600}
+.cnesc button[aria-pressed="true"]{background:#6741d9;border-color:#6741d9;color:#fff}
+.cnplano{margin:10px 0 8px}
+.cnplano h3{display:flex;align-items:center;gap:8px;margin:0 0 4px;font-size:16px;color:#6741d9}
+.cnplano h3 svg{width:19px;height:19px}
+.cnpl{list-style:none;margin:6px 0;padding:0}
+.cnpl li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.cnpl .hh{flex:none;width:52px;font-family:'Barlow Condensed',system-ui,sans-serif;font-size:20px;font-weight:700;color:var(--ic,var(--pool))}
+.cnpl .nn{flex:1;min-width:0;font-weight:600;overflow-wrap:anywhere}
+.cnpl .nn em,.ref em{font-style:normal;font-size:11.5px;font-weight:700;background:#12b886;color:#fff;border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle;text-transform:uppercase;letter-spacing:.3px}
+.cnpl .kk{flex:none;text-align:right;line-height:1.2}
+.cnpl .kk small{display:block;color:var(--mute);font-size:13px}
+.cnpl li.novo{background:rgba(18,184,136,.10);border-radius:10px;padding-left:8px;padding-right:8px}
+.cntot{margin:4px 0 0}
+.ref b span:first-child{display:inline-flex;align-items:center;gap:6px}
+.ref b svg{width:18px;height:18px;color:var(--ic,var(--pool))}
+.ref.m-ref0{--ic:#f59f00}.ref.m-ref1{--ic:#2f9e44}.ref.m-ref2{--ic:#e64980}.ref.m-ref3{--ic:#7048e8}.ref.m-ref4{--ic:#4263eb}
+@supports (background:color-mix(in srgb,red 10%,white)){
+  .ib,.ii,.edic,.sess .si{background:color-mix(in srgb,var(--ic,var(--pool)) 14%,var(--card))}
+}
+:root[data-theme="dark"] .ib,:root[data-theme="dark"] .ii,:root[data-theme="dark"] .edic,:root[data-theme="dark"] .sess .si{color:color-mix(in srgb,var(--ic,var(--pool)) 55%,#fff)}
+:root[data-theme="dark"] .cnflag{background:#2a2057;color:#d8cdfc}
+:root[data-theme="dark"] .cncard>h2,:root[data-theme="dark"] .cnplano h3{color:#b69cff}
+:root[data-theme="dark"] .cnhoje b svg{color:#b69cff}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .ib,:root:not([data-theme="light"]) .ii,:root:not([data-theme="light"]) .edic,:root:not([data-theme="light"]) .sess .si{color:color-mix(in srgb,var(--ic,var(--pool)) 55%,#fff)}
+  :root:not([data-theme="light"]) .cnflag{background:#2a2057;color:#d8cdfc}
+  :root:not([data-theme="light"]) .cncard>h2,:root:not([data-theme="light"]) .cnplano h3{color:#b69cff}
+  :root:not([data-theme="light"]) .cnhoje b svg{color:#b69cff}
+}
+
+/* foto do perfil */
+.pfav,.pfi .av,.avg{background-size:cover;background-position:center;background-repeat:no-repeat}
+.semnav .pfav{font-size:15px}
+.pfcab{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.pfcab>div{flex:1;min-width:0}
+.pfcab h2{margin:0 0 2px}
+.avg{flex:none;width:72px;height:72px;border-radius:50%;color:#fff;display:grid;place-items:center;font-size:30px;font-weight:700;box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--pool)}
+.fotobar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}
+.pfcab .fotobar{margin:0}
+.fbt{font:inherit;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.fbt svg{width:19px;height:19px;color:var(--pool)}
+.fbt input[type=file]{display:none}
+.fbt.frm{color:var(--danger)}.fbt.frm svg{color:var(--danger)}
+.fotobar .fotomsg{flex:1 1 100%;margin:0}
+.fcbox{display:grid;place-items:center;margin:8px 0 12px}
+#fcCv{width:min(86vw,320px);height:min(86vw,320px);border-radius:16px;background:#222;cursor:grab;touch-action:none}
+#fcCv:focus-visible{outline:3px solid var(--pool);outline-offset:3px}
 </style>
 </head>
 <body data-aba="hoje">
@@ -718,6 +803,7 @@ details.acc>*:last-child{margin-bottom:16px}
     <h1>Compras da semana</h1>
     <p class="pfn" hidden></p>
     <div class="lin" id="cpModo" style="margin:0 0 12px"></div>
+    <p class="cnflag" id="cpCn" hidden></p>
     <div class="card" id="cpLista"></div>
     <div class="lin"><button type="button" id="cpCopia">Copiar lista</button><button type="button" id="cpLimpa">Limpar marcados</button></div>
     <p class="nota" style="margin-top:12px" id="cpNota">Quantidades para 7 dias, a partir das refeições do protocolo. Carnes em peso cru (cerca de 1,3 vez o peso cozido) e arroz cru (cerca de 1/3 do peso cozido). Compre a mais para sobrar um pouco.</p>
@@ -739,51 +825,19 @@ details.acc>*:last-child{margin-bottom:16px}
       <p class="nota" id="fAviso"></p>
       <button class="btn pri" id="fGerar" type="button">Gerar minha dieta e meu treino</button>
     </div>
-    <div id="res"></div>
-  </section>
-
-  <!-- AJUSTES -->
-  <section class="aba" id="a-ajustes">
-    <h1>Ajustes</h1>
-    <p class="pfn" hidden></p>
-    <div class="card">
-      <h2>Perfil</h2>
-      <p class="nota">Perfil ativo: <b id="pfAjNome"></b>. Cada perfil tem rotina, dieta, treino, registros e fotos separados.</p>
-      <div class="lin"><button type="button" id="pfAjAbrir">Trocar ou criar perfil</button></div>
-    </div>
-    <div class="card" id="cardInst" hidden>
-      <h2>Instalar no celular</h2>
-      <p class="nota" id="instTxt"></p>
-      <div class="lin"><button type="button" id="instBtn" class="selb" hidden>Instalar app</button></div>
-    </div>
-    <details class="card acc" open><summary>🎯 Metas do dia</summary>
-      <div class="form">
-        <label>Calorias (kcal)<input id="aKcal" type="text" inputmode="numeric"></label>
-        <label>Proteína (g)<input id="aProt" type="text" inputmode="numeric"></label>
-      </div>
-      <p class="nota" id="aNota"></p>
-      <button class="btn pri" id="aSave" type="button">Salvar metas</button>
-    </details>
-
-    <details class="card acc"><summary>🏋️ Treino</summary>
-      <label class="chk-l"><input type="checkbox" id="aDescAuto"> <span>Iniciar o descanso sozinho ao preencher uma série (exceto na última)</span></label>
-    </details>
-
-    <details class="card acc"><summary>🗓️ Minha rotina</summary>
-      <p class="nota">Toque em um item para editar horário, horário de sábado e domingo, dias, calorias e proteína.</p>
-      <div id="edRot"></div>
-      <div class="lin"><button type="button" id="edAdd">Adicionar item</button><button type="button" id="edRes">Restaurar rotina padrão</button></div>
-    </details>
-
-    <details class="card acc" id="cardCaneta"><summary>💉 Caneta emagrecedora (GLP-1)</summary>
-      <p class="nota">Usa Ozempic, Wegovy, Mounjaro, Saxenda ou parecida? Informe o medicamento e a dose: o app reduz as porções, divide a comida em refeições menores, mantém a proteína e lembra do dia da aplicação.</p>
+    <div class="card cncard" id="cardCaneta">
+      <h2 class="h2i"><i class="ii" data-i="seringa"></i><span id="cnTit">Mounjaro e outras canetas</span></h2>
+      <p class="nota">Usa Mounjaro, Ozempic, Wegovy, Saxenda ou parecida? Informe o medicamento e a dose: o app reduz as porções, divide a comida em 6 refeições pequenas, mantém a proteína, aumenta a água e lembra do dia da aplicação.</p>
       <label class="chk-l"><input type="checkbox" id="cnOn"> <span>Estou usando caneta emagrecedora</span></label>
       <div id="cnBox" hidden>
         <label class="f1l">Medicamento<select id="cnMed"></select></label>
+        <p class="nota cninfo" id="cnInfo"></p>
         <div class="row2">
           <label class="f1l">Dose<select id="cnDose"></select></label>
           <label class="f1l" id="cnOutraL" hidden>Outra dose (mg)<input id="cnOutra" type="text" inputmode="decimal"></label>
         </div>
+        <div class="cnesc" id="cnEsc" role="group" aria-label="Escala de doses"></div>
+        <p class="nota" id="cnSem"></p>
         <div class="row2">
           <label class="f1l">Dia da aplicação<select id="cnDia"></select></label>
           <label class="f1l">Horário do lembrete<input id="cnHora" type="time"></label>
@@ -793,6 +847,7 @@ details.acc>*:last-child{margin-bottom:16px}
         <div class="chips cnap" id="cnAp"></div>
         <p class="nota" id="cnSug"></p>
         <div class="cnprev" id="cnPrev"></div>
+        <div class="cnplano" id="cnPlano"></div>
         <div class="lin"><button type="button" id="cnAplic" class="selb">Ajustar cardápio e metas</button><button type="button" id="cnDesf" hidden>Desfazer ajustes</button></div>
         <p class="nota" id="cnMsg" role="status" style="margin-top:8px"></p>
         <p class="nota" id="cnUlt"></p>
@@ -800,9 +855,44 @@ details.acc>*:last-child{margin-bottom:16px}
         <details class="cndet"><summary>Dicas para quem usa caneta</summary><ul id="cnDicas" class="lista-n"></ul></details>
         <p class="nota cnaviso">Informação geral, que não substitui orientação médica ou de nutricionista. Não mude a dose por conta própria. Fale com o seu médico se tiver enjoo forte, vômitos que não passam, dor forte na barriga ou sinais de desidratação.</p>
       </div>
+    </div>
+    <div id="res"></div>
+  </section>
+
+  <!-- AJUSTES -->
+  <section class="aba" id="a-ajustes">
+    <h1>Ajustes</h1>
+    <p class="pfn" hidden></p>
+    <div class="card pfcard">
+      <div class="pfcab"><span class="avg" id="pfAjAv" aria-hidden="true"></span><div><h2>Perfil</h2><p class="nota">Perfil ativo: <b id="pfAjNome"></b>. Cada perfil tem rotina, dieta, treino, registros e fotos separados.</p></div></div>
+      <div class="fotobar" aria-label="Foto do perfil"></div>
+      <div class="lin"><button type="button" id="pfAjAbrir">Trocar ou criar perfil</button></div>
+    </div>
+    <div class="card" id="cardInst" hidden>
+      <h2>Instalar no celular</h2>
+      <p class="nota" id="instTxt"></p>
+      <div class="lin"><button type="button" id="instBtn" class="selb" hidden>Instalar app</button></div>
+    </div>
+    <details class="card acc" open><summary><i class="ii" data-i="alvo"></i>Metas do dia</summary>
+      <div class="form">
+        <label>Calorias (kcal)<input id="aKcal" type="text" inputmode="numeric"></label>
+        <label>Proteína (g)<input id="aProt" type="text" inputmode="numeric"></label>
+      </div>
+      <p class="nota" id="aNota"></p>
+      <button class="btn pri" id="aSave" type="button">Salvar metas</button>
     </details>
 
-    <details class="card acc"><summary>🔔 Lembretes no celular</summary>
+    <details class="card acc"><summary><i class="ii" data-i="musc"></i>Treino</summary>
+      <label class="chk-l"><input type="checkbox" id="aDescAuto"> <span>Iniciar o descanso sozinho ao preencher uma série (exceto na última)</span></label>
+    </details>
+
+    <details class="card acc"><summary><i class="ii" data-i="rotina"></i>Minha rotina</summary>
+      <p class="nota">Toque em um item para editar horário, horário de sábado e domingo, dias, calorias e proteína.</p>
+      <div id="edRot"></div>
+      <div class="lin"><button type="button" id="edAdd">Adicionar item</button><button type="button" id="edRes">Restaurar rotina padrão</button></div>
+    </details>
+
+    <details class="card acc"><summary><i class="ii" data-i="sino"></i>Lembretes no celular</summary>
       <p class="nota">O app não toca alarme sozinho com a tela fechada, mas o calendário do celular toca. Escolha o que incluir e baixe o arquivo de lembretes: ele é montado com os horários da sua rotina atual (inclusive fim de semana) e a meta de água do perfil.</p>
       <label class="chk-l"><input type="checkbox" id="lbRef" checked> <span>Refeições e treinos, nos horários da rotina</span></label>
       <label class="chk-l" id="lbCnL" hidden><input type="checkbox" id="lbCn" checked> <span>Lembrete semanal da aplicação da caneta</span></label>
@@ -816,14 +906,14 @@ details.acc>*:last-child{margin-bottom:16px}
       <details><summary>Criar no Google Agenda, item a item</summary><ul id="lbLista" class="lista-n"></ul></details>
     </details>
 
-    <details class="card acc" id="cardSync"><summary>☁️ Sincronização entre aparelhos</summary>
+    <details class="card acc" id="cardSync"><summary><i class="ii" data-i="nuvem"></i>Sincronização entre aparelhos</summary>
       <p class="nota" id="syInfo"></p>
       <div class="lin"><button type="button" id="syToggle">Ativar sincronização</button><button type="button" id="syAgora" hidden>Sincronizar agora</button></div>
       <p class="nota" id="syMsg" style="margin-top:8px"></p>
       <div class="lin"><button type="button" id="syRest" hidden>Restaurar cópia de antes de sincronizar</button><button type="button" id="syApaga" hidden>Apagar dados da nuvem</button></div>
     </details>
 
-    <details class="card acc"><summary>💾 Backup</summary>
+    <details class="card acc"><summary><i class="ii" data-i="salvar"></i>Backup</summary>
       <p class="nota" id="bkInfo"></p>
       <div class="lin"><button type="button" id="bkDown">Baixar arquivo</button><button type="button" id="bkCopy">Copiar</button></div>
       <textarea id="bkTxt" aria-label="Texto do backup" spellcheck="false" placeholder="Para importar: cole aqui o backup copiado, ou escolha o arquivo abaixo."></textarea>
@@ -889,6 +979,7 @@ details.acc>*:last-child{margin-bottom:16px}
   <button class="btn pri" id="pfNovo" type="button">＋ Novo perfil</button>
   <div class="card" id="pfGer" style="margin-top:12px">
     <h3 style="margin-top:0">Perfil ativo</h3>
+    <div class="pfcab"><span class="avg" id="pfShAv" aria-hidden="true"></span><div class="fotobar" aria-label="Foto do perfil"></div></div>
     <label class="f1l">Nome<input id="pfRen" type="text" maxlength="24" autocomplete="off"></label>
     <div class="lin"><button type="button" id="pfRenSalvar" class="selb">Salvar nome</button><button type="button" id="pfDel">Excluir este perfil</button></div>
     <p class="nota" id="pfMsg" style="margin-top:8px"></p>
@@ -904,6 +995,15 @@ details.acc>*:last-child{margin-bottom:16px}
   <p class="nota">Os perfis ficam separados. O PIN é só uma barreira de uso: não protege contra quem abrir os dados do navegador. Se esquecer o PIN, a única saída é apagar o perfil, então faça backup antes. Em outro celular ou computador, cada pessoa que abrir o link do app começa com um perfil próprio e vazio.</p>
 </div></div>
 
+<div id="fcrop" class="ov" hidden role="dialog" aria-modal="true" aria-labelledby="fcT" style="z-index:40"><div class="ovc">
+  <div class="sh-h"><h2 id="fcT">Ajustar foto</h2><button type="button" id="fcX" aria-label="Cancelar">×</button></div>
+  <p class="nota">Arraste a foto para enquadrar. Use o controle para aproximar. O círculo mostra como ela vai aparecer.</p>
+  <div class="fcbox"><canvas id="fcCv" width="300" height="300" tabindex="0" role="img" aria-label="Pré-visualização da foto. Use as setas para mover."></canvas></div>
+  <label class="f1l">Zoom<input id="fcZ" type="range" min="1" max="3" step="0.01" value="1"></label>
+  <div class="lin" style="margin-top:12px"><button type="button" id="fcOk" class="selb">Usar esta foto</button><button type="button" id="fcCancel">Cancelar</button></div>
+  <p class="nota" id="fcMsg" role="status"></p>
+</div></div>
+
 <div id="toast" role="status" aria-live="polite" hidden><div><span id="toastT"></span><button type="button" id="toastU">Desfazer</button></div></div>
 
 <div id="timer" role="timer"><div>
@@ -914,12 +1014,12 @@ details.acc>*:last-child{margin-bottom:16px}
 </div></div>
 
 <nav aria-label="Seções"><div role="tablist">
-  <button role="tab" aria-selected="true" data-aba="hoje"><span aria-hidden="true">✅</span>Hoje</button>
-  <button role="tab" aria-selected="false" data-aba="treino"><span aria-hidden="true">🏋️</span>Treino</button>
-  <button role="tab" aria-selected="false" data-aba="agua"><span aria-hidden="true">💧</span>Água</button>
-  <button role="tab" aria-selected="false" data-aba="prog"><span aria-hidden="true">📈</span>Progresso</button>
-  <button role="tab" aria-selected="false" data-aba="dieta"><span aria-hidden="true">🥗</span>Dieta</button>
-  <button role="tab" aria-selected="false" data-aba="ajustes"><span aria-hidden="true">⚙️</span>Ajustes</button>
+  <button role="tab" aria-selected="true" data-aba="hoje"><span class="ni" data-i="hoje" aria-hidden="true"></span>Hoje</button>
+  <button role="tab" aria-selected="false" data-aba="treino"><span class="ni" data-i="musc" aria-hidden="true"></span>Treino</button>
+  <button role="tab" aria-selected="false" data-aba="agua"><span class="ni" data-i="agua" aria-hidden="true"></span>Água</button>
+  <button role="tab" aria-selected="false" data-aba="prog"><span class="ni" data-i="prog" aria-hidden="true"></span>Progresso</button>
+  <button role="tab" aria-selected="false" data-aba="dieta"><span class="ni" data-i="dieta" aria-hidden="true"></span>Dieta</button>
+  <button role="tab" aria-selected="false" data-aba="ajustes"><span class="ni" data-i="ajustes" aria-hidden="true"></span>Ajustes</button>
 </div></nav>
 
 <script>
@@ -990,13 +1090,13 @@ var TROCAS={
 var MODS={musc:{n:'Musculação',ic:'🏋️',min:60},nat:{n:'Natação',ic:'🏊',min:45},cic:{n:'Ciclismo',ic:'🚴',min:60},corr:{n:'Corrida',ic:'🏃',min:40}};
 var MOD_ORD=['musc','nat','cic','corr'];
 var MEDS={
-  sema:{n:'Semaglutida (Ozempic, Wegovy)',cur:'Semaglutida',doses:[0.25,0.5,1,1.7,2,2.4],sem:true,niv:[0.5,1.7]},
-  tirz:{n:'Tirzepatida (Mounjaro, Zepbound)',cur:'Tirzepatida',doses:[2.5,5,7.5,10,12.5,15],sem:true,niv:[5,10]},
-  lira:{n:'Liraglutida (Saxenda, Victoza)',cur:'Liraglutida',doses:[0.6,1.2,1.8,2.4,3],sem:false,niv:[1.2,1.8]},
-  dula:{n:'Dulaglutida (Trulicity)',cur:'Dulaglutida',doses:[0.75,1.5,3,4.5],sem:true,niv:[0.75,1.5]},
-  outro:{n:'Outra caneta (informe a dose)',cur:'Caneta',doses:null,sem:true,niv:null}
+  sema:{n:'Ozempic / Wegovy (semaglutida)',cur:'Ozempic/Wegovy',doses:[0.25,0.5,1,1.7,2,2.4],sem:true,niv:[0.5,1.7],info:'Costuma começar com 0,25 mg por semana. O médico sobe a dose aos poucos, em geral depois de 4 semanas em cada degrau.'},
+  tirz:{n:'Mounjaro (tirzepatida)',cur:'Mounjaro',doses:[2.5,5,7.5,10,12.5,15],sem:true,niv:[5,10],info:'O Mounjaro costuma começar com 2,5 mg por semana, durante 4 semanas (fase de adaptação). Depois o médico sobe de 2,5 em 2,5 mg, no mínimo a cada 4 semanas, conforme a tolerância. A dose máxima é 15 mg por semana.'},
+  lira:{n:'Saxenda / Victoza (liraglutida)',cur:'Liraglutida',doses:[0.6,1.2,1.8,2.4,3],sem:false,niv:[1.2,1.8],info:'É aplicada todos os dias. A dose costuma subir 0,6 mg por semana até a dose definida pelo médico.'},
+  dula:{n:'Trulicity (dulaglutida)',cur:'Trulicity',doses:[0.75,1.5,3,4.5],sem:true,niv:[0.75,1.5],info:'Costuma começar com 0,75 mg por semana. A dose sobe depois de pelo menos 4 semanas, a critério do médico.'},
+  outro:{n:'Outra caneta (informe a dose)',cur:'Caneta',doses:null,sem:true,niv:null,info:''}
 };
-var MED_ORD=['sema','tirz','lira','dula','outro'];
+var MED_ORD=['tirz','sema','lira','dula','outro'];
 var AP_F={1:0.95,2:0.85,3:0.7};
 function sessLimpa(v){
   if(!isObj(v)||!isObj(v.d))return null;
@@ -1030,6 +1130,7 @@ function canetaLimpa(v){
   if(isObj(v.apl)){Object.keys(v.apl).sort().slice(-60).forEach(function(k){var x=+v.apl[k];if(/^\d{4}-\d{2}-\d{2}$/.test(k)&&x>0&&x<=30)o.apl[k]=Math.round(x*100)/100;});}
   if(Array.isArray(v.hist)){v.hist.slice(-12).forEach(function(q){if(isObj(q)&&typeof q.d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(q.d)&&+q.dose>0&&+q.dose<=30)o.hist.push({d:q.d,dose:Math.round(+q.dose*100)/100,med:MEDS[q.med]?q.med:med});});}
   var b=baseLimpa(v.base);if(b&&o.aplic)o.base=b;else o.aplic=false;
+  if(o.aplic){var ff=+v.f,mm=+v.m;if(ff>=0.5&&ff<=1.2)o.f=Math.round(ff*1000)/1000;if(mm>=10&&mm<=30)o.m=Math.round(mm);}
   return o;
 }
 
@@ -1066,7 +1167,9 @@ function idxValido(x){
     if(!isObj(p)||typeof p.id!=='string'||!/^p[a-z0-9]{1,12}$/.test(p.id)||vistos[p.id])return;
     vistos[p.id]=1;
     var pin=(isObj(p.pin)&&typeof p.pin.s==='string'&&typeof p.pin.h==='string')?{s:p.pin.s.slice(0,24),h:p.pin.h.slice(0,40)}:null;
-    l.push({id:p.id,nome:String(typeof p.nome==='string'?p.nome:'Perfil').slice(0,24)||'Perfil',cor:(typeof p.cor==='number'&&p.cor>=0&&p.cor<6)?Math.floor(p.cor):l.length%6,pin:pin});
+    var po={id:p.id,nome:String(typeof p.nome==='string'?p.nome:'Perfil').slice(0,24)||'Perfil',cor:(typeof p.cor==='number'&&p.cor>=0&&p.cor<6)?Math.floor(p.cor):l.length%6,pin:pin};
+    if(typeof p.foto==='string'&&p.foto.length<=120000&&/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(p.foto))po.foto=p.foto;
+    l.push(po);
   });
   l=l.slice(0,MAXPF);
   if(!l.length)return null;
@@ -1075,7 +1178,7 @@ function idxValido(x){
 }
 var pf={atual:'p1',lista:[{id:'p1',nome:'Meu perfil',cor:0}]};
 try{var ri=localStorage.getItem(IDXK);if(ri){var vi=idxValido(JSON.parse(ri));if(vi)pf=vi;}}catch(e){}
-function salvarIdx(){try{localStorage.setItem(IDXK,JSON.stringify(pf));}catch(e){}}
+function salvarIdx(){try{localStorage.setItem(IDXK,JSON.stringify(pf));return true;}catch(e){return false;}}
 function perfilAtual(){return pf.lista.filter(function(p){return p.id===pf.atual;})[0]||pf.lista[0];}
 function nomePerfil(){return perfilAtual().nome;}
 function slugPerfil(){
@@ -1157,6 +1260,67 @@ function metaProt(dw){
   return Math.max(1,Math.round(planoProt(dw)/5)*5);
 }
 function pesoRef(){var ks=Object.keys(db.peso).sort();return ks.length?db.peso[ks[ks.length-1]]:130;}
+/* ---------- v15: conjunto de ícones em SVG (traço 2, 24x24) ---------- */
+var ICO={
+  hoje:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/>',
+  musc:'<path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/>',
+  agua:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  prog:'<path d="M22 7 13.5 15.5l-5-5L2 17"/><path d="M16 7h6v6"/>',
+  dieta:'<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  ajustes:'<path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/>',
+  alvo:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  rotina:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>',
+  sino:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+  nuvem:'<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+  salvar:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/>',
+  seringa:'<path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/>',
+  usuario:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  camera:'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>',
+  imagem:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
+  lixeira:'<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
+  mais:'<path d="M12 5v14M5 12h14"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  copiar:'<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  timer:'<path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/>',
+  trofeu:'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  alerta:'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/>',
+  cafe:'<path d="M10 2v2M14 2v2M6 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>',
+  almoco:'<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  lanche:'<path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/>',
+  jantar:'<path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M8 21h8"/><path d="M8 3c1 1 1 2 0 3M12 3c1 1 1 2 0 3M16 3c1 1 1 2 0 3"/>',
+  ceia:'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+  mini:'<path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"/><path d="M5 8h14"/><path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/><path d="m12 8 1-6h2"/>',
+  nat:'<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
+  cic:'<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
+  corr:'<path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"/><path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"/><path d="M16 17h4M4 13h4"/>',
+  cardio:'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/>',
+  relogio:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  lapis:'<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>',
+  sol:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+  info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
+  prato:'<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>'
+};
+ICO.jejum=ICO.timer;ICO.caminhada=ICO.corr;ICO.despertar=ICO.agua;ICO.treino1=ICO.musc;ICO.treino2=ICO.nat;
+function ico(n,c){
+  var d=ICO[n];
+  if(!d)return '';
+  return '<svg class="i'+(c?' '+c:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+d+'</svg>';
+}
+/* ícone do item da rotina: pela modalidade da sessão, pelo id conhecido ou pelo tipo */
+function icItem(i,sI){
+  if(sI&&ICO[sI.m])return sI.m;
+  if(ICO[i.id])return i.id;
+  return (+i.k>0)?'prato':'relogio';
+}
+function montaIcones(raiz){
+  var q=(raiz||document).querySelectorAll('[data-i]'),x;
+  for(x=0;x<q.length;x++){
+    var e=q[x],n=e.getAttribute('data-i');
+    if(e.getAttribute('data-ok')!==n){e.innerHTML=ico(n);e.setAttribute('data-ok',n);}
+  }
+}
 
 /* ---------- exercícios: padrões, dicas e desenhos ---------- */
 var PAT={'Leg Press':'legpress','Supino Inclinado Smith':'incline','Supino Inclinado':'incline','Puxada Alta Pronada':'pulldown','Puxada Supinada':'pulldown','Pulldown':'pulldown','Desenvolvimento Smith':'press','Tríceps Corda':'tpush','Tríceps Francês':'tfr','Panturrilha':'calf','Agachamento Smith':'squat','Supino Reto':'bench','Remada Baixa':'row','Elevação Lateral':'lateral','Rosca Direta':'curl','Rosca Alternada':'curl','Rosca + Tríceps':'curl','Abdominal':'crunch','Crucifixo Polia':'fly','Crossover':'fly','Mesa Flexora':'lcurl','Extensora':'lext','Flexora':'scurl'};
@@ -1652,7 +1816,7 @@ function renderSemana(){
     b.className='dia'+(i===selIdx?' sel':'')+(key(d)===hojeK?' hoje':'')+(ss.some(function(s){return s.m==='nat';})?' nat':'')+(ss.length?' tem':'');
     b.setAttribute('aria-pressed',i===selIdx?'true':'false');
     if(ss.length)b.title=sessResumoDia(ss);
-    b.innerHTML='<span class="s">'+NOMES[dw]+'</span><span class="n">'+d.getDate()+'</span><span class="ic" aria-hidden="true">'+ss.map(function(s){return MODS[s.m].ic;}).join('')+'</span>';
+    b.innerHTML='<span class="s">'+NOMES[dw]+'</span><span class="n">'+d.getDate()+'</span><span class="ic" aria-hidden="true">'+ss.map(function(s){return ico(s.m);}).join('')+'</span>';
     b.addEventListener('click',function(){selIdx=i;render();});
     el.appendChild(b);
   });
@@ -1688,6 +1852,7 @@ function render(){
   else if(ativa==='prog')renderProg();
   else if(ativa==='compras')renderCompras();
   else if(ativa==='trocas')renderTrocas();
+  else if(ativa==='perfil')renderCanetaCard();
 }
 
 /* ---------- HOJE ---------- */
@@ -1742,7 +1907,7 @@ function renderHoje(){
     var tt=at?trocaTxt(dk,i):'';
     var kc=(at&&((+i.k>0)||(+i.p>0)))?'<span class="kc">≈ '+fmtN(kcalItem(dk,i))+' kcal · '+fmtN(protItem(dk,i))+' g de proteína</span>':'';
     var extra=(i.id==='treino1'&&at&&(!sI||sI.m==='musc'))?' Hoje: '+esc(nomeTreino(dw))+'.':'';
-    b.innerHTML='<span class="box" aria-hidden="true">✓</span><span><span class="hora">'+esc(hh(i,dw))+'</span><span class="tit">'+esc(tit(i,dw))+'</span><span class="det">'+esc(desc(i,dw))+extra+'</span>'+(tt?'<span class="det troca-hj">'+esc(tt)+'</span>':'')+kc+tag+'</span>';
+    b.innerHTML='<span class="box" aria-hidden="true">'+ico('check')+'</span><span class="ib" aria-hidden="true">'+ico(icItem(i,sI))+'</span><span class="itx"><span class="hora">'+esc(hh(i,dw))+'</span><span class="tit">'+esc(tit(i,dw))+'</span><span class="det">'+esc(desc(i,dw))+extra+'</span>'+(tt?'<span class="det troca-hj">'+esc(tt)+'</span>':'')+kc+tag+'</span>';
     b.addEventListener('click',function(){
       var m=db.dias[dk]||(db.dias[dk]={});
       m[i.id]=!m[i.id];salvar();vib();render();
@@ -1915,7 +2080,7 @@ function cardEx(e,i,dk,tr){
       '<input class="ik" type="text" inputmode="decimal" autocomplete="off" placeholder="'+(pl[0]!=null?esc(fmtK(pl[0])):'kg')+'" value="'+(cur[0]!=null?esc(fmtK(cur[0])):'')+'" aria-label="Carga da série '+(s+1)+' em kg">'+
       '<input class="ir" type="text" inputmode="numeric" autocomplete="off" placeholder="'+(pl[1]!=null?esc(pl[1]):'reps')+'" value="'+(cur[1]!=null?esc(cur[1]):'')+'" aria-label="Repetições da série '+(s+1)+'">'+
       (s>0?'<button type="button" class="igual" aria-label="Copiar a série anterior (carga e repetições)">Igual</button>':'<button type="button" class="igual" hidden tabindex="-1" aria-hidden="true">Igual</button>')+
-      '<button type="button" class="tbtn" aria-label="Iniciar descanso de '+ds+' segundos">⏱</button></div>';
+      '<button type="button" class="tbtn" aria-label="Iniciar descanso de '+ds+' segundos">'+ico('timer')+'</button></div>';
   }
   var ultTxt;
   if(ult){
@@ -1923,14 +2088,14 @@ function cardEx(e,i,dk,tr){
   }else ultTxt='Primeira vez neste exercício: anote kg e repetições para acompanhar a evolução.';
   var fb=fu
     ?'<label>Trocar foto<input type="file" accept="image/*"></label><button type="button" class="frem">Remover foto</button>'
-    :'<label>📷 Usar minha foto ou GIF<input type="file" accept="image/*"></label>';
+    :'<label>'+ico('camera')+' Usar minha foto ou GIF<input type="file" accept="image/*"></label>';
   c.innerHTML='<div class="exi">'+(fu?'<img alt="Sua foto do exercício '+esc(nome)+'" src="'+esc(fu)+'">':svgFor(pat))+'</div><div class="fbar">'+fb+'</div><p class="nota fmsg" style="margin:4px 0 0"></p><div class="exb"><div class="cab"><b>'+esc(nome)+'</b><span>'+esc(rep.replace('x','×'))+'</span></div><p>'+esc(DICA[pat])+'</p><a class="vid" href="https://www.youtube.com/results?search_query='+encodeURIComponent(nome+' execução correta')+'" target="_blank" rel="noopener noreferrer">▶ Ver a execução em vídeo</a><p class="ult">'+esc(ultTxt)+'</p>'+
     (sg?'<div class="sug"><span>'+esc(sg.txt)+'</span><button type="button" class="usar">Usar '+esc(fmtK(sg.kg))+' kg nas séries vazias</button></div>':'')+
     '<p class="rec" hidden></p>'+rows+'<button type="button" class="feito">'+(tr[i]?'Feito ✓':'Marcar como feito')+'</button></div>';
   if(fotoMsg.n===nome&&fotoMsg.t){c.querySelector('.fmsg').textContent=fotoMsg.t;fotoMsg={n:null,t:''};}
   function atualizaRec(){
     var r=recordeDia(nome,dk),el=c.querySelector('.rec');
-    if(r){el.hidden=false;el.textContent='🏆 '+r.txt;}else el.hidden=true;
+    if(r){el.hidden=false;el.innerHTML=ico('trofeu')+'<span>'+esc(r.txt)+'</span>';}else el.hidden=true;
   }
   atualizaRec();
   c.querySelectorAll('.srow').forEach(function(row,s){
@@ -2163,7 +2328,7 @@ function renderProg(){
   semana.forEach(function(d){
     var k=key(d),fut=k>hojeK,st=statDia(k),tc=treinoCompleto(k),ag=soma(db.agua[k]||[])>=db.meta;
     if(!fut){pcts.push(st.pct);agTot++;if(ag)agOk++;if(tc!==null){trTot++;if(tc)trOk++;}}
-    cols+='<div class="wkc'+(k===hojeK?' hj':'')+'"><div class="wkp">'+(fut?'–':st.pct+'%')+'</div><div class="wkb"><i style="height:'+(fut?0:st.pct)+'%"></i></div><div>'+NOMES[d.getDay()]+'</div><div class="wkm">'+(ag&&!fut?'<span aria-label="Água na meta">💧</span>':'')+(tc?'<span aria-label="Treino completo">🏋️</span>':'')+'</div></div>';
+    cols+='<div class="wkc'+(k===hojeK?' hj':'')+'"><div class="wkp">'+(fut?'–':st.pct+'%')+'</div><div class="wkb"><i style="height:'+(fut?0:st.pct)+'%"></i></div><div>'+NOMES[d.getDay()]+'</div><div class="wkm">'+(ag&&!fut?'<span class="wm wa" role="img" aria-label="Água na meta">'+ico('agua')+'</span>':'')+(tc?'<span class="wm tr" role="img" aria-label="Treino completo">'+ico('musc')+'</span>':'')+'</div></div>';
   });
   $('wk').innerHTML=cols;
   var atualSem=key(semana[0])<=hojeK&&hojeK<=key(semana[6]);
@@ -2181,6 +2346,14 @@ function renderProg(){
 var CAT=['Proteínas','Carboidratos','Hortifrúti','Suplementos e outros'];
 function pcRef(i){var r=db.res;return {P:Math.round(r.prot*REF[i][1]),C:Math.round(r.carb*REF[i][1])};}
 function comprasBase(modo){
+  var it=comprasBase0(modo),c=db.caneta;
+  if(c&&c.on&&c.aplic&&c.f){
+    it.forEach(function(x){if(!x.sem&&(x.c<=1||x.k==='whey'))x.d=x.d*c.f;});
+    if(c.m)it.push({k:'mini',n:'Whey ou iogurte (mini-refeição proteica)',c:3,d:Math.round(c.m/0.8/5)*5,u:'g'});
+  }
+  return it;
+}
+function comprasBase0(modo){
   if(modo==='gerado'&&db.res){
     var p0=pcRef(0),p1=pcRef(1),p2=pcRef(2),p3=pcRef(3);
     var a=numsRef(0,p0.P,p0.C),b=numsRef(1,p1.P,p1.C),w=numsRef(2,p2.P,p2.C),j=numsRef(3,p3.P,p3.C);
@@ -2256,15 +2429,22 @@ function renderCompras(){
       var kc=cpModo+'|'+x.k,on=!!db.compras[kc];
       var b=document.createElement('button');b.type='button';b.className='cp'+(on?' on':'');
       b.setAttribute('aria-pressed',on?'true':'false');
-      b.innerHTML='<span class="box" aria-hidden="true">✓</span><span class="nm">'+esc(x.n)+'</span><b>'+esc(fmtQ(x))+'</b>';
+      b.innerHTML='<span class="box" aria-hidden="true">'+ico('check')+'</span><span class="nm">'+esc(x.n)+'</span><b>'+esc(fmtQ(x))+'</b>';
       b.addEventListener('click',function(){if(db.compras[kc])delete db.compras[kc];else db.compras[kc]=true;salvar();vib();renderCompras();});
       box.appendChild(b);
     });
   });
+  var cc=db.caneta,cf=$('cpCn'),cOn=!!(cc&&cc.on&&cc.aplic&&cc.f);
+  if(cf){
+    cf.hidden=!cOn;
+    if(cOn)cf.innerHTML=ico('seringa')+'<span>Lista ajustada para o <b>'+esc(MEDS[cc.med].cur)+'</b>: carnes, carboidratos e whey '+(cc.f<0.995?'reduzidos em '+Math.round((1-cc.f)*100)+'%':'sem redução')+(cc.m?' e mini-refeição proteica incluída':'')+'.</span>';
+  }
   $('cpNota').textContent=cpModo==='gerado'?'Quantidades para 7 dias, a partir da dieta gerada no seu plano. Carnes em peso cru (cerca de 1,3 vez o cozido) e arroz cru (cerca de 1/3 do cozido). Compre um pouco a mais.':'Quantidades para 7 dias, a partir das refeições do protocolo. Carnes em peso cru (cerca de 1,3 vez o cozido) e arroz cru (cerca de 1/3 do cozido). Compre um pouco a mais.';
 }
 function textoCompras(){
   var itens=comprasBase(cpModo),t='Compras da semana\n';
+  var cc=db.caneta;
+  if(cc&&cc.on&&cc.aplic&&cc.f)t+='(ajustada para o '+MEDS[cc.med].cur+': porções '+Math.round((1-cc.f)*100)+'% menores)\n';
   CAT.forEach(function(nome,ci){
     var g=itens.filter(function(x){return x.c===ci;});
     if(!g.length)return;
@@ -2316,7 +2496,7 @@ function fillPerfil(){
   $('fAviso').textContent=db.onb?'Ao refazer o plano, o app recalcula metas, treino, refeições e horários da aba Hoje com os novos dados. Edições manuais da rotina são substituídas.':'';
 }
 /* aplica o plano calculado à rotina, às metas e à água */
-function aplicarPlano(){
+function aplicarPlano(forca){
   var r=db.res,p=db.perfil;
   db.rot=rotinaGerada(p,r,db.gerado||{});
   db.kcalMeta=r.k;db.protMeta=r.prot;db.meta=r.agua;
@@ -2325,24 +2505,31 @@ function aplicarPlano(){
     db.rot.forEach(function(i){if(i.id==='treino1')o.t1=clone(i);if(i.id==='treino2')o.t2=clone(i);});
     db.sess.o=o;aplicaSess();
   }
-  if(db.caneta&&db.caneta.on&&db.caneta.aplic){db.caneta.aplic=false;delete db.caneta.base;aplicaCaneta();}
+  var cn=db.caneta;
+  if(cn&&cn.on&&(cn.aplic||forca)){cn.aplic=false;delete cn.base;delete cn.f;delete cn.m;aplicaCaneta();}
 }
 function renderRes(){
   var el=$('res');
   if(!db.res||!db.perfil||!db.gerado){el.innerHTML='';return;}
   var r=db.res,p=db.perfil,h='';
+  var cn=canetaOn(),c=db.caneta,al=null,te=null,f=1;
+  if(cn){al=canetaAlvo(c,{k:r.k,p:r.prot,meta:r.agua,rot:null});te=escalaCaneta(r.k,r.prot,al);f=te.f;}
+  var KC=cn?al.k:r.k,AG=cn?al.agua:r.agua,CB=Math.round(r.carb*f),GD=Math.round(r.gord*f);
   var ob={emagrecer:'perder gordura',manter:'manter o peso',ganhar:'ganhar massa'}[p.obj]||'';
-  h+='<div class="card"><h2>Suas metas (objetivo: '+ob+')</h2><div class="kpis"><div><b>'+fmtN(r.k)+' kcal</b><small>por dia</small></div><div><b>'+fmtL(r.agua)+'</b><small>de água por dia</small></div><div><b>'+r.prot+' g</b><small>proteína</small></div><div><b>'+r.carb+' g · '+r.gord+' g</b><small>carboidrato · gordura</small></div></div>';
-  h+='<p class="nota">Gasto basal estimado: '+fmtN(r.bmr)+' kcal. Gasto total com seus treinos: cerca de '+fmtN(r.tdee)+' kcal. Cálculo de Mifflin-St Jeor.</p>';
-  h+='<button class="btn sec" id="bAgua" type="button">Usar '+fmtL(r.agua)+' como meta de água</button>';
-  h+='<button class="btn sec" id="bKcal" type="button">Usar '+fmtN(r.k)+' kcal como meta de calorias</button></div>';
-  h+='<div class="card"><h2>Dieta sugerida</h2><p class="nota">'+(db.onb?'Refeições montadas para o seu objetivo, com 1 única fonte de proteína por refeição.':'Mesma estrutura de refeições da sua rotina, com 1 única fonte de proteína por refeição. Sua rotina da aba Hoje só muda se você tocar no botão no fim desta dieta.')+' As quantidades são um ponto de partida: ajuste para chegar nos totais do dia.</p>';
+  h+='<div class="card"><h2>Suas metas (objetivo: '+ob+')</h2>';
+  if(cn)h+='<p class="cnflag">'+ico('seringa')+'<span>Metas ajustadas para o <b>'+esc(MEDS[c.med].cur)+' '+esc(fmtK(c.dose))+' mg</b>: menos calorias, proteína mantida e mais água.</span></p>';
+  h+='<div class="kpis"><div><b>'+fmtN(KC)+' kcal</b><small>por dia'+(cn?' (com a caneta)':'')+'</small></div><div><b>'+fmtL(AG)+'</b><small>de água por dia</small></div><div><b>'+r.prot+' g</b><small>proteína</small></div><div><b>'+CB+' g · '+GD+' g</b><small>carboidrato · gordura</small></div></div>';
+  h+='<p class="nota">Gasto basal estimado: '+fmtN(r.bmr)+' kcal. Gasto total com seus treinos: cerca de '+fmtN(r.tdee)+' kcal. Cálculo de Mifflin-St Jeor.'+(cn?' Sem a caneta, a meta seria de '+fmtN(r.k)+' kcal por dia.':'')+(cn&&al.limitado?' A redução foi limitada ao mínimo de segurança de '+fmtN(al.piso)+' kcal.':'')+'</p>';
+  h+='<button class="btn sec" id="bAgua" type="button">Usar '+fmtL(AG)+' como meta de água</button>';
+  h+='<button class="btn sec" id="bKcal" type="button">Usar '+fmtN(KC)+' kcal como meta de calorias</button></div>';
+  h+='<div class="card"><h2>Dieta sugerida'+(cn?' com o '+esc(MEDS[c.med].cur):'')+'</h2><p class="nota">'+(cn?'Porções menores em 6 refeições pequenas, com uma mini-refeição proteica para manter a proteína mesmo com pouco apetite. ':'')+(db.onb?'Refeições montadas para o seu objetivo, com 1 única fonte de proteína por refeição.':'Mesma estrutura de refeições da sua rotina, com 1 única fonte de proteína por refeição. Sua rotina da aba Hoje só muda se você tocar no botão no fim desta dieta.')+' As quantidades são um ponto de partida: ajuste para chegar nos totais do dia.</p>';
   REF.forEach(function(m,i){
-    var P=Math.round(r.prot*m[1]),C=Math.round(r.carb*m[1]),G=Math.round(r.gord*m[1]),K=r10(r.k*m[1]);
-    h+='<div class="ref"><b><span>'+m[0]+'</span><span>'+K+' kcal</span></b><small>P '+P+' g · C '+C+' g · G '+G+' g</small><small style="color:var(--ink)">'+sugestao(i,P,C)+'</small></div>';
+    var P=Math.round(r.prot*m[1]*f),C=Math.round(r.carb*m[1]*f),G=Math.round(r.gord*m[1]*f),K=r10(r.k*m[1]*f);
+    h+='<div class="ref m-ref'+i+'"><b><span>'+ico(['cafe','almoco','lanche','jantar','ceia'][i])+m[0]+'</span><span>'+K+' kcal</span></b><small>P '+P+' g · C '+C+' g · G '+G+' g</small><small style="color:var(--ink)">'+sugestao(i,P,C)+'</small></div>';
+    if(cn&&i===0)h+='<div class="ref m-mini novo"><b><span>'+ico('mini')+'Mini-refeição proteica <em>nova</em></span><span>'+(te.M*5)+' kcal</span></b><small>P '+te.M+' g · entre o café e o almoço</small><small style="color:var(--ink)">~'+te.w+' g de whey em água ou 1 iogurte natural/grego. Tome devagar.</small></div>';
   });
   if(db.onb)h+='<p class="nota" style="margin-top:8px">Estas refeições e horários já estão na aba Hoje.</p>';
-  else h+='<button class="btn sec" id="bRot" type="button" style="margin-top:10px">Usar esta dieta como minha rotina</button>';
+  else h+='<button class="btn sec" id="bRot" type="button" style="margin-top:10px">'+(cn?'Usar esta dieta (ajustada para a caneta) como minha rotina':'Usar esta dieta como minha rotina')+'</button>';
   h+='</div><div class="card"><h2>Treino sugerido ('+p.dias+' dias)</h2>';
   var pl=db.gerado;
   Object.keys(pl).sort().forEach(function(k){h+='<div class="ref"><b><span>'+NOMES[k]+' · '+esc(pl[k].n)+'</span></b><small>'+pl[k].ex.map(function(e){return esc(e[0])+' '+esc(e[1]);}).join(', ')+'</small></div>';});
@@ -2351,14 +2538,14 @@ function renderRes(){
   else h+='<p class="nota" style="margin-top:8px">Este treino já está na aba Treino.</p>';
   h+='</div>';
   el.innerHTML=h;
-  $('bAgua').addEventListener('click',function(){db.meta=r.agua;salvar();vib();$('bAgua').textContent='Meta de água atualizada ✓';});
-  $('bKcal').addEventListener('click',function(){db.kcalMeta=r.k;salvar();vib();$('bKcal').textContent='Meta de calorias atualizada ✓';});
+  $('bAgua').addEventListener('click',function(){db.meta=AG;if(c&&c.aplic&&c.base)c.base.meta=r.agua;salvar();vib();$('bAgua').textContent='Meta de água atualizada ✓';});
+  $('bKcal').addEventListener('click',function(){db.kcalMeta=KC;if(c&&c.aplic&&c.base)c.base.k=r.k;salvar();vib();$('bKcal').textContent='Meta de calorias atualizada ✓';});
   if($('bTreino'))$('bTreino').addEventListener('click',function(){db.usaGerado=true;salvar();vib();$('bTreino').textContent='Treino aplicado ✓';});
   if($('bRot')){
     $('bRot').addEventListener('click',function(){
-      var ant={rot:JSON.stringify(db.rot),k:db.kcalMeta,p:db.protMeta,m:db.meta};
-      aplicarPlano();salvar();vib();
-      toast('Rotina e metas atualizadas. Veja a aba Hoje.',function(){db.rot=JSON.parse(ant.rot);db.kcalMeta=ant.k;db.protMeta=ant.p;db.meta=ant.m;salvar();render();});
+      var ant={rot:JSON.stringify(db.rot),k:db.kcalMeta,p:db.protMeta,m:db.meta,c:db.caneta?JSON.stringify(db.caneta):null};
+      aplicarPlano(cn);salvar();vib();renderCaneta();
+      toast('Rotina e metas atualizadas. Veja a aba Hoje.',function(){db.rot=JSON.parse(ant.rot);db.kcalMeta=ant.k;db.protMeta=ant.p;db.meta=ant.m;db.caneta=ant.c?JSON.parse(ant.c):null;salvar();render();renderCaneta();});
     });
   }
 }
@@ -2423,7 +2610,7 @@ function renderAjustes(){
   $('aNota').textContent='Proteína em branco = soma das refeições da rotina no dia ('+fmtN(metaProt(dw))+' g hoje). A meta de água fica na aba Água.';
   $('aDescAuto').checked=db.descAuto!==false;
   $('edRes').textContent=lblRes();$('pfAjNome').textContent=nomePerfil();
-  renderEdRot();renderBk();renderLembretes();renderSync();renderCaneta();
+  renderEdRot();renderBk();renderLembretes();renderSync();
 }
 function bkMsg(t){$('bkMsg').textContent=t;}
 function jsonBackup(){return JSON.stringify(db);}
@@ -2605,7 +2792,7 @@ function renderMetaPeso(){
   }else{
     var rit=Math.abs(an.sem)<0.05?'praticamente estável':(an.sem<0?'caindo':'subindo')+' cerca de '+n1(an.sem)+' kg por semana ('+n1(an.pct)+'% do peso)';
     h+='<p class="mp-l">Ritmo dos últimos '+an.dias+' dias: '+rit+'. Peso pela tendência: '+fmtKg(an.atual)+'.</p>';
-    if(an.alerta)h+='<p class="mp-l al">⚠ Você está perdendo mais de 1% do peso por semana. Perder rápido demais tende a custar músculo e é difícil de manter. Considere aumentar um pouco as calorias ou conversar com um nutricionista.</p>';
+    if(an.alerta)h+='<p class="mp-l al">'+ico('alerta')+' Você está perdendo mais de 1% do peso por semana. Perder rápido demais tende a custar músculo e é difícil de manter. Considere aumentar um pouco as calorias ou conversar com um nutricionista.</p>';
     if(mp){
       if(an.chegou)h+='<p class="mp-l">Você está na meta de '+fmtKg(mp.kg)+'.</p>';
       else{
@@ -2618,7 +2805,7 @@ function renderMetaPeso(){
         if(an.rest!==undefined&&an.rest<=0)h+='<p class="mp-l">A data limite ('+fmtDataL(mp.ate)+') já passou. Defina outra, se quiser.</p>';
         else if(an.nec!==undefined){
           h+='<p class="mp-l">Para chegar em '+fmtDataL(mp.ate)+' (faltam '+an.rest+' dias), seria preciso '+(an.nec<0?'perder':'ganhar')+' cerca de '+n1(an.nec)+' kg por semana ('+n1(an.necPct)+'% do peso).</p>';
-          if(an.necAlerta)h+='<p class="mp-l al">⚠ Esse ritmo passa de 1% do peso por semana. Vale escolher uma data mais distante.</p>';
+          if(an.necAlerta)h+='<p class="mp-l al">'+ico('alerta')+' Esse ritmo passa de 1% do peso por semana. Vale escolher uma data mais distante.</p>';
         }
       }
     }else h+='<p class="mp-l">Defina um peso-alvo abaixo para ver a projeção de data.</p>';
@@ -3131,7 +3318,7 @@ function sessTexto(s,ef){
   return t;
 }
 function sessResumoDia(ss){
-  return ss.map(function(s,ix){return MODS[s.m].ic+' '+MODS[s.m].n+' '+s.h+(jejumEf(ss,ix)?' em jejum':'');}).join(' · ');
+  return ss.map(function(s,ix){return MODS[s.m].n+' '+s.h+(jejumEf(ss,ix)?' em jejum':'');}).join(' · ');
 }
 
 /* cria a agenda própria a partir do que já existe (na primeira edição) */
@@ -3220,14 +3407,14 @@ function renderSessDia(dw){
   ss.forEach(function(s,ix){
     var ef=jejumEf(ss,ix);
     if(ef)jej=true;
-    h+='<div class="sess mod-'+s.m+'"><span class="si" aria-hidden="true">'+MODS[s.m].ic+'</span><span class="sb"><b>'+esc(MODS[s.m].n)+'</b><small>'+esc(s.h)+(db.sess?' · '+s.min+' min':'')+'</small></span>'+(ef?'<span class="tag">Em jejum</span>':'')+'</div>';
+    h+='<div class="sess mod-'+s.m+'"><span class="si" aria-hidden="true">'+ico(s.m)+'</span><span class="sb"><b>'+esc(MODS[s.m].n)+'</b><small>'+esc(s.h)+(db.sess?' · '+s.min+' min':'')+'</small></span>'+(ef?'<span class="tag">Em jejum</span>':'')+'</div>';
   });
   if(jej)h+='<p class="nota">Treino em jejum: água e café preto até terminar; o café da manhã vem depois do treino. Se sentir tontura, pare e coma algo.</p>';
   el.innerHTML=h;
 }
 function agSessForm(s,ix,ss){
   var ef=ix===0&&minutos(s.h)<720;
-  var opts=MOD_ORD.map(function(m){return '<option value="'+m+'"'+(m===s.m?' selected':'')+'>'+MODS[m].ic+' '+MODS[m].n+'</option>';}).join('');
+  var opts=MOD_ORD.map(function(m){return '<option value="'+m+'"'+(m===s.m?' selected':'')+'>'+MODS[m].n+'</option>';}).join('');
   return '<div class="edf agf">'+
     '<label>Modalidade<select id="ag-m">'+opts+'</select></label>'+
     '<div class="row2"><label>Horário<input id="ag-h" type="time" value="'+esc(s.h)+'"></label><label>Duração (min)<input id="ag-min" type="text" inputmode="numeric" value="'+s.min+'"></label></div>'+
@@ -3246,7 +3433,7 @@ function renderAgenda(){
     b.type='button';b.className='agd'+(dw===agDia?' sel':'');
     b.setAttribute('aria-pressed',dw===agDia?'true':'false');
     b.title=DIAS_NOME[dw]+(ss.length?': '+sessResumoDia(ss):': descanso');
-    b.innerHTML='<span class="s">'+NOMES[dw]+'</span><span class="ic" aria-hidden="true">'+(ss.length?ss.map(function(s){return MODS[s.m].ic;}).join(''):'·')+'</span>';
+    b.innerHTML='<span class="s">'+NOMES[dw]+'</span><span class="ic" aria-hidden="true">'+(ss.length?ss.map(function(s){return ico(s.m);}).join(''):'·')+'</span>';
     b.addEventListener('click',function(){agDia=dw;agAb=-1;agCopia={};renderAgenda();});
     strip.appendChild(b);
   });
@@ -3256,7 +3443,7 @@ function renderAgenda(){
   ss.forEach(function(s,ix){
     var ef=jejumEf(ss,ix),aberto=agAb===ix;
     var w=document.createElement('div');w.className='edi agi';
-    w.innerHTML='<button type="button" class="edh" aria-expanded="'+aberto+'"><span><span class="hh">'+esc(s.h)+'</span>'+MODS[s.m].ic+' '+esc(MODS[s.m].n)+'<em>'+s.min+' min'+(ef?' · em jejum':'')+'</em></span><span aria-hidden="true">'+(aberto?'▲':'▼')+'</span></button>'+(aberto?agSessForm(s,ix,ss):'');
+    w.innerHTML='<button type="button" class="edh" aria-expanded="'+aberto+'"><span><span class="hh">'+esc(s.h)+'</span><span class="edic mod-'+s.m+'">'+ico(s.m)+'</span>'+esc(MODS[s.m].n)+'<em>'+s.min+' min'+(ef?' · em jejum':'')+'</em></span><span aria-hidden="true">'+(aberto?'▲':'▼')+'</span></button>'+(aberto?agSessForm(s,ix,ss):'');
     w.querySelector('.edh').addEventListener('click',function(){agAb=aberto?-1:ix;renderAgenda();});
     box.appendChild(w);
     if(!aberto)return;
@@ -3388,44 +3575,60 @@ function restauraBase(b){
 function canetaAlvo(c,b){
   var k0=b.k,f=AP_F[c.ap]||1,piso=pisoKcal(),k=r10(k0*f),limitado=false;
   if(k<piso){k=Math.min(k0,piso);limitado=k>r10(k0*f);}
-  var p=b.p||((db.res&&db.res.prot)?db.res.prot:0)||protDeRot(rotDe(b));
+  var p=b.p||((db.onb&&db.res&&db.res.prot)?db.res.prot:0)||protDeRot(rotDe(b));
   return {k0:k0,k:k,f:f,limitado:limitado,p:p,piso:piso,agua:Math.max(b.meta,2500)};
+}
+/* fator f das refeições e proteína M (g) da mini-refeição, para chegar na meta de calorias com a proteína mantida */
+function escalaCaneta(pk,pP,al){
+  var f=1,M=10,q,r=al.k0>0?Math.min(1,al.k/al.k0):1;
+  if(pk>0){
+    var tk=pk*r;
+    f=Math.max(0.5,Math.min(1,tk/pk));
+    for(q=0;q<3;q++){
+      var S=Math.max(0,pP*(1-f));
+      M=Math.max(10,Math.min(30,Math.round(S/5)*5));
+      f=Math.max(0.5,Math.min(1,(tk-M*5)/pk));
+    }
+  }
+  return {f:f,M:M,w:Math.round(M/0.8/5)*5};
+}
+/* função pura: recebe a rotina base e devolve a rotina para o uso da caneta (porções menores + mini-refeição) */
+function canetaTransf(rotArr,al){
+  var r=clone(rotArr),pk=0,pP=0;
+  r.forEach(function(i){if(ativo(i,1)){pk+=+i.k||0;pP+=+i.p||0;}});
+  var e=escalaCaneta(pk,pP,al),mini=false;
+  if(pk>0){
+    r.forEach(function(i){
+      if(!(+i.k>0))return;
+      i.k=Math.max(5,Math.round(i.k*e.f/5)*5);
+      i.p=Math.max(0,Math.round((+i.p||0)*e.f));
+      i.d=escalaTxt(i.d,e.f);
+      if(i.df)i.df=escalaTxt(i.df,e.f);
+    });
+    var cf=r.filter(function(i){return i.id==='cafe';})[0],alm=r.filter(function(i){return i.id==='almoco';})[0];
+    var hMini=(cf&&alm)?hm(arr15((minutos(cf.h)+minutos(alm.h))/2)):'11:00';
+    r.push({id:'mini',t:'Mini-refeição proteica',h:hMini,d:'Porção pequena e rica em proteína: cerca de '+e.w+' g de whey em água ou 1 iogurte natural/grego. Tome devagar.',dias:null,k:e.M*5,p:e.M});
+    mini=true;
+  }
+  return {rot:r,f:e.f,M:e.M,w:e.w,mini:mini};
 }
 function aplicaCaneta(){
   var c=db.caneta;
   if(!c||!c.on)return false;
   if(c.aplic&&c.base)restauraBase(c.base);else c.base=capBase();
-  var b=c.base,al=canetaAlvo(c,b),r=editavel();
-  var pk=planoKcal(1),pP=planoProt(1),f=1,M=10,q;
-  if(pk>0){
-    f=Math.max(0.5,Math.min(1.2,al.k/pk));
-    for(q=0;q<3;q++){
-      var S=Math.max(0,al.p-pP*f);
-      M=Math.max(10,Math.min(30,Math.round(S/5)*5));
-      f=Math.max(0.5,Math.min(1.2,(al.k-M*5)/pk));
-    }
-    r.forEach(function(i){
-      if(!(+i.k>0))return;
-      i.k=Math.max(5,Math.round(i.k*f/5)*5);
-      i.p=Math.max(0,Math.round((+i.p||0)*f));
-      i.d=escalaTxt(i.d,f);
-      if(i.df)i.df=escalaTxt(i.df,f);
-    });
-    var cf=r.filter(function(i){return i.id==='cafe';})[0],alm=r.filter(function(i){return i.id==='almoco';})[0];
-    var hMini=(cf&&alm)?hm(arr15((minutos(cf.h)+minutos(alm.h))/2)):'11:00';
-    var w=Math.round(M/0.8/5)*5;
-    r.push({id:'mini',t:'Mini-refeição proteica',h:hMini,d:'Porção pequena e rica em proteína: cerca de '+w+' g de whey em água ou 1 iogurte natural/grego. Tome devagar.',dias:null,k:M*5,p:M});
-  }
+  var b=c.base,al=canetaAlvo(c,b),t=canetaTransf(editavel(),al);
+  db.rot=t.rot;
   db.kcalMeta=al.k;db.protMeta=al.p;db.meta=al.agua;
-  c.aplic=true;
+  c.aplic=true;c.f=Math.round(t.f*1000)/1000;
+  if(t.mini)c.m=t.M;else delete c.m;
   if(db.sess)aplicaSess();
   return true;
 }
 function desfazCaneta(){
   var c=db.caneta;
-  if(!c||!c.aplic||!c.base){if(c){c.aplic=false;delete c.base;}return;}
+  if(!c||!c.aplic||!c.base){if(c){c.aplic=false;delete c.base;delete c.f;delete c.m;}return;}
   restauraBase(c.base);
-  delete c.base;c.aplic=false;
+  delete c.base;delete c.f;delete c.m;c.aplic=false;
   if(db.sess)aplicaSess();
 }
 function pushHist(c){
@@ -3434,7 +3637,7 @@ function pushHist(c){
   if(c.hist.length>12)c.hist=c.hist.slice(-12);
 }
 function novaCaneta(){
-  var c=canetaLimpa({on:true,med:'sema',dose:MEDS.sema.doses[0],dia:new Date().getDay(),ap:1,ini:hojeK,h:'08:00'});
+  var c=canetaLimpa({on:true,med:'tirz',dose:MEDS.tirz.doses[0],dia:new Date().getDay(),ap:1,ini:hojeK,h:'08:00'});
   pushHist(c);
   return c;
 }
@@ -3463,7 +3666,7 @@ function renderCanetaHoje(dk,dw){
   if(!canetaOn()){el.hidden=true;el.innerHTML='';return;}
   el.hidden=false;
   var dia=dw===c.dia,feita=!!c.apl[dk],fut=dk>hojeK;
-  var h='<b>💉 Caneta: '+esc(MEDS[c.med].cur)+' '+esc(fmtK(c.dose))+' mg</b>';
+  var h='<b>'+ico('seringa')+esc(MEDS[c.med].cur)+' '+esc(fmtK(c.dose))+' mg</b>';
   if(dia){
     h+='<span class="cnl">'+(feita?'Aplicação deste dia registrada ✓':(fut?'A aplicação é neste dia, às '+esc(c.h)+'.':'Hoje é dia da aplicação (lembrete às '+esc(c.h)+').'))+'</span>';
   }else{
@@ -3472,7 +3675,7 @@ function renderCanetaHoje(dk,dw){
   }
   h+='<span class="cnd">'+esc(dicaCaneta(c,dk))+'</span>';
   if(dia&&!fut)h+='<button type="button" id="cnMarca">'+(feita?'Desmarcar aplicação':'Marcar aplicação como feita')+'</button>';
-  if(!c.aplic)h+='<button type="button" id="cnIrAj">Ajustar cardápio e metas para a caneta</button>';
+  if(!c.aplic)h+='<button type="button" id="cnIrAj">Ajustar o plano alimentar para o '+esc(MEDS[c.med].cur)+'</button>';
   el.innerHTML=h;
   if($('cnMarca'))$('cnMarca').addEventListener('click',function(){
     if(c.apl[dk])delete c.apl[dk];else c.apl[dk]=c.dose;
@@ -3480,8 +3683,8 @@ function renderCanetaHoje(dk,dw){
     salvar();vib();render();
   });
   if($('cnIrAj'))$('cnIrAj').addEventListener('click',function(){
-    irAba('ajustes');
-    var d=$('cardCaneta');if(d){d.open=true;d.scrollIntoView({block:'start'});}
+    irAba('perfil');
+    var d=$('cardCaneta');if(d)d.scrollIntoView({block:'start'});
   });
 }
 
@@ -3495,18 +3698,66 @@ function cnDoseOpts(c){
   h+='<option value="x"'+(achou?'':' selected')+'>Outra dose…</option>';
   return {html:h,outra:!achou};
 }
-function renderCaneta(){
+/* quanto tempo na dose atual (semanas) */
+function cnSemDose(c){
+  var u=c.hist[c.hist.length-1],d=u?u.d:c.ini;
+  if(c.hist.length<2&&c.ini&&(!d||c.ini<d))d=c.ini;
+  if(!d)return null;
+  var dias=Math.floor((dateDe(hojeK)-dateDe(d))/864e5);
+  return dias<0?0:Math.floor(dias/7);
+}
+/* cardápio com a caneta: prévia (ou aplicado) em lista de refeições */
+function cnPlanoHtml(c){
+  var b=(c.aplic&&c.base)?c.base:capBase(),al=canetaAlvo(c,b),t=canetaTransf(rotDe(b),al);
+  var itens=t.rot.filter(function(i){return ativo(i,1)&&+i.k>0;}).sort(function(x,y){return minutos(x.h)-minutos(y.h);});
+  var tk=0,tp=0,h='<h3>'+ico('prato')+'Plano alimentar com o '+esc(MEDS[c.med].cur)+'</h3><p class="nota">'+(c.aplic?'Este é o cardápio que está valendo na aba Hoje (segunda a sexta).':'Prévia do cardápio ajustado. Ele só vale depois que você tocar em "Ajustar cardápio e metas".')+'</p><ul class="cnpl">';
+  itens.forEach(function(i){
+    tk+=+i.k||0;tp+=+i.p||0;
+    h+='<li class="m-'+esc(i.id)+(i.id==='mini'?' novo':'')+'"><span class="hh">'+esc(i.h)+'</span><span class="nn">'+esc(i.t)+(i.id==='mini'?'<em>nova</em>':'')+'</span><span class="kk"><b>'+fmtN(i.k)+' kcal</b><small>P '+fmtN(i.p||0)+' g</small></span></li>';
+  });
+  h+='</ul><p class="nota cntot"><b>Total: '+fmtN(tk)+' kcal · '+fmtN(tp)+' g de proteína</b> em '+itens.length+' refeições pequenas.</p>';
+  return h;
+}
+function cnSetDose(v){
+  var c=db.caneta;if(!c)return;
+  c.dose=Math.round(v*100)/100;c.ap=apSug(c);pushHist(c);
+  salvar();vib();renderCaneta();
+  cnMsg(c.aplic?'Dose alterada. Toque em "Recalcular cardápio e metas".':'');
+}
+function renderCaneta(){renderCanetaCard();renderRes();}
+function renderCanetaCard(){
   var c=db.caneta,on=canetaOn();
   var cx=$('cnOn');
   if(!cx)return;
   cx.checked=on;
   $('cnBox').hidden=!on;
+  var tt=$('cnTit');if(tt)tt.textContent=on?'Plano alimentar com o '+MEDS[c.med].cur:'Mounjaro e outras canetas';
   if(!on)return;
   $('cnMed').value=c.med;
+  var M=MEDS[c.med];
+  $('cnInfo').textContent=M.info||'';$('cnInfo').hidden=!M.info;
   var o=cnDoseOpts(c);
   $('cnDose').innerHTML=o.html;
   $('cnOutraL').hidden=!o.outra;
   if(o.outra)$('cnOutra').value=fmtK(c.dose);
+  var es=$('cnEsc');es.innerHTML='';es.hidden=!M.doses;
+  if(M.doses)M.doses.forEach(function(d){
+    var b=document.createElement('button');b.type='button';
+    b.setAttribute('aria-pressed',d===c.dose?'true':'false');
+    b.setAttribute('aria-label','Dose de '+fmtK(d)+' mg');
+    b.innerHTML='<b>'+fmtK(d)+'</b><small>mg</small>';
+    b.addEventListener('click',function(){if(d!==c.dose)cnSetDose(d);});
+    es.appendChild(b);
+  });
+  var sm=cnSemDose(c),st='';
+  if(sm!==null){
+    st=sm<1?'Dose iniciada há menos de 1 semana.':'Há '+sm+(sm===1?' semana':' semanas')+' nesta dose.';
+    if(M.doses&&c.med!=='outro'){
+      var ix=M.doses.indexOf(c.dose);
+      if(sm>=4&&ix>-1&&ix<M.doses.length-1)st+=' A próxima dose da escala é '+fmtK(M.doses[ix+1])+' mg, mas só o seu médico decide a hora de subir.';
+    }
+  }
+  $('cnSem').textContent=st;
   $('cnDia').value=String(c.dia);
   $('cnHora').value=c.h;
   $('cnIni').value=c.ini||'';
@@ -3522,12 +3773,13 @@ function renderCaneta(){
   $('cnSug').textContent='Pela dose informada, o apetite costuma cair como em "'+CN_APS[sug-1][1].toLowerCase()+'". Escolha o que você sente de verdade: cada pessoa responde de um jeito.';
   var al=canetaAlvo(c,(c.aplic&&c.base)?c.base:capBase());
   var pc=Math.round((1-al.k/al.k0)*100);
-  var t='Calorias: '+fmtN(al.k0)+' → <b>'+fmtN(al.k)+' kcal</b>'+(pc>0?' (−'+pc+'%)':'')+'.';
+  var t='Meta de calorias: '+fmtN(al.k0)+' → <b>'+fmtN(al.k)+' kcal</b>'+(pc>0?' (−'+pc+'%)':'')+'.';
   t+=' Proteína mantida em <b>'+fmtN(al.p)+' g</b>.';
   t+=' Porções menores e uma mini-refeição proteica (6 refeições pequenas por dia).';
   t+=' Água: pelo menos '+fmtL(al.agua)+'.';
   if(al.limitado)t+=' A redução foi limitada ao mínimo de segurança de '+fmtN(al.piso)+' kcal.';
   $('cnPrev').innerHTML=t;
+  $('cnPlano').innerHTML=cnPlanoHtml(c);
   $('cnAplic').textContent=c.aplic?'Recalcular cardápio e metas':'Ajustar cardápio e metas';
   $('cnDesf').hidden=!c.aplic;
   var hs=$('cnHist');hs.innerHTML='';
@@ -3579,15 +3831,13 @@ function ligarCaneta(){
     var c=db.caneta;if(!c)return;
     var v=$('cnDose').value;
     if(v==='x'){$('cnOutraL').hidden=false;$('cnOutra').focus();return;}
-    c.dose=+v;c.ap=apSug(c);pushHist(c);
-    salvar();renderCaneta();cnMsg(c.aplic?'Dose alterada. Toque em "Recalcular cardápio e metas".':'');
+    cnSetDose(+v);
   });
   $('cnOutra').addEventListener('change',function(){
     var c=db.caneta;if(!c)return;
     var v=num($('cnOutra').value);
     if(v===null||v<=0||v>30){cnMsg('Informe uma dose entre 0,1 e 30 mg.');return;}
-    c.dose=Math.round(v*100)/100;c.ap=apSug(c);pushHist(c);
-    salvar();renderCaneta();cnMsg(c.aplic?'Dose alterada. Toque em "Recalcular cardápio e metas".':'');
+    cnSetDose(v);
   });
   $('cnDia').addEventListener('change',function(){var c=db.caneta;if(!c)return;c.dia=+$('cnDia').value;salvar();renderCaneta();render();});
   $('cnHora').addEventListener('change',function(){var c=db.caneta;if(!c)return;c.h=pad($('cnHora').value)||c.h;salvar();renderCaneta();});
@@ -3597,7 +3847,7 @@ function ligarCaneta(){
     var est={rot:JSON.stringify(db.rot),k:db.kcalMeta,p:db.protMeta,m:db.meta,c:JSON.stringify(c)};
     aplicaCaneta();
     salvar();vib();renderCaneta();render();renderEdRot();
-    cnMsg('Pronto: metas e cardápio ajustados para o uso da caneta. Veja a aba Hoje.');
+    cnMsg('Pronto: metas e cardápio ajustados para o '+MEDS[c.med].cur+'. Veja a aba Hoje, as Compras e o plano abaixo.');
     toast('Cardápio e metas ajustados para a caneta.',cnDesfazer(est));
   });
   $('cnDesf').addEventListener('click',function(){
@@ -3883,22 +4133,26 @@ function inicial(n){var c=String(n||'').trim().charAt(0);return c?c.toUpperCase(
 function renderPfChip(){
   var p=perfilAtual(),b=$('pfBtn');
   if(!b)return;
-  b.style.background=PFCOR[p.cor%6];
-  $('pfIni').textContent=inicial(p.nome);
+  b.style.backgroundColor=PFCOR[p.cor%6];
+  b.style.backgroundImage=p.foto?'url('+p.foto+')':'none';
+  $('pfIni').textContent=p.foto?'':inicial(p.nome);
+  fotoAvatares();
   b.setAttribute('aria-label','Perfil: '+p.nome+(p.pin?' (protegido por PIN)':'')+'. Tocar para trocar de perfil');
   b.title='Perfil: '+p.nome;
   var txt=(pf.lista.length>1||db.onb)?'Perfil: '+p.nome:'';
   document.querySelectorAll('.pfn').forEach(function(n){n.textContent=txt;n.hidden=!txt;});
 }
 function atualizaInert(){
-  var onb=!$('onb').hidden,lk=!$('lock').hidden;
-  var aberto=onb||lk||!$('pfSheet').hidden;
+  var onb=!$('onb').hidden,lk=!$('lock').hidden,rec=!$('fcrop').hidden;
+  var aberto=onb||lk||!$('pfSheet').hidden||rec;
   document.body.classList.toggle('onbaberto',onb||lk);
   ['.topo','main','nav','#timer','#toast'].forEach(function(sel){
     var e=document.querySelector(sel);
     if(!e)return;
     if(aberto)e.setAttribute('inert','');else e.removeAttribute('inert');
   });
+  var sh=$('pfSheet');
+  if(rec)sh.setAttribute('inert','');else sh.removeAttribute('inert');
 }
 
 /* ----- PIN ----- */
@@ -4124,7 +4378,8 @@ function renderPfLista(){
     var li=document.createElement('li'),b=document.createElement('button');
     b.type='button';b.className='pfi';
     if(p.id===pf.atual)b.setAttribute('aria-current','true');
-    b.innerHTML='<span class="av" style="background:'+PFCOR[p.cor%6]+'" aria-hidden="true">'+esc(inicial(p.nome))+'</span><span class="nm">'+esc(p.nome)+(p.pin?' <span aria-label="protegido por PIN">🔒</span>':'')+'<small>'+(p.id===pf.atual?'Perfil ativo':'Tocar para abrir')+'</small></span>';
+    b.innerHTML='<span class="av" style="background-color:'+PFCOR[p.cor%6]+'" aria-hidden="true">'+(p.foto?'':esc(inicial(p.nome)))+'</span><span class="nm">'+esc(p.nome)+(p.pin?' <span class="pflk" role="img" aria-label="protegido por PIN">'+ico('lock')+'</span>':'')+'<small>'+(p.id===pf.atual?'Perfil ativo':'Tocar para abrir')+'</small></span>';
+    if(p.foto)b.querySelector('.av').style.backgroundImage='url('+p.foto+')';
     b.addEventListener('click',function(){
       var mudar=p.id!==pf.atual;
       fechaPf(!mudar);
@@ -4233,10 +4488,141 @@ function ligarPerfis(){
     },function(){m.textContent='Não consegui conectar agora.';});
   });
 }
+/* ---------- v15: foto do perfil (câmera ou galeria, recorte quadrado, guardada no aparelho) ---------- */
+var FT={S:300,OUT:256,img:null,w:0,h:0,z:1,ox:0,oy:0,arr:null,foco:null};
+var fotoSig=null;
+function fotoMsg2(t){document.querySelectorAll('.fotomsg').forEach(function(n){n.textContent=t||'';});}
+function fotoAvatares(){
+  var p=perfilAtual();
+  ['pfAjAv','pfShAv'].forEach(function(id){
+    var e=$(id);if(!e)return;
+    e.style.backgroundColor=PFCOR[p.cor%6];
+    e.style.backgroundImage=p.foto?'url('+p.foto+')':'none';
+    e.textContent=p.foto?'':inicial(p.nome);
+  });
+  var sig=pf.atual+'|'+(p.foto?'f':'-');
+  if(sig!==fotoSig){fotoSig=sig;fotoBarras();}
+}
+/* botões: tirar foto, galeria e remover (nos Ajustes e na janela de perfis) */
+function fotoBarras(){
+  var p=perfilAtual();
+  document.querySelectorAll('.fotobar').forEach(function(bar){
+    bar.innerHTML='<label class="fbt">'+ico('camera')+'<span>Tirar foto</span><input type="file" accept="image/*" capture="user" class="fin"></label>'+
+      '<label class="fbt">'+ico('imagem')+'<span>'+(p.foto?'Trocar foto':'Escolher foto')+'</span><input type="file" accept="image/*" class="fin"></label>'+
+      (p.foto?'<button type="button" class="fbt frm">'+ico('lixeira')+'<span>Remover</span></button>':'')+
+      '<p class="nota fotomsg" role="status"></p>';
+    bar.querySelectorAll('.fin').forEach(function(inp){
+      inp.addEventListener('change',function(){
+        var f=inp.files&&inp.files[0];
+        inp.value='';
+        if(f)fotoAbrir(f);
+      });
+    });
+    var r=bar.querySelector('.frm');
+    if(r)r.addEventListener('click',function(){
+      var q=perfilAtual(),antes=q.foto;
+      delete q.foto;salvarIdx();renderPfChip();renderPfLista();
+      fotoMsg2('Foto removida.');
+      if($('pfSheet').hidden)toast('Foto do perfil removida.',function(){q.foto=antes;salvarIdx();renderPfChip();renderPfLista();});
+    });
+  });
+}
+function fotoAbrir(file){
+  if(!file||!/^image\//.test(file.type||'image/')){fotoMsg2('Escolha um arquivo de imagem.');return;}
+  var url=URL.createObjectURL(file),im=new Image();
+  im.onload=function(){
+    try{URL.revokeObjectURL(url);}catch(e){}
+    if(!im.naturalWidth||!im.naturalHeight){fotoMsg2('Não consegui ler essa imagem.');return;}
+    FT.img=im;FT.w=im.naturalWidth;FT.h=im.naturalHeight;FT.z=1;FT.ox=0;FT.oy=0;
+    $('fcZ').value='1';$('fcMsg').textContent='';
+    FT.foco=document.activeElement;
+    $('fcrop').hidden=false;atualizaInert();$('fcrop').scrollTop=0;
+    fotoDesenha();
+    try{$('fcCv').focus();}catch(e){}
+  };
+  im.onerror=function(){try{URL.revokeObjectURL(url);}catch(e){}fotoMsg2('Não consegui ler essa imagem. Tente uma foto em JPG ou PNG.');};
+  im.src=url;
+}
+function fotoFecha(){
+  if($('fcrop').hidden)return;
+  $('fcrop').hidden=true;FT.img=null;atualizaInert();
+  try{if(FT.foco&&document.contains(FT.foco))FT.foco.focus();}catch(e){}
+}
+/* limita o deslocamento para a imagem sempre cobrir o quadrado */
+function fotoLimita(S){
+  var esc0=Math.max(S/FT.w,S/FT.h)*FT.z,mx=Math.max(0,(FT.w*esc0-S)/2),my=Math.max(0,(FT.h*esc0-S)/2);
+  FT.ox=Math.max(-mx,Math.min(mx,FT.ox));FT.oy=Math.max(-my,Math.min(my,FT.oy));
+  return esc0;
+}
+function fotoPinta(cv,S,mascara){
+  var g=cv.getContext('2d'),e=fotoLimita(S);
+  g.fillStyle='#fff';g.fillRect(0,0,S,S);
+  var dw=FT.w*e,dh=FT.h*e;
+  g.drawImage(FT.img,S/2+FT.ox*(S/FT.S)-dw/2,S/2+FT.oy*(S/FT.S)-dh/2,dw,dh);
+  if(mascara){
+    g.save();g.fillStyle='rgba(0,0,0,.5)';g.beginPath();g.rect(0,0,S,S);g.arc(S/2,S/2,S/2-3,0,Math.PI*2,true);g.fill('evenodd');g.restore();
+    g.strokeStyle='#fff';g.lineWidth=2;g.beginPath();g.arc(S/2,S/2,S/2-3,0,Math.PI*2);g.stroke();
+  }
+}
+function fotoDesenha(){if(FT.img)fotoPinta($('fcCv'),FT.S,true);}
+function fotoSalva(){
+  if(!FT.img)return;
+  var cv=document.createElement('canvas');cv.width=cv.height=FT.OUT;
+  fotoPinta(cv,FT.OUT,false);
+  var q=0.85,url=cv.toDataURL('image/jpeg',q);
+  while(url.length>90000&&q>0.4){q-=0.1;url=cv.toDataURL('image/jpeg',q);}
+  if(!/^data:image\/jpeg;base64,/.test(url)){$('fcMsg').textContent='Não consegui gerar a foto neste navegador.';return;}
+  var p=perfilAtual(),antes=p.foto;
+  p.foto=url;
+  if(!salvarIdx()){
+    if(antes)p.foto=antes;else delete p.foto;
+    $('fcMsg').textContent='Sem espaço no aparelho para guardar a foto. Libere espaço e tente de novo.';
+    return;
+  }
+  fotoFecha();renderPfChip();renderPfLista();
+  fotoMsg2('Foto salva neste aparelho.');
+  if($('pfSheet').hidden)toast('Foto do perfil atualizada.',function(){if(antes)p.foto=antes;else delete p.foto;salvarIdx();renderPfChip();renderPfLista();});
+}
+function ligarFoto(){
+  var cv=$('fcCv'),arr=null;
+  cv.style.touchAction='none';
+  cv.addEventListener('pointerdown',function(ev){
+    if(!FT.img)return;
+    arr={x:ev.clientX,y:ev.clientY,ox:FT.ox,oy:FT.oy};
+    try{cv.setPointerCapture(ev.pointerId);}catch(e){}
+    ev.preventDefault();
+  });
+  cv.addEventListener('pointermove',function(ev){
+    if(!arr||!FT.img)return;
+    var r=cv.getBoundingClientRect(),k=FT.S/(r.width||FT.S);
+    FT.ox=arr.ox+(ev.clientX-arr.x)*k;FT.oy=arr.oy+(ev.clientY-arr.y)*k;
+    fotoDesenha();
+  });
+  function solta(){arr=null;}
+  cv.addEventListener('pointerup',solta);cv.addEventListener('pointercancel',solta);
+  cv.addEventListener('wheel',function(ev){
+    if(!FT.img)return;
+    ev.preventDefault();
+    FT.z=Math.max(1,Math.min(3,FT.z+(ev.deltaY<0?0.1:-0.1)));
+    $('fcZ').value=String(FT.z);fotoDesenha();
+  },{passive:false});
+  cv.addEventListener('keydown',function(ev){
+    if(!FT.img)return;
+    var d=12,m={ArrowLeft:[-d,0],ArrowRight:[d,0],ArrowUp:[0,-d],ArrowDown:[0,d]}[ev.key];
+    if(!m)return;
+    FT.ox+=m[0];FT.oy+=m[1];fotoDesenha();ev.preventDefault();
+  });
+  $('fcZ').addEventListener('input',function(){FT.z=Math.max(1,Math.min(3,+$('fcZ').value||1));fotoDesenha();});
+  $('fcOk').addEventListener('click',fotoSalva);
+  $('fcCancel').addEventListener('click',fotoFecha);
+  $('fcX').addEventListener('click',fotoFecha);
+  document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!$('fcrop').hidden)fotoFecha();});
+  fotoAvatares();
+}
 
 /* ---------- início ---------- */
 function virouDia(){var k=key(new Date());if(k!==hojeK){hojeK=k;agora=new Date();irParaDia(hojeK);render();}}
-montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarUx();fillPerfil();renderRes();irAba('hoje');
+montaIcones();montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarFoto();ligarUx();fillPerfil();renderRes();renderCanetaCard();irAba('hoje');
 if(temPin(perfilAtual()))abreLock();else if(db.novo)abreOnb();
 fotosCarregar(function(){if(ativa==='treino')renderTreino();});
 document.addEventListener('visibilitychange',function(){
