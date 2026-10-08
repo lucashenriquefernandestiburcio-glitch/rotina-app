@@ -5,10 +5,13 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Base64;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
@@ -23,6 +26,8 @@ import android.widget.Toast;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 /**
@@ -39,6 +44,7 @@ public class MainActivity extends Activity {
     private static final String INICIO = "https://" + HOST + "/assets/index.html";
     private static final int PEDIDO_ARQUIVO = 1;
     private static final int PEDIDO_CAMERA = 2;
+    private static final int PEDIDO_AVISOS = 3;
 
     private WebView web;
     private ValueCallback<Uri[]> escolha;
@@ -177,6 +183,63 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         web.onResume();
+        avisarPagina();
+    }
+
+    /** Diz à página que o app voltou à tela (por exemplo, depois de mexer nas permissões). */
+    private void avisarPagina() {
+        if (web != null) {
+            web.evaluateJavascript("window.dispatchEvent(new Event('nativo-retomou'))", null);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int pedido, String[] permissoes, int[] resultados) {
+        super.onRequestPermissionsResult(pedido, permissoes, resultados);
+        if (pedido == PEDIDO_AVISOS) {
+            pedirPermissoesAlarme();
+            avisarPagina();
+        }
+    }
+
+    /**
+     * Pede, uma de cada vez, o que os alarmes precisam: permissão para mostrar avisos
+     * (Android 13+) e, onde o sistema exige, a liberação de "alarmes e lembretes".
+     */
+    private void pedirPermissoesAlarme() {
+        try {
+            Alarmes.criarCanal(this);
+            if (Build.VERSION.SDK_INT >= 33
+                    && checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                        PEDIDO_AVISOS);
+                return;
+            }
+            if (!Alarmes.notifOk(this)) {
+                abrirConfigAvisos();
+                return;
+            }
+            if (!Alarmes.podeExato(this)) {
+                Intent it = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
+                        Uri.parse("package:" + getPackageName()));
+                startActivity(it);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Abra as configurações do app para liberar os avisos.",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void abrirConfigAvisos() {
+        try {
+            Intent it = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                    .putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+            startActivity(it);
+        } catch (Exception e) {
+            Toast.makeText(this, "Abra as configurações do app para liberar os avisos.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -299,6 +362,78 @@ public class MainActivity extends Activity {
             } catch (Exception e) {
                 return String.valueOf(e.getMessage());
             }
+        }
+
+        /** Recebe {"perfil":"...","lista":[{"m":minutos,"dias":[0..6],"t":"...","d":"..."}]} e agenda os alarmes. */
+        @JavascriptInterface
+        public String agendar(String json) {
+            return Alarmes.salvarEAgendar(MainActivity.this, json);
+        }
+
+        /** Desliga todos os alarmes do app. */
+        @JavascriptInterface
+        public String cancelar() {
+            try {
+                Alarmes.desligar(MainActivity.this);
+                return "ok";
+            } catch (Exception e) {
+                return "erro: " + e.getMessage();
+            }
+        }
+
+        /** Situação atual, em JSON: versão do Android, avisos liberados, alarme exato liberado, quantos alarmes. */
+        @JavascriptInterface
+        public String estado() {
+            try {
+                JSONObject o = new JSONObject();
+                o.put("api", Build.VERSION.SDK_INT);
+                o.put("notif", Alarmes.notifOk(MainActivity.this));
+                o.put("exato", Alarmes.podeExato(MainActivity.this));
+                o.put("ativo", Alarmes.ativo(MainActivity.this));
+                o.put("n", Alarmes.quantos(MainActivity.this));
+                return o.toString();
+            } catch (Exception e) {
+                return "{}";
+            }
+        }
+
+        @JavascriptInterface
+        public void pedirPermissoes() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    pedirPermissoesAlarme();
+                }
+            });
+        }
+
+        /** Mostra um aviso de teste agora. */
+        @JavascriptInterface
+        public String testar() {
+            try {
+                boolean ok = Alarmes.notificar(MainActivity.this, 99, "Teste da Rotina",
+                        "Se você está vendo este aviso, os lembretes vão aparecer assim.", "");
+                return ok ? "ok" : "sem permissão";
+            } catch (Exception e) {
+                return "erro: " + e.getMessage();
+            }
+        }
+
+        /** Abre a lista de apps da economia de bateria, para tirar o Rotina das restrições. */
+        @JavascriptInterface
+        public void abrirBateria() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS));
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this,
+                                "Abra Configurações > Bateria e deixe o Rotina sem restrição.",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
     }
 }
