@@ -5,6 +5,9 @@
 App de rotina diária, dieta, treino, água e progresso, com lembretes para o calendário do celular.
 Funciona no navegador, instala na tela inicial e abre sem internet. Os registros ficam guardados só no aparelho de quem usa.
 
+Treino: musculação, natação, ciclismo e corrida, até 2 treinos por dia (por exemplo, academia de manhã e natação à noite) e treino em jejum, com o café da manhã reorganizado para depois do treino.
+Caneta emagrecedora: cadastro do medicamento e da dose; o app reduz as porções, divide a comida em 6 refeições pequenas, mantém a proteína e lembra do dia da aplicação. Informação geral, não substitui orientação médica.
+
 - `logo/`: logo e ícone do app
 - `index.html`: o app (arquivo único)
 - `manifest.webmanifest` e `icons/`: nome e ícones para instalar

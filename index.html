@@ -453,6 +453,59 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
 }
 :root[data-theme="dark"] #calKt{color:#ffa94d}
 :root[data-theme="dark"] #calPt{color:#f783ac}
+
+/* ---------- v12: agenda de treinos, caneta, menus recolhíveis, ícones ---------- */
+.dia{padding:6px 0 5px}
+.dia .ic{display:block;min-height:13px;font-size:11px;line-height:13px;letter-spacing:-1px;white-space:nowrap}
+.dia.nat::after{display:none}
+.mod-musc,li.mod-musc{--ic:#f76707}.mod-nat,li.mod-nat{--ic:#1c7ed6}.mod-cic,li.mod-cic{--ic:#0ca678}.mod-corr,li.mod-corr{--ic:#e03131}
+.mod-musc .tit::before{content:'🏋️ '}.mod-nat .tit::before{content:'🏊 '}.mod-cic .tit::before{content:'🚴 '}.mod-corr .tit::before{content:'🏃 '}
+.m-mini .tit::before{content:'🥣 '}li.m-mini{--ic:#12b886}
+.h1l{display:flex;align-items:center;gap:10px}
+.h1l .lg{width:36px;height:36px;border-radius:9px;flex:none}
+.sessbox{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.sessbox .sess{flex:1 1 150px;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--ic,var(--pool));border-radius:14px;padding:10px 12px}
+.sess .si{font-size:26px;line-height:1}
+.sess .sb b{display:block;font-size:17px;line-height:1.15}
+.sess .sb small{color:var(--mute);font-size:14px}
+.sess .tag{margin:0 0 0 auto}
+.sessbox .nota{flex:1 1 100%;margin:0}
+.lnk{display:block;width:100%;font:inherit;font-weight:600;font-size:14.5px;color:var(--pool);background:transparent;border:1px dashed var(--pool);border-radius:12px;min-height:44px;margin:0 0 12px;cursor:pointer}
+.agsem{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:10px 0 4px}
+.agd{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:6px 0;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer}
+.agd .s{font-size:13px;font-weight:600;color:var(--mute)}
+.agd .ic{font-size:13px;line-height:1.1;letter-spacing:-1px;min-height:15px;white-space:nowrap}
+.agd.sel{background:var(--pool);border-color:var(--pool)}
+.agd.sel .s{color:var(--on-pool)}
+.edf select{font:inherit;font-size:17px;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0;width:100%}
+.agi .edh em{display:block;margin-top:2px}
+.agcp{margin-top:12px}
+.agcp .chips{margin-top:8px}
+.cnap{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.cnap button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:9px 4px;line-height:1.2;text-align:center}
+.cnap button small{font-size:12.5px;font-weight:500;opacity:.9}
+.cnprev{background:var(--pool-soft);border-radius:12px;padding:10px 12px;font-size:14.5px;margin:6px 0 4px}
+.cnaviso{margin-top:12px;font-size:13.5px}
+.cndet{margin-top:10px}
+.cnhoje{border-left:6px solid #7048e8}
+.cnhoje b{display:block;margin-bottom:2px}
+.cnhoje .cnl{display:block;font-weight:600}
+.cnhoje .cnd{display:block;margin-top:4px;color:var(--mute);font-size:14px}
+.cnhoje button{margin-right:8px}
+.calw{display:flex;gap:8px;margin-top:8px}
+.calw button{flex:1;font:inherit;font-weight:600;min-height:44px;border-radius:10px;border:1px solid #1971c2;background:transparent;color:#1971c2;cursor:pointer}
+#calWt{color:#1971c2}
+:root[data-theme="dark"] #calWt,:root[data-theme="dark"] .calw button{color:#74b6ff;border-color:#74b6ff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #calWt,:root:not([data-theme="light"]) .calw button{color:#74b6ff;border-color:#74b6ff}}
+.exi svg{max-height:110px}
+details.acc{padding:0 16px}
+details.acc>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:56px;margin:0 -16px;padding:0 16px;cursor:pointer;font-size:17px;font-weight:700}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:'▾';font-size:16px;color:var(--mute);transition:transform .2s}
+details.acc[open]>summary::after{transform:rotate(180deg)}
+details.acc[open]>summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+details.acc>*:last-child{margin-bottom:16px}
+@media (prefers-reduced-motion: reduce){details.acc>summary::after{transition:none}}
 </style>
 </head>
 <body data-aba="hoje">
@@ -467,17 +520,22 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
 
   <!-- HOJE -->
   <section class="aba on" id="a-hoje">
-    <h1>Rotina Fitness</h1>
+    <h1 class="h1l"><img class="lg" alt="" width="36" height="36" src="data:image/png;base64,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">Rotina Fitness</h1>
     <p class="pfn" id="pfNomeHoje" hidden></p>
     <p class="regra" id="regra"></p>
     <p class="dtit" id="dtit"></p>
     <div class="tipcard" id="dicaHoje" hidden><b>Primeiros passos</b>Toque num item para marcar como feito. Use "Trocar alimento" para mudar a proteína ou o carboidrato, e adicione extras no fim da lista. O contador de calorias e proteína acompanha tudo.<br><button type="button" id="dicaHojeOk">Entendi</button></div>
+
+    <div class="tipcard cnhoje" id="cnHoje" hidden></div>
 
     <div class="card cal" id="cal">
       <div class="row"><span>Calorias</span><b id="calKt"></b></div>
       <div class="bar am"><i id="calKb"></i></div>
       <div class="row"><span>Proteína</span><b id="calPt"></b></div>
       <div class="bar pr"><i id="calPb"></i></div>
+      <div class="row"><span>Água</span><b id="calWt"></b></div>
+      <div class="bar wa"><i id="calWb"></i></div>
+      <div class="calw"><button type="button" data-ml="250">+ 250 ml</button><button type="button" data-ml="500">+ 500 ml</button></div>
       <p class="nota" id="calNota" style="margin-top:10px"></p>
       <button type="button" class="calaj" id="calAjusta" hidden></button>
     </div>
@@ -516,14 +574,16 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
     <p class="pfn" hidden></p>
     <p class="dtit" id="trSub"></p>
     <div class="lin" id="trSw" style="margin:0 0 12px"></div>
+    <div class="sessbox" id="sessDia" hidden></div>
+    <button type="button" class="lnk" id="agIr">Editar a agenda de treinos da semana</button>
     <div class="tipcard" id="dicaFoto" hidden><b>Veja o exercício do jeito certo</b>Cada exercício tem um desenho esquemático e um link para ver a execução em vídeo. Se o seu personal mandou foto ou GIF, toque em "Usar minha foto ou GIF" no exercício: ela fica guardada só neste aparelho.<br><button type="button" id="dicaFotoOk">Entendi</button></div>
     <div id="trLista"></div>
 
     <div class="card" id="cardio">
-      <h2>Natação e cardio</h2>
+      <h2>Natação, ciclismo e corrida</h2>
       <p class="nota" id="cdDia"></p>
       <div class="form">
-        <label>Tipo<select id="cdTipo"><option>Natação</option><option>Cardio leve</option><option>Caminhada</option><option>Bicicleta</option><option>Outro</option></select></label>
+        <label>Tipo<select id="cdTipo"><option>Natação</option><option>Corrida</option><option>Ciclismo</option><option>Caminhada</option><option>Cardio leve</option><option>Outro</option></select></label>
         <label>Tempo (min)<input id="cdMin" type="text" inputmode="numeric" placeholder="40"></label>
         <label style="grid-column:1/-1"><span>Distância <span id="cdU">(m)</span>, opcional</span><input id="cdDist" type="text" inputmode="decimal" placeholder="1000"></label>
       </div>
@@ -531,6 +591,13 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
       <ul id="cdLista" class="lista-n"></ul>
       <h3>Últimos registros</h3>
       <ul id="cdHist" class="lista-n"></ul>
+    </div>
+    <div class="card" id="agenda">
+      <h2>Agenda de treinos da semana</h2>
+      <p class="nota">Escolha a modalidade e o horário de cada treino, até 2 por dia (por exemplo, academia de manhã e natação à noite). O primeiro treino da manhã pode ser em jejum: o café da manhã passa a ser depois do treino.</p>
+      <div class="agsem" id="agSem" role="group" aria-label="Dias da agenda"></div>
+      <div id="agDiaBox"></div>
+      <div class="lin"><button type="button" id="agRest" hidden>Desfazer a agenda e voltar ao treino anterior</button></div>
     </div>
     <p class="dica">As ilustrações são esquemáticas. O descanso sugerido vale como ponto de partida. Se sentir dor, pare e procure um profissional.</p>
   </section>
@@ -689,32 +756,56 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
       <p class="nota" id="instTxt"></p>
       <div class="lin"><button type="button" id="instBtn" class="selb" hidden>Instalar app</button></div>
     </div>
-    <div class="card">
-      <h2>Metas do dia</h2>
+    <details class="card acc" open><summary>🎯 Metas do dia</summary>
       <div class="form">
         <label>Calorias (kcal)<input id="aKcal" type="text" inputmode="numeric"></label>
         <label>Proteína (g)<input id="aProt" type="text" inputmode="numeric"></label>
       </div>
       <p class="nota" id="aNota"></p>
       <button class="btn pri" id="aSave" type="button">Salvar metas</button>
-    </div>
+    </details>
 
-    <div class="card">
-      <h2>Treino</h2>
+    <details class="card acc"><summary>🏋️ Treino</summary>
       <label class="chk-l"><input type="checkbox" id="aDescAuto"> <span>Iniciar o descanso sozinho ao preencher uma série (exceto na última)</span></label>
-    </div>
+    </details>
 
-    <div class="card">
-      <h2>Minha rotina</h2>
+    <details class="card acc"><summary>🗓️ Minha rotina</summary>
       <p class="nota">Toque em um item para editar horário, horário de sábado e domingo, dias, calorias e proteína.</p>
       <div id="edRot"></div>
       <div class="lin"><button type="button" id="edAdd">Adicionar item</button><button type="button" id="edRes">Restaurar rotina padrão</button></div>
-    </div>
+    </details>
 
-    <div class="card">
-      <h2>Lembretes no celular</h2>
+    <details class="card acc" id="cardCaneta"><summary>💉 Caneta emagrecedora (GLP-1)</summary>
+      <p class="nota">Usa Ozempic, Wegovy, Mounjaro, Saxenda ou parecida? Informe o medicamento e a dose: o app reduz as porções, divide a comida em refeições menores, mantém a proteína e lembra do dia da aplicação.</p>
+      <label class="chk-l"><input type="checkbox" id="cnOn"> <span>Estou usando caneta emagrecedora</span></label>
+      <div id="cnBox" hidden>
+        <label class="f1l">Medicamento<select id="cnMed"></select></label>
+        <div class="row2">
+          <label class="f1l">Dose<select id="cnDose"></select></label>
+          <label class="f1l" id="cnOutraL" hidden>Outra dose (mg)<input id="cnOutra" type="text" inputmode="decimal"></label>
+        </div>
+        <div class="row2">
+          <label class="f1l">Dia da aplicação<select id="cnDia"></select></label>
+          <label class="f1l">Horário do lembrete<input id="cnHora" type="time"></label>
+        </div>
+        <label class="f1l">Começou a usar em<input id="cnIni" type="date"></label>
+        <p class="nota" style="margin-top:12px"><b>Quanto o seu apetite diminuiu?</b></p>
+        <div class="chips cnap" id="cnAp"></div>
+        <p class="nota" id="cnSug"></p>
+        <div class="cnprev" id="cnPrev"></div>
+        <div class="lin"><button type="button" id="cnAplic" class="selb">Ajustar cardápio e metas</button><button type="button" id="cnDesf" hidden>Desfazer ajustes</button></div>
+        <p class="nota" id="cnMsg" role="status" style="margin-top:8px"></p>
+        <p class="nota" id="cnUlt"></p>
+        <div id="cnHistBox" hidden><h3>Histórico de doses</h3><ul id="cnHist" class="lista-n"></ul></div>
+        <details class="cndet"><summary>Dicas para quem usa caneta</summary><ul id="cnDicas" class="lista-n"></ul></details>
+        <p class="nota cnaviso">Informação geral, que não substitui orientação médica ou de nutricionista. Não mude a dose por conta própria. Fale com o seu médico se tiver enjoo forte, vômitos que não passam, dor forte na barriga ou sinais de desidratação.</p>
+      </div>
+    </details>
+
+    <details class="card acc"><summary>🔔 Lembretes no celular</summary>
       <p class="nota">O app não toca alarme sozinho com a tela fechada, mas o calendário do celular toca. Escolha o que incluir e baixe o arquivo de lembretes: ele é montado com os horários da sua rotina atual (inclusive fim de semana) e a meta de água do perfil.</p>
       <label class="chk-l"><input type="checkbox" id="lbRef" checked> <span>Refeições e treinos, nos horários da rotina</span></label>
+      <label class="chk-l" id="lbCnL" hidden><input type="checkbox" id="lbCn" checked> <span>Lembrete semanal da aplicação da caneta</span></label>
       <label class="f1l">Lembrete de água<select id="lbAgua"><option value="0">Não incluir</option><option value="60">A cada 1 hora</option><option value="90">A cada 1h30</option><option value="120">A cada 2 horas</option><option value="180">A cada 3 horas</option></select></label>
       <label class="f1l">Avisar refeições e treinos<select id="lbAnt"><option value="0">Na hora</option><option value="10">10 minutos antes</option></select></label>
       <div class="lin"><button type="button" id="lbBaixar" class="selb">Baixar lembretes (.zip com .ics)</button></div>
@@ -723,24 +814,22 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
         <p class="nota" id="lbComo" style="margin-top:6px">1. Abra o app Arquivos (ou Downloads) e toque no .zip para extrair. 2. Toque no arquivo .ics e escolha Calendário ou Google Agenda. 3. Para poder apagar tudo depois de uma vez, crie antes uma agenda só para isso (por exemplo "Rotina") e importe nela. 4. Se mudar horários no app, apague essa agenda e importe de novo.</p>
       </details>
       <details><summary>Criar no Google Agenda, item a item</summary><ul id="lbLista" class="lista-n"></ul></details>
-    </div>
+    </details>
 
-    <div class="card" id="cardSync">
-      <h2>Sincronização entre aparelhos</h2>
+    <details class="card acc" id="cardSync"><summary>☁️ Sincronização entre aparelhos</summary>
       <p class="nota" id="syInfo"></p>
       <div class="lin"><button type="button" id="syToggle">Ativar sincronização</button><button type="button" id="syAgora" hidden>Sincronizar agora</button></div>
       <p class="nota" id="syMsg" style="margin-top:8px"></p>
       <div class="lin"><button type="button" id="syRest" hidden>Restaurar cópia de antes de sincronizar</button><button type="button" id="syApaga" hidden>Apagar dados da nuvem</button></div>
-    </div>
+    </details>
 
-    <div class="card">
-      <h2>Backup</h2>
+    <details class="card acc"><summary>💾 Backup</summary>
       <p class="nota" id="bkInfo"></p>
       <div class="lin"><button type="button" id="bkDown">Baixar arquivo</button><button type="button" id="bkCopy">Copiar</button></div>
       <textarea id="bkTxt" aria-label="Texto do backup" spellcheck="false" placeholder="Para importar: cole aqui o backup copiado, ou escolha o arquivo abaixo."></textarea>
       <div class="lin"><input type="file" id="bkFile" accept=".json,application/json,text/plain"><button type="button" id="bkImp">Importar</button></div>
       <p class="nota" id="bkMsg" style="margin-top:8px"></p>
-    </div>
+    </details>
   </section>
 </main>
 
@@ -767,6 +856,8 @@ li.m-lanche{--ic:#e64980}li.m-treino2{--ic:#1c7ed6}li.m-jantar{--ic:#7048e8}li.m
       <div class="form" id="obBoxObj"></div>
       <h3>Horários da sua rotina</h3>
       <div class="form" id="obBoxHoras"></div>
+      <h3>Treino em jejum e caneta (opcional)</h3>
+      <div class="form" id="obBoxExtra"></div>
       <p class="nota" id="obErro2" style="color:var(--danger)" role="alert"></p>
       <div class="obnav"><button class="btn sec" id="obVolta2" type="button">Voltar</button><button class="btn pri" id="obProx2" type="button">Ver prévia</button></div>
     </div>
@@ -895,8 +986,55 @@ var TROCAS={
   ]
 };
 
+/* ---------- v12: modalidades de treino e canetas (constantes usadas ao carregar os dados) ---------- */
+var MODS={musc:{n:'Musculação',ic:'🏋️',min:60},nat:{n:'Natação',ic:'🏊',min:45},cic:{n:'Ciclismo',ic:'🚴',min:60},corr:{n:'Corrida',ic:'🏃',min:40}};
+var MOD_ORD=['musc','nat','cic','corr'];
+var MEDS={
+  sema:{n:'Semaglutida (Ozempic, Wegovy)',cur:'Semaglutida',doses:[0.25,0.5,1,1.7,2,2.4],sem:true,niv:[0.5,1.7]},
+  tirz:{n:'Tirzepatida (Mounjaro, Zepbound)',cur:'Tirzepatida',doses:[2.5,5,7.5,10,12.5,15],sem:true,niv:[5,10]},
+  lira:{n:'Liraglutida (Saxenda, Victoza)',cur:'Liraglutida',doses:[0.6,1.2,1.8,2.4,3],sem:false,niv:[1.2,1.8]},
+  dula:{n:'Dulaglutida (Trulicity)',cur:'Dulaglutida',doses:[0.75,1.5,3,4.5],sem:true,niv:[0.75,1.5]},
+  outro:{n:'Outra caneta (informe a dose)',cur:'Caneta',doses:null,sem:true,niv:null}
+};
+var MED_ORD=['sema','tirz','lira','dula','outro'];
+var AP_F={1:0.95,2:0.85,3:0.7};
+function sessLimpa(v){
+  if(!isObj(v)||!isObj(v.d))return null;
+  var d={},dw;
+  for(dw=0;dw<7;dw++){
+    var a=Array.isArray(v.d[dw])?v.d[dw]:[],o=[];
+    a.forEach(function(s){
+      if(o.length>=2||!isObj(s)||!MODS[s.m])return;
+      var mi=+s.min;
+      o.push({m:s.m,h:pad(s.h)||'07:00',j:!!s.j,min:(mi>=15&&mi<=240)?Math.round(mi):MODS[s.m].min});
+    });
+    o.sort(function(x,y){return minutos(x.h)-minutos(y.h);});
+    if(o.length)d[dw]=o;
+  }
+  var o={};
+  if(isObj(v.o)){['t1','t2'].forEach(function(q){var it=v.o[q];if(isObj(it)&&typeof it.id==='string'&&typeof it.t==='string'&&/^\d{1,2}:\d{2}$/.test(String(it.h||''))&&(it.dias==null||Array.isArray(it.dias)))o[q]=it;});}
+  return {v:1,d:d,o:o};
+}
+function baseLimpa(b){
+  if(!isObj(b))return null;
+  return {rot:rotValida(b.rot),res:isObj(b.res)?b.res:null,k:(typeof b.k==='number'&&isFinite(b.k))?b.k:2400,p:(typeof b.p==='number'&&isFinite(b.p))?b.p:null,meta:(typeof b.meta==='number'&&isFinite(b.meta))?b.meta:4500};
+}
+function canetaLimpa(v){
+  if(!isObj(v))return null;
+  var med=MEDS[v.med]?v.med:'sema',dose=+v.dose;
+  if(!(dose>0&&dose<=30))dose=MEDS[med].doses?MEDS[med].doses[0]:1;
+  var dia=(typeof v.dia==='number'&&v.dia>=0&&v.dia<=6&&v.dia===Math.floor(v.dia))?v.dia:5;
+  var ap=(v.ap===1||v.ap===2||v.ap===3)?v.ap:2;
+  var ini=(typeof v.ini==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v.ini))?v.ini:null;
+  var o={on:!!v.on,med:med,dose:Math.round(dose*100)/100,dia:dia,ap:ap,ini:ini,aplic:!!v.aplic,h:pad(v.h)||'08:00',apl:{},hist:[]};
+  if(isObj(v.apl)){Object.keys(v.apl).sort().slice(-60).forEach(function(k){var x=+v.apl[k];if(/^\d{4}-\d{2}-\d{2}$/.test(k)&&x>0&&x<=30)o.apl[k]=Math.round(x*100)/100;});}
+  if(Array.isArray(v.hist)){v.hist.slice(-12).forEach(function(q){if(isObj(q)&&typeof q.d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(q.d)&&+q.dose>0&&+q.dose<=30)o.hist.push({d:q.d,dose:Math.round(+q.dose*100)/100,med:MEDS[q.med]?q.med:med});});}
+  var b=baseLimpa(v.base);if(b&&o.aplic)o.base=b;else o.aplic=false;
+  return o;
+}
+
 /* ---------- dados salvos ---------- */
-function padrao(){return {dias:{},peso:{},agua:{},meta:4500,tr:{},log:{},cardio:{},medidas:{},extras:{},trocas:{},metaPeso:null,compras:{},perfil:null,gerado:null,usaGerado:false,res:null,rot:null,kcalMeta:2400,protMeta:null,ultBackup:null,onb:false,novo:false,dicas:{},lemb:{},descAuto:true};}
+function padrao(){return {dias:{},peso:{},agua:{},meta:4500,tr:{},log:{},cardio:{},medidas:{},extras:{},trocas:{},metaPeso:null,compras:{},perfil:null,gerado:null,usaGerado:false,res:null,rot:null,kcalMeta:2400,protMeta:null,ultBackup:null,onb:false,novo:false,dicas:{},lemb:{},descAuto:true,sess:null,caneta:null};}
 function rotValida(r){
   if(!Array.isArray(r))return null;
   var ok=r.filter(function(i){return isObj(i)&&typeof i.id==='string'&&typeof i.t==='string'&&/^\d{1,2}:\d{2}$/.test(String(i.h||''))&&(i.dias==null||Array.isArray(i.dias));});
@@ -914,6 +1052,8 @@ function mesclar(s){
     else if(k==='rot'){var r=rotValida(v);if(r)d[k]=r;}
     else if(k==='protMeta'){if(typeof v==='number'&&isFinite(v))d[k]=v;}
     else if(k==='ultBackup'){if(typeof v==='string')d[k]=v;}
+    else if(k==='sess'){var sl=sessLimpa(v);if(sl)d[k]=sl;}
+    else if(k==='caneta'){var cl=canetaLimpa(v);if(cl)d[k]=cl;}
     else if(isObj(v)){d[k]=v;}
   });
   return d;
@@ -976,8 +1116,10 @@ function rot(){
 }
 function editavel(){if(!db.rot)db.rot=JSON.parse(JSON.stringify(rot()));return db.rot;}
 function fds(dw){return dw===0||dw===6;}
-function hh(i,dw){return (fds(dw)&&i.hf)?i.hf:i.h;}
-function desc(i,dw){return (fds(dw)&&i.df)?i.df:i.d;}
+function pdi(i,dw){return (i&&isObj(i.pd)&&isObj(i.pd[dw]))?i.pd[dw]:null;}
+function tit(i,dw){var p=pdi(i,dw);return (p&&p.t)||i.t;}
+function hh(i,dw){var p=pdi(i,dw);if(p&&p.h)return p.h;return (fds(dw)&&i.hf)?i.hf:i.h;}
+function desc(i,dw){var p=pdi(i,dw);if(p&&p.d)return p.d;return (fds(dw)&&i.df)?i.df:i.d;}
 function ativo(i,dw){return !i.dias||i.dias.indexOf(dw)>-1;}
 function itensDia(dw){
   return rot().map(function(i,ix){return {i:i,ix:ix};}).sort(function(a,b){
@@ -1060,7 +1202,22 @@ var PLANO_PDF={
  4:{n:'Full Body D',ex:[['Agachamento Smith','4x6-8'],['Desenvolvimento Smith','4x8'],['Remada Baixa','4x8'],['Supino Inclinado','3x10'],['Rosca Alternada','3x10'],['Abdominal','3x15']]},
  5:{n:'Full Body E',ex:[['Extensora','3x20'],['Flexora','3x20'],['Crossover','3x15'],['Pulldown','3x15'],['Elevação Lateral','3x20'],['Rosca + Tríceps','3x15']]}
 };
-function plano(){if(db.onb)return db.gerado||{};return (db.usaGerado&&db.gerado)?db.gerado:PLANO_PDF;}
+function planoBase(){if(db.onb)return db.gerado||{};return (db.usaGerado&&db.gerado)?db.gerado:PLANO_PDF;}
+/* plano de musculação do dia: sem agenda própria vale o plano base; com agenda, só os dias com musculação marcada */
+function plano(){
+  var b=planoBase();
+  if(!db.sess)return b;
+  var W=[],out={},usados={},ord=[1,2,3,4,5,6,0],cnt=0;
+  ord.forEach(function(k){if(b[k])W.push(b[k]);});
+  if(!W.length)ord.forEach(function(k){if(PLANO_PDF[k])W.push(PLANO_PDF[k]);});
+  ord.forEach(function(dw){if(temMusc(dw)&&b[dw]){out[dw]=b[dw];usados[b[dw].n]=1;}});
+  var livres=W.filter(function(w){return !usados[w.n];}),li=0;
+  ord.forEach(function(dw){
+    if(!temMusc(dw)||out[dw])return;
+    out[dw]=livres.length?livres[li++%livres.length]:W[cnt++%W.length];
+  });
+  return out;
+}
 function nomeTreino(dw){var t=plano()[dw];return t?t.n:'descanso';}
 var TPL={
  2:{dias:[1,4],t:[['Full Body A',['Agachamento Smith','Supino Reto','Puxada Alta Pronada','Desenvolvimento Smith','Rosca Direta','Abdominal']],['Full Body B',['Leg Press','Supino Inclinado Smith','Remada Baixa','Elevação Lateral','Tríceps Corda','Panturrilha']]]},
@@ -1303,7 +1460,9 @@ function relDados(n){
   var rows=[];
   for(var i=n-1;i>=0;i--){
     var dk=somaDias(hojeK,-i),st=statDia(dk);
-    rows.push({dk:dk,dw:dateDe(dk).getDay(),pct:st.pct,reg:temRegistro(dk),k:st.k,p:st.p,ag:soma(db.agua[dk]||[]),peso:db.peso[dk]!=null?db.peso[dk]:null,ti:treinoInfo(dk),cd:cardioTxt(dk)});
+    var dwR=dateDe(dk).getDay(),mR=db.dias[dk]||{},ssR=sessDia(dwR);
+    rows.push({dk:dk,dw:dwR,pct:st.pct,reg:temRegistro(dk),k:st.k,p:st.p,ag:soma(db.agua[dk]||[]),peso:db.peso[dk]!=null?db.peso[dk]:null,ti:treinoInfo(dk),cd:cardioTxt(dk),
+      sp:ssR.length,so:ssR.filter(function(s,ix){return mR[ix===0?'treino1':'treino2'];}).length,sj:ssR.filter(function(s,ix){return jejumEf(ssR,ix)&&mR.treino1;}).length});
   }
   var R=rows.filter(function(r){return r.reg;});
   function media(a){return a.length?soma(a)/a.length:null;}
@@ -1316,7 +1475,8 @@ function relDados(n){
     ag:media(R.filter(function(r){return r.ag>0;}).map(function(r){return r.ag;})),
     p0:pesos.length?pesos[0]:null,p1:pesos.length?pesos[pesos.length-1]:null,
     trReg:rows.filter(function(r){return r.ti&&r.ti.f>0;}).length,trOk:rows.filter(function(r){return r.ti&&r.ti.f===r.ti.t;}).length,
-    cMin:cMin,nat:nat};
+    cMin:cMin,nat:nat,
+    sp:soma(rows.map(function(r){return r.sp;})),so:soma(rows.map(function(r){return r.so;})),sj:soma(rows.map(function(r){return r.sj;}))};
 }
 function cargasRel(D){
   var o=[];
@@ -1342,6 +1502,7 @@ function linhasRel(n){
   ln('Período: '+fmtDataL(D.de)+' a '+fmtDataL(D.ate)+' ('+n+' dias) · gerado em '+fmtDataL(hojeK));
   sec('Metas');
   ln('Calorias: '+fmtN(db.kcalMeta)+' kcal/dia · Proteína: '+fmtN(metaProt(1))+' g/dia · Água: '+fmtL(db.meta));
+  if(canetaOn())ln('Caneta emagrecedora: '+MEDS[db.caneta.med].cur+' '+fmtK(db.caneta.dose)+' mg, aplicação '+DIAS_NOME[db.caneta.dia].toLowerCase()+(db.caneta.aplic?' · cardápio ajustado (porções menores, 6 refeições)':''));
   var mp=metaPesoOk();
   if(mp)ln('Peso-alvo: '+fmtKg(mp.kg)+(mp.ate?' até '+fmtDataL(mp.ate):''));
   sec('Resumo');
@@ -1354,6 +1515,7 @@ function linhasRel(n){
   if(D.p0&&D.p1)ln('Peso: '+fmtKg(D.p0.peso)+' ('+fmtData(D.p0.dk)+') → '+fmtKg(D.p1.peso)+' ('+fmtData(D.p1.dk)+')'+(D.p0.dk!==D.p1.dk?' · variação '+((D.p1.peso-D.p0.peso)>0?'+':'')+(D.p1.peso-D.p0.peso).toFixed(1).replace('.',',')+' kg':''));
   else ln('Peso: sem registros no período');
   ln('Treinos com registro: '+D.trReg+' · treinos completos: '+D.trOk);
+  if(D.sp&&(db.sess||D.sj))ln('Sessões de treino marcadas na rotina: '+D.so+' de '+D.sp+(D.sj?' · em jejum: '+D.sj:''));
   ln('Natação/cardio: '+D.cMin+' min no total'+(D.nat?' · natação: '+fmtN(D.nat)+' m':''));
   sec('Dia a dia');
   lt(padR('Data',6)+padR('Dia',5)+padL('Rotina',7)+padL('Kcal',7)+padL('Prot g',8)+padL('Água L',8)+padL('Peso kg',9)+'  '+'Treino / cardio');
@@ -1392,6 +1554,8 @@ function textoRel(n){
   }
   if(D.p0&&D.p1)t+='Peso: '+fmtKg(D.p0.peso)+' → '+fmtKg(D.p1.peso)+'\n';
   t+='Treinos completos: '+D.trOk+' (com registro: '+D.trReg+')\n';
+  if(D.sp&&(db.sess||D.sj))t+='Sessões de treino marcadas: '+D.so+' de '+D.sp+(D.sj?' (em jejum: '+D.sj+')':'')+'\n';
+  if(canetaOn())t+='Caneta: '+MEDS[db.caneta.med].cur+' '+fmtK(db.caneta.dose)+' mg\n';
   if(D.cMin)t+='Natação/cardio: '+D.cMin+' min'+(D.nat?' · natação '+fmtN(D.nat)+' m':'')+'\n';
   var C=cargasRel(D);
   if(C.length){t+='\nCargas (maior carga):\n';C.forEach(function(c){t+='- '+c.n+': '+fmtK(c.a.kg)+' → '+fmtK(c.b.kg)+' kg (recorde '+fmtK(c.rec)+' kg)\n';});}
@@ -1484,9 +1648,11 @@ function renderSemana(){
   semana.forEach(function(d,i){
     var dw=d.getDay(),b=document.createElement('button');
     b.type='button';
-    b.className='dia'+(i===selIdx?' sel':'')+(key(d)===hojeK?' hoje':'')+((!db.onb&&(dw===2||dw===4))?' nat':'');
+    var ss=sessDia(dw);
+    b.className='dia'+(i===selIdx?' sel':'')+(key(d)===hojeK?' hoje':'')+(ss.some(function(s){return s.m==='nat';})?' nat':'')+(ss.length?' tem':'');
     b.setAttribute('aria-pressed',i===selIdx?'true':'false');
-    b.innerHTML='<span class="s">'+NOMES[dw]+'</span><span class="n">'+d.getDate()+'</span>';
+    if(ss.length)b.title=sessResumoDia(ss);
+    b.innerHTML='<span class="s">'+NOMES[dw]+'</span><span class="n">'+d.getDate()+'</span><span class="ic" aria-hidden="true">'+ss.map(function(s){return MODS[s.m].ic;}).join('')+'</span>';
     b.addEventListener('click',function(){selIdx=i;render();});
     el.appendChild(b);
   });
@@ -1551,7 +1717,8 @@ function bandejaTroca(i,gr,dk){
 }
 function renderHoje(){
   var d=semana[selIdx],dk=key(d),dw=d.getDay(),isHoje=dk===hojeK,marc=db.dias[dk]||{};
-  $('regra').textContent='Meta: '+fmtN(db.kcalMeta)+' kcal | Regra de Ouro: 1 Única Fonte de Proteína por Refeição';
+  $('regra').textContent='Meta: '+fmtN(db.kcalMeta)+' kcal | Regra de Ouro: 1 Única Fonte de Proteína por Refeição'+((db.caneta&&db.caneta.on&&db.caneta.aplic)?' | Cardápio ajustado para a caneta: porções menores e 6 refeições':'');
+  renderCanetaHoje(dk,dw);
   var txt;
   try{txt=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});}catch(e){txt=NOMES[dw]+' '+fmtData(dk);}
   $('dtit').textContent=txt.charAt(0).toUpperCase()+txt.slice(1)+(isHoje?' (hoje)':'');
@@ -1563,8 +1730,10 @@ function renderHoje(){
   var ul=$('lista');ul.innerHTML='';
   its.forEach(function(i){
     var at=ativo(i,dw),on=!!marc[i.id],gr=at?TROCAS[i.id]:null;
+    if(!at&&db.sess&&(i.id==='treino1'||i.id==='treino2'))return;
+    var sI=at?sessItem(i,dw):null;
     var li=document.createElement('li'),b=document.createElement('button');
-    li.className='m-'+String(i.id).replace(/[^a-z0-9]/gi,'');
+    li.className='m-'+String(i.id).replace(/[^a-z0-9]/gi,'')+(sI?' mod-'+sI.m:'');
     b.type='button';
     b.className='item'+(on?' on':'')+(at?'':' off')+(i.id===proxId?' prox':'')+(gr?' hastr':'');
     b.disabled=!at;
@@ -1572,8 +1741,8 @@ function renderHoje(){
     var tag=(i.id===proxId?'<span class="tag">Próximo</span>':'')+(i.opc?'<span class="tag">Opcional</span>':'')+(!at?'<span class="tag">'+esc(i.off||'Não se aplica neste dia')+'</span>':'')+((fds(dw)&&(i.hf||i.df)&&at)?'<span class="tag">Fim de semana</span>':'');
     var tt=at?trocaTxt(dk,i):'';
     var kc=(at&&((+i.k>0)||(+i.p>0)))?'<span class="kc">≈ '+fmtN(kcalItem(dk,i))+' kcal · '+fmtN(protItem(dk,i))+' g de proteína</span>':'';
-    var extra=(i.id==='treino1'&&at)?' Hoje: '+esc(nomeTreino(dw))+'.':'';
-    b.innerHTML='<span class="box" aria-hidden="true">✓</span><span><span class="hora">'+esc(hh(i,dw))+'</span><span class="tit">'+esc(i.t)+'</span><span class="det">'+esc(desc(i,dw))+extra+'</span>'+(tt?'<span class="det troca-hj">'+esc(tt)+'</span>':'')+kc+tag+'</span>';
+    var extra=(i.id==='treino1'&&at&&(!sI||sI.m==='musc'))?' Hoje: '+esc(nomeTreino(dw))+'.':'';
+    b.innerHTML='<span class="box" aria-hidden="true">✓</span><span><span class="hora">'+esc(hh(i,dw))+'</span><span class="tit">'+esc(tit(i,dw))+'</span><span class="det">'+esc(desc(i,dw))+extra+'</span>'+(tt?'<span class="det troca-hj">'+esc(tt)+'</span>':'')+kc+tag+'</span>';
     b.addEventListener('click',function(){
       var m=db.dias[dk]||(db.dias[dk]={});
       m[i.id]=!m[i.id];salvar();vib();render();
@@ -1598,6 +1767,9 @@ function renderHoje(){
   var kb=$('calKb');kb.style.width=Math.min(100,Math.round(st.k/kM*100))+'%';kb.className=st.k>=kM?'full':'';
   $('calPt').textContent=fmtN(st.p)+' / '+fmtN(pM)+' g';
   var pb=$('calPb');pb.style.width=Math.min(100,Math.round(st.p/pM*100))+'%';pb.className=st.p>=pM?'full':'';
+  var mlH=soma(db.agua[dk]||[]),mM=Math.max(1,db.meta);
+  $('calWt').textContent=fmtL(mlH)+' / '+fmtL(mM);
+  var wb=$('calWb');wb.style.width=Math.min(100,Math.round(mlH/mM*100))+'%';wb.className=mlH>=mM?'full':'';
   var pk=planoKcal(dw,dk),nota;
   if(pk>0&&pk<kM*0.9)nota='Se você fizer todas as refeições, a soma estimada é ≈ '+fmtN(pk)+' kcal, abaixo da meta de '+fmtN(kM)+'. Use "Adicionar extra" ou ajuste as quantidades em Ajustes.';
   else if(pk>kM*1.1)nota='A soma estimada de todas as refeições é ≈ '+fmtN(pk)+' kcal, acima da meta de '+fmtN(kM)+'.';
@@ -1811,8 +1983,8 @@ function cardEx(e,i,dk,tr){
   return c;
 }
 function renderTreino(){
-  var d=semana[selIdx],dk=key(d),dw=d.getDay(),T=plano()[dw],el=$('trLista'),sw=$('trSw');
-  $('trTit').textContent=T?T.n:'Descanso';
+  var d=semana[selIdx],dk=key(d),dw=d.getDay(),T=plano()[dw],el=$('trLista'),sw=$('trSw'),ssd=sessDia(dw);
+  $('trTit').textContent=T?T.n:(ssd.length?ssd.map(sessNome).join(' + '):'Descanso');
   $('trSub').textContent=NOMES[dw]+' · '+((db.onb||(db.usaGerado&&db.gerado))?'plano gerado pelo seu perfil':'plano do seu PDF (Full Body, 5 dias)');
   sw.innerHTML='';
   if(db.gerado&&!db.onb){
@@ -1823,19 +1995,24 @@ function renderTreino(){
       sw.appendChild(b);
     });
   }
-  $('dicaFoto').hidden=!(!db.dicas.foto&&!Object.keys(fotos).length&&Object.keys(db.log).length<3);
+  $('dicaFoto').hidden=!(T&&!db.dicas.foto&&!Object.keys(fotos).length&&Object.keys(db.log).length<3);
   el.innerHTML='';
-  if(!T){el.innerHTML='<div class="card"><p class="nota">Sem musculação neste dia. Aproveite para descansar e manter água e alimentação em dia.</p></div>';}
+  renderSessDia(dw);
+  if(!T){el.innerHTML='<div class="card"><p class="nota">Sem musculação neste dia. '+(ssd.length?'Registre abaixo o treino de hoje e mantenha água e alimentação em dia.':'Aproveite para descansar e manter água e alimentação em dia.')+'</p></div>';}
   else{
     var tr=db.tr[dk]||{};
     T.ex.forEach(function(e,i){el.appendChild(cardEx(e,i,dk,tr));});
   }
   renderCardio(dk,dw);
+  renderAgenda();
 }
 
 /* natação e cardio */
 function renderCardio(dk,dw){
-  $('cdDia').textContent=(!db.onb&&(dw===2||dw===4))?'Hoje é dia de natação no seu protocolo.':'Registre natação ou cardio feitos neste dia.';
+  var nm=sessDia(dw).filter(function(s){return s.m!=='musc';});
+  $('cdDia').textContent=nm.length?'Hoje é dia de '+nm.map(function(s){return MODS[s.m].n.toLowerCase();}).join(' e ')+' no seu protocolo.':'Registre natação, ciclismo, corrida ou cardio feitos neste dia.';
+  var kPre=dk+'|'+nm.map(function(s){return s.m;}).join(',');
+  if(cdPre!==kPre){cdPre=kPre;if(nm.length)$('cdTipo').value=MODS[nm[0].m].n;}
   var u=$('cdTipo').value==='Natação'?'m':'km';
   $('cdU').textContent='('+u+')';
   var l=$('cdLista');l.innerHTML='';
@@ -2143,6 +2320,12 @@ function aplicarPlano(){
   var r=db.res,p=db.perfil;
   db.rot=rotinaGerada(p,r,db.gerado||{});
   db.kcalMeta=r.k;db.protMeta=r.prot;db.meta=r.agua;
+  if(db.sess){
+    var o={};
+    db.rot.forEach(function(i){if(i.id==='treino1')o.t1=clone(i);if(i.id==='treino2')o.t2=clone(i);});
+    db.sess.o=o;aplicaSess();
+  }
+  if(db.caneta&&db.caneta.on&&db.caneta.aplic){db.caneta.aplic=false;delete db.caneta.base;aplicaCaneta();}
 }
 function renderRes(){
   var el=$('res');
@@ -2182,6 +2365,7 @@ function renderRes(){
 
 /* ---------- AJUSTES ---------- */
 function formEd(i){
+  if(db.sess&&(i.id==='treino1'||i.id==='treino2'))return '<div class="edf"><p class="nota">Este item é montado pela agenda de treinos (modalidade, horário e jejum de cada dia). Para mudar, use a aba Treino.</p><div class="lin"><button class="btn sec" id="ed-ag" type="button" style="width:auto;padding:12px 18px">Abrir a agenda de treinos</button></div></div>';
   var dias=i.dias||[0,1,2,3,4,5,6];
   var chips=[1,2,3,4,5,6,0].map(function(d){return '<button type="button" data-d="'+d+'" aria-pressed="'+(dias.indexOf(d)>-1)+'">'+NOMES[d]+'</button>';}).join('');
   return '<div class="edf">'+
@@ -2204,6 +2388,10 @@ function renderEdRot(){
     w.querySelector('.edh').addEventListener('click',function(){edAberto=aberto?null:i.id;renderEdRot();});
     box.appendChild(w);
     if(!aberto)return;
+    if(w.querySelector('#ed-ag')){
+      w.querySelector('#ed-ag').addEventListener('click',function(){irAba('treino');var a=$('agenda');if(a)a.scrollIntoView({block:'start'});});
+      return;
+    }
     w.querySelectorAll('#ed-dias button').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');});});
     w.querySelector('#ed-s').addEventListener('click',function(){
       var r=editavel(),atual=r[ix];
@@ -2213,6 +2401,7 @@ function renderEdRot(){
       if(hf)novo.hf=hf;if(df)novo.df=df;
       if($('ed-o').checked)novo.opc=true;
       if(atual.off)novo.off=atual.off;
+      if(atual.pd)novo.pd=atual.pd;
       r[ix]=novo;edAberto=null;salvar();vib();renderEdRot();
     });
     w.querySelector('#ed-x').addEventListener('click',function(){
@@ -2234,7 +2423,7 @@ function renderAjustes(){
   $('aNota').textContent='Proteína em branco = soma das refeições da rotina no dia ('+fmtN(metaProt(dw))+' g hoje). A meta de água fica na aba Água.';
   $('aDescAuto').checked=db.descAuto!==false;
   $('edRes').textContent=lblRes();$('pfAjNome').textContent=nomePerfil();
-  renderEdRot();renderBk();renderLembretes();renderSync();
+  renderEdRot();renderBk();renderLembretes();renderSync();renderCaneta();
 }
 function bkMsg(t){$('bkMsg').textContent=t;}
 function jsonBackup(){return JSON.stringify(db);}
@@ -2349,10 +2538,12 @@ function ligar(){
     edAberto=id;salvar();renderEdRot();
   });
   $('edRes').addEventListener('click',function(){
-    var antes=JSON.stringify(db.rot);
+    var antes=JSON.stringify(db.rot),antesS=db.sess?JSON.stringify(db.sess):null,antesC=db.caneta?JSON.stringify(db.caneta):null,antesM={k:db.kcalMeta,p:db.protMeta,m:db.meta};
     if(db.onb&&db.perfil&&db.res)db.rot=rotinaGerada(db.perfil,db.res,db.gerado||{});else db.rot=null;
-    edAberto=null;salvar();vib();renderEdRot();
-    toast(db.onb?'Rotina refeita pelo seu plano.':'Rotina padrão restaurada.',function(){db.rot=JSON.parse(antes);salvar();renderEdRot();render();});
+    db.sess=null;
+    if(db.caneta&&db.caneta.aplic){db.caneta.aplic=false;delete db.caneta.base;db.kcalMeta=antesM.k;}
+    edAberto=null;salvar();vib();renderEdRot();render();
+    toast(db.onb?'Rotina refeita pelo seu plano.':'Rotina padrão restaurada.',function(){db.rot=JSON.parse(antes);db.sess=antesS?JSON.parse(antesS):null;db.caneta=antesC?JSON.parse(antesC):null;db.kcalMeta=antesM.k;db.protMeta=antesM.p;db.meta=antesM.m;salvar();renderEdRot();render();});
   });
   // ajustes: backup
   $('bkDown').addEventListener('click',function(){
@@ -2564,29 +2755,35 @@ function diasTxt(d){
 function eventosLembrete(){
   var out=[];
   rot().forEach(function(i){
-    var dias=i.dias||[0,1,2,3,4,5,6];
-    var sem=dias.filter(function(d){return d>=1&&d<=5;}),fim=dias.filter(function(d){return d===0||d===6;});
-    if(i.hf&&pad(i.hf)!==pad(i.h)){
-      if(sem.length)out.push({i:i,h:i.h,dias:sem,d:i.d});
-      if(fim.length)out.push({i:i,h:i.hf,dias:fim,d:i.df||i.d});
-    }else if(dias.length)out.push({i:i,h:i.h,dias:dias,d:i.d});
+    var dias=i.dias||[0,1,2,3,4,5,6],grupos={},ordem=[];
+    DIAS_ORD.forEach(function(dw){
+      if(dias.indexOf(dw)<0)return;
+      var h=hh(i,dw),t=tit(i,dw),s=db.sess?sessItem(i,dw):null,k=h+'|'+t+'|'+(s?s.min:'');
+      if(!grupos[k]){grupos[k]={i:i,h:h,t:t,dias:[],d:desc(i,dw),ic:null,dur:null};ordem.push(k);
+        var s2=sessItem(i,dw);
+        if(s2)grupos[k].ic=MODS[s2.m].ic;
+        if(s)grupos[k].dur=s.min;}
+      grupos[k].dias.push(dw);
+    });
+    ordem.forEach(function(k){grupos[k].dias.sort(function(a,b){return a-b;});out.push(grupos[k]);});
   });
   return out;
 }
 function linkAgenda(ev){
   var d=dateDe(hojeK),q;
   for(q=0;q<8;q++){d.setDate(d.getDate()+1);if(ev.dias.indexOf(d.getDay())>-1)break;}
-  var m0=minutos(ev.h),m1=m0+15;
+  var m0=minutos(ev.h),m1=m0+(ev.dur||15);
   function hms(m){m=m%1440;return ('0'+Math.floor(m/60)).slice(-2)+('0'+(m%60)).slice(-2)+'00';}
   var ymd=key(d).replace(/-/g,'');
-  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.i.t)+'&details='+encodeURIComponent(ev.d||'')+'&dates='+ymd+'T'+hms(m0)+'/'+ymd+'T'+hms(m1)+'&ctz=America%2FSao_Paulo&recur='+encodeURIComponent('RRULE:FREQ=WEEKLY;BYDAY='+ev.dias.map(function(x){return DIA_ICS[x];}).join(','));
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.t||ev.i.t)+'&details='+encodeURIComponent(ev.d||'')+'&dates='+ymd+'T'+hms(m0)+'/'+ymd+'T'+hms(m1)+'&ctz=America%2FSao_Paulo&recur='+encodeURIComponent('RRULE:FREQ=WEEKLY;BYDAY='+ev.dias.map(function(x){return DIA_ICS[x];}).join(','));
 }
 function renderLembretes(){
   var ul=$('lbLista');ul.innerHTML='';
   lembForm();
-  eventosLembrete().concat(agendaAgua(lembOpt().agua)).forEach(function(ev){
+  var evc=eventoCaneta();
+  eventosLembrete().concat(evc&&lembOpt().cn?[evc]:[]).concat(agendaAgua(lembOpt().agua)).forEach(function(ev){
     var li=document.createElement('li');
-    li.innerHTML='<span>'+esc(pad(ev.h))+' · '+esc(ev.i.t)+' <small class="nota">('+diasTxt(ev.dias)+')</small></span><b><a href="'+esc(linkAgenda(ev))+'" target="_blank" rel="noopener noreferrer">Criar</a></b>';
+    li.innerHTML='<span>'+esc(pad(ev.h))+' · '+esc(ev.t||ev.i.t)+' <small class="nota">('+diasTxt(ev.dias)+')</small></span><b><a href="'+esc(linkAgenda(ev))+'" target="_blank" rel="noopener noreferrer">Criar</a></b>';
     ul.appendChild(li);
   });
 }
@@ -2726,18 +2923,19 @@ function temaAba(g){
 
 
 /* ---------- lembretes: arquivo de calendário (.ics) dentro de um .zip ---------- */
-var ICONE_LB={despertar:'💧',treino1:'🏋️',cafe:'☕',almoco:'🍗',lanche:'🍎',treino2:'🏊',jantar:'🍽️',ceia:'🥛'};
+var ICONE_LB={despertar:'💧',treino1:'🏋️',cafe:'☕',almoco:'🍗',lanche:'🍎',treino2:'🏊',jantar:'🍽️',ceia:'🥛',mini:'🥣'};
 function lembOpt(){
   var o=isObj(db.lemb)?db.lemb:{};
   var ag=(o.agua===0||o.agua===60||o.agua===90||o.agua===120||o.agua===180)?o.agua:120;
-  return {ref:o.ref!==false,agua:ag,ant:o.ant===10?10:0};
+  return {ref:o.ref!==false,agua:ag,ant:o.ant===10?10:0,cn:o.cn!==false};
 }
 function lembForm(){
   var o=lembOpt();
   $('lbRef').checked=o.ref;$('lbAgua').value=String(o.agua);$('lbAnt').value=String(o.ant);
+  $('lbCnL').hidden=!canetaOn();$('lbCn').checked=o.cn;
 }
 function lembLer(){
-  db.lemb={ref:$('lbRef').checked,agua:parseInt($('lbAgua').value,10)||0,ant:parseInt($('lbAnt').value,10)===10?10:0};
+  db.lemb={ref:$('lbRef').checked,agua:parseInt($('lbAgua').value,10)||0,ant:parseInt($('lbAnt').value,10)===10?10:0,cn:$('lbCn').checked};
   salvar();renderLembretes();
 }
 /* lembretes de água: de um intervalo depois do primeiro horário do dia até o último item da rotina */
@@ -2749,9 +2947,11 @@ function agendaAgua(iv){
     var ts=[];
     rot().forEach(function(i){
       var dias=i.dias||[0,1,2,3,4,5,6];
-      if(!dias.some(function(d){return s.dias.indexOf(d)>-1;}))return;
-      var h=(s.fim&&i.hf)?i.hf:i.h;
-      if(pad(h))ts.push(minutos(h));
+      s.dias.forEach(function(d){
+        if(dias.indexOf(d)<0)return;
+        var h=hh(i,d);
+        if(pad(h))ts.push(minutos(h));
+      });
     });
     if(!ts.length)return;
     var ini=Math.min.apply(null,ts),fim=Math.min(Math.max.apply(null,ts),21*60+30),slots=[],t;
@@ -2791,9 +2991,9 @@ function icsTexto(evs,ant){
   var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Rotina Fitness//PT-BR//','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+icsEsc('Rotina'+(pf.lista.length>1?' - '+nomePerfil():''))];
   var st=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,''),pid=perfilAtual().id;
   evs.forEach(function(ev,n){
-    var d=icsPrimeiraData(ev.dias),m0=minutos(ev.h),dur=ev.agua?10:(/^treino/.test(ev.i.id)?60:30);
+    var d=icsPrimeiraData(ev.dias),m0=minutos(ev.h),dur=ev.dur||(ev.agua?10:(/^treino/.test(ev.i.id)?60:30));
     var dd=ev.dias.slice().sort(function(a,b){return ((a+6)%7)-((b+6)%7);}).map(function(x){return DIA_ICS[x];}).join(',');
-    var sum=ev.agua?ev.i.t:((ICONE_LB[ev.i.id]?ICONE_LB[ev.i.id]+' ':'')+ev.i.t);
+    var ic=ev.ic||ICONE_LB[ev.i.id],sum=ev.agua?ev.i.t:((ic?ic+' ':'')+(ev.t||ev.i.t));
     var desc=ev.d||'';
     if(!ev.agua&&+ev.i.k>0)desc+=(desc?' ':'')+'≈ '+Math.round(ev.i.k)+' kcal · '+Math.round(+ev.i.p||0)+' g de proteína.';
     L.push('BEGIN:VEVENT','UID:rotina-'+pid+'-'+n+'-'+icsDt(d,m0)+'@rotina-app','DTSTAMP:'+st,'DTSTART:'+icsDt(d,m0),'DTEND:'+icsDt(d,m0+dur),'RRULE:FREQ=WEEKLY;BYDAY='+dd,'SUMMARY:'+icsEsc(sum),'DESCRIPTION:'+icsEsc(desc),'TRANSP:TRANSPARENT','BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(sum),'TRIGGER:'+((ant>0&&!ev.agua)?'-PT'+ant+'M':'PT0M'),'END:VALARM','END:VEVENT');
@@ -2828,6 +3028,8 @@ function zipUm(nome,texto){
 function baixarLembretes(){
   var o=lembOpt(),msg=$('lbMsg'),evs=[];
   if(o.ref)evs=evs.concat(eventosLembrete());
+  var evc=eventoCaneta();
+  if(evc&&o.cn)evs.push(evc);
   evs=evs.concat(agendaAgua(o.agua));
   if(!evs.length){msg.textContent='Marque refeições e treinos ou escolha um intervalo de água.';return;}
   var base='rotina-lembretes'+slugPerfil();
@@ -2883,9 +3085,529 @@ function ligarUx(){
   $('dicaHojeOk').addEventListener('click',function(){db.dicas.hoje=true;salvar();render();});
   $('dicaFotoOk').addEventListener('click',function(){db.dicas.foto=true;salvar();render();});
   $('calAjusta').addEventListener('click',function(){ajustaPorcoes(semana[selIdx].getDay());});
-  ['lbRef','lbAgua','lbAnt'].forEach(function(id){$(id).addEventListener('change',lembLer);});
+  ['lbRef','lbAgua','lbAnt','lbCn'].forEach(function(id){$(id).addEventListener('change',lembLer);});
   $('lbBaixar').addEventListener('click',baixarLembretes);
   $('aDescAuto').addEventListener('change',function(){db.descAuto=$('aDescAuto').checked;salvar();});
+}
+
+/* ---------- v12: agenda de treinos (modalidades, até 2 por dia, jejum) ---------- */
+var DIAS_ORD=[1,2,3,4,5,6,0];
+var DIAS_NOME=['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+var agDia=null,agUlt=null,agAb=-1,agCopia={},cdPre=null;
+function modDe(txt){
+  var t=String(txt||'').toLowerCase();
+  if(/nata|piscina/.test(t))return 'nat';
+  if(/ciclis|bike|bicicl|pedal/.test(t))return 'cic';
+  if(/corr/.test(t))return 'corr';
+  return 'musc';
+}
+/* treino de um item da rotina (treino1 = primeiro do dia, treino2 = segundo) */
+function sessItem(i,dw){
+  if(!i||(i.id!=='treino1'&&i.id!=='treino2'))return null;
+  if(db.sess){var a=db.sess.d[dw]||[];return a[i.id==='treino1'?0:1]||null;}
+  if(!ativo(i,dw))return null;
+  var d=desc(i,dw),m=modDe(d);
+  return {m:m,h:pad(hh(i,dw))||'07:00',j:/jejum/i.test(d),min:MODS[m].min};
+}
+function sessLegado(dw){
+  var o=[];
+  var pb=planoBase();
+  rot().forEach(function(i){var s=sessItem(i,dw);if(s&&(s.m!=='musc'||pb[dw]))o.push(s);});
+  o.sort(function(a,b){return minutos(a.h)-minutos(b.h);});
+  return o.slice(0,2);
+}
+function sessDia(dw){return db.sess?(db.sess.d[dw]||[]):sessLegado(dw);}
+function temMusc(dw){return sessDia(dw).some(function(s){return s.m==='musc';});}
+/* jejum só vale no primeiro treino do dia, antes das 12h */
+function jejumEf(ss,ix){var s=ss[ix];return !!(s&&ix===0&&s.j&&minutos(s.h)<720);}
+function sessNome(s){return MODS[s.m].n;}
+function sessTitulo(s,ix,n){return n>1?'Treino '+(ix+1)+' · '+MODS[s.m].n:MODS[s.m].n;}
+function sessTexto(s,ef){
+  var t=MODS[s.m].n+', cerca de '+s.min+' min.';
+  if(ef)t+=' Em jejum: água à vontade e café preto; a primeira refeição vem logo depois do treino. Se sentir tontura ou fraqueza, pare e coma algo.';
+  else if(s.m==='musc')t+=' Água à vontade durante o treino.';
+  else if(s.min>60)t+=' Em treinos longos, leve água e um carboidrato rápido (uma banana, por exemplo).';
+  else t+=' Leve água.';
+  return t;
+}
+function sessResumoDia(ss){
+  return ss.map(function(s,ix){return MODS[s.m].ic+' '+MODS[s.m].n+' '+s.h+(jejumEf(ss,ix)?' em jejum':'');}).join(' · ');
+}
+
+/* cria a agenda própria a partir do que já existe (na primeira edição) */
+function sessGarante(){
+  if(db.sess)return;
+  var d={},dw;
+  for(dw=0;dw<7;dw++){
+    var a=sessLegado(dw);
+    if(a.length)d[dw]=a.map(function(s){return {m:s.m,h:s.h,j:s.j,min:s.min};});
+  }
+  function it(id){var r=rot().filter(function(i){return i.id===id;})[0];return r?clone(r):null;}
+  var o={},t1=it('treino1'),t2=it('treino2');
+  if(t1)o.t1=t1;
+  if(t2)o.t2=t2;
+  db.sess={v:1,d:d,o:o};
+}
+/* escreve a agenda na rotina: itens de treino por dia e café depois do treino em jejum */
+function aplicaSess(){
+  if(!db.sess)return;
+  var r=editavel(),dw;
+  function acha(id){return r.filter(function(i){return i.id===id;})[0]||null;}
+  var t1=acha('treino1'),t2=acha('treino2'),cf=acha('cafe'),al=acha('almoco');
+  if(!t1){t1={id:'treino1',t:'Treino 1',h:'07:00',d:'',dias:[],k:0,p:0};r.push(t1);}
+  if(!t2){t2={id:'treino2',t:'Treino 2',h:'19:00',d:'',dias:[],k:0,p:0};r.push(t2);}
+  t1.t='Treino 1';t2.t='Treino 2';
+  t1.off='Sem treino neste dia';t2.off='Sem segundo treino neste dia';
+  t1.dias=[];t2.dias=[];t1.pd={};t2.pd={};
+  delete t1.hf;delete t1.df;delete t2.hf;delete t2.df;delete t1.opc;delete t2.opc;
+  if(cf)delete cf.pd;
+  var pri1=null,pri2=null;
+  for(dw=0;dw<7;dw++){
+    var ss=db.sess.d[dw]||[];
+    ss.forEach(function(s,ix){
+      var it=ix===0?t1:t2,ef=jejumEf(ss,ix);
+      it.dias.push(dw);
+      it.pd[dw]={t:sessTitulo(s,ix,ss.length),h:s.h,d:sessTexto(s,ef)};
+      if(ix===0&&!pri1)pri1=it.pd[dw];
+      if(ix===1&&!pri2)pri2=it.pd[dw];
+    });
+    if(cf&&ss.length&&jejumEf(ss,0)){
+      var fimT=minutos(ss[0].h)+ss[0].min,novo=fimT+30;
+      if(al){var cap=minutos(hh(al,dw))-90;if(cap>=fimT+15)novo=Math.min(novo,cap);}
+      novo=Math.ceil(novo/5)*5;
+      if(!cf.pd)cf.pd={};
+      cf.pd[dw]={t:'Café (pós-treino)',h:hm(novo)};
+    }
+  }
+  if(pri1){t1.h=pri1.h;t1.d=pri1.d;}
+  if(pri2){t2.h=pri2.h;t2.d=pri2.d;}
+  if(!t1.dias.length)t1.dias=[];
+}
+/* volta ao treino que existia antes da agenda própria */
+function sessRestaura(){
+  if(!db.sess)return;
+  var o=db.sess.o||{};
+  function troca(r,id,orig){
+    var ix=-1;
+    r.forEach(function(i,q){if(i.id===id)ix=q;});
+    if(orig){if(ix>-1)r[ix]=clone(orig);else r.push(clone(orig));}
+    else if(ix>-1)r.splice(ix,1);
+    r.forEach(function(i){if(i.id==='cafe')delete i.pd;});
+  }
+  var r=editavel();
+  troca(r,'treino1',o.t1);troca(r,'treino2',o.t2);
+  if(db.caneta&&db.caneta.base&&Array.isArray(db.caneta.base.rot)){troca(db.caneta.base.rot,'treino1',o.t1);troca(db.caneta.base.rot,'treino2',o.t2);}
+  db.sess=null;
+}
+function sessMut(fn){
+  sessGarante();
+  var a=db.sess.d[agDia]||(db.sess.d[agDia]=[]);
+  var alvo=fn(a);
+  if(!a.length)delete db.sess.d[agDia];
+  else a.sort(function(x,y){return minutos(x.h)-minutos(y.h);});
+  agAb=(alvo&&a.length)?a.indexOf(alvo):-1;
+  aplicaSess();salvar();vib();render();
+}
+
+/* ---------- tela: treinos do dia e agenda da semana ---------- */
+function renderSessDia(dw){
+  var el=$('sessDia');
+  if(!el)return;
+  var ss=sessDia(dw);
+  if(!ss.length){el.hidden=true;el.innerHTML='';return;}
+  el.hidden=false;
+  var h='',jej=false;
+  ss.forEach(function(s,ix){
+    var ef=jejumEf(ss,ix);
+    if(ef)jej=true;
+    h+='<div class="sess mod-'+s.m+'"><span class="si" aria-hidden="true">'+MODS[s.m].ic+'</span><span class="sb"><b>'+esc(MODS[s.m].n)+'</b><small>'+esc(s.h)+(db.sess?' · '+s.min+' min':'')+'</small></span>'+(ef?'<span class="tag">Em jejum</span>':'')+'</div>';
+  });
+  if(jej)h+='<p class="nota">Treino em jejum: água e café preto até terminar; o café da manhã vem depois do treino. Se sentir tontura, pare e coma algo.</p>';
+  el.innerHTML=h;
+}
+function agSessForm(s,ix,ss){
+  var ef=ix===0&&minutos(s.h)<720;
+  var opts=MOD_ORD.map(function(m){return '<option value="'+m+'"'+(m===s.m?' selected':'')+'>'+MODS[m].ic+' '+MODS[m].n+'</option>';}).join('');
+  return '<div class="edf agf">'+
+    '<label>Modalidade<select id="ag-m">'+opts+'</select></label>'+
+    '<div class="row2"><label>Horário<input id="ag-h" type="time" value="'+esc(s.h)+'"></label><label>Duração (min)<input id="ag-min" type="text" inputmode="numeric" value="'+s.min+'"></label></div>'+
+    (ix===0?'<label class="chk"><input type="checkbox" id="ag-j"'+(s.j?' checked':'')+(ef?'':' disabled')+'> Em jejum'+(ef?'':' (só antes das 12h)')+'</label>':'<p class="nota">Jejum vale só para o primeiro treino do dia.</p>')+
+    '<div class="lin"><button class="btn sec" id="ag-x" type="button" style="width:auto;padding:12px 18px;color:var(--danger);border-color:var(--danger)">Remover este treino</button></div></div>';
+}
+function renderAgenda(){
+  var strip=$('agSem'),box=$('agDiaBox');
+  if(!strip||!box)return;
+  var dwSel=semana[selIdx].getDay();
+  if(agUlt!==dwSel){agUlt=dwSel;agDia=dwSel;agAb=-1;agCopia={};}
+  if(agDia===null)agDia=dwSel;
+  strip.innerHTML='';
+  DIAS_ORD.forEach(function(dw){
+    var ss=sessDia(dw),b=document.createElement('button');
+    b.type='button';b.className='agd'+(dw===agDia?' sel':'');
+    b.setAttribute('aria-pressed',dw===agDia?'true':'false');
+    b.title=DIAS_NOME[dw]+(ss.length?': '+sessResumoDia(ss):': descanso');
+    b.innerHTML='<span class="s">'+NOMES[dw]+'</span><span class="ic" aria-hidden="true">'+(ss.length?ss.map(function(s){return MODS[s.m].ic;}).join(''):'·')+'</span>';
+    b.addEventListener('click',function(){agDia=dw;agAb=-1;agCopia={};renderAgenda();});
+    strip.appendChild(b);
+  });
+  var ss=sessDia(agDia),h='<h3>'+DIAS_NOME[agDia]+'</h3>';
+  if(!ss.length)h+='<p class="nota">Dia sem treino. Toque em "Adicionar treino" para marcar um.</p>';
+  box.innerHTML=h;
+  ss.forEach(function(s,ix){
+    var ef=jejumEf(ss,ix),aberto=agAb===ix;
+    var w=document.createElement('div');w.className='edi agi';
+    w.innerHTML='<button type="button" class="edh" aria-expanded="'+aberto+'"><span><span class="hh">'+esc(s.h)+'</span>'+MODS[s.m].ic+' '+esc(MODS[s.m].n)+'<em>'+s.min+' min'+(ef?' · em jejum':'')+'</em></span><span aria-hidden="true">'+(aberto?'▲':'▼')+'</span></button>'+(aberto?agSessForm(s,ix,ss):'');
+    w.querySelector('.edh').addEventListener('click',function(){agAb=aberto?-1:ix;renderAgenda();});
+    box.appendChild(w);
+    if(!aberto)return;
+    $('ag-m').addEventListener('change',function(){
+      var v=$('ag-m').value;
+      sessMut(function(a){var x=a[ix];if(MODS[v]){var padrao0=x.min===MODS[x.m].min;x.m=v;if(padrao0)x.min=MODS[v].min;}return x;});
+    });
+    $('ag-h').addEventListener('change',function(){
+      var v=pad($('ag-h').value);
+      sessMut(function(a){var x=a[ix];if(v)x.h=v;return x;});
+    });
+    $('ag-min').addEventListener('change',function(){
+      var v=Math.round(num($('ag-min').value)||0);
+      sessMut(function(a){var x=a[ix];if(v>=15&&v<=240)x.min=v;return x;});
+    });
+    if($('ag-j'))$('ag-j').addEventListener('change',function(){
+      var v=$('ag-j').checked;
+      sessMut(function(a){var x=a[ix];x.j=v;return x;});
+    });
+    $('ag-x').addEventListener('click',function(){
+      var antes={s:db.sess?JSON.stringify(db.sess):null,r:JSON.stringify(db.rot)};
+      sessMut(function(a){a.splice(ix,1);return null;});
+      toast('Treino removido.',function(){db.sess=antes.s?JSON.parse(antes.s):null;db.rot=JSON.parse(antes.r);salvar();render();});
+    });
+  });
+  // adicionar
+  var add=document.createElement('div');add.className='lin';
+  var bAdd=document.createElement('button');bAdd.type='button';bAdd.id='agAdd';bAdd.className='selb';bAdd.textContent='+ Adicionar treino';
+  bAdd.disabled=ss.length>=2;
+  bAdd.addEventListener('click',function(){
+    sessMut(function(a){
+      var n;
+      if(!a.length)n={m:'musc',h:'07:00',j:false,min:MODS.musc.min};
+      else{
+        var p=a[0],h=minutos(p.h)<720?'19:00':'07:00';
+        var m=p.m==='musc'?'nat':'musc';
+        n={m:m,h:h,j:false,min:MODS[m].min};
+      }
+      a.push(n);return n;
+    });
+  });
+  add.appendChild(bAdd);box.appendChild(add);
+  if(ss.length>=2){var nt=document.createElement('p');nt.className='nota';nt.textContent='Máximo de 2 treinos por dia.';box.appendChild(nt);}
+  // copiar para outros dias
+  if(ss.length){
+    var dt=document.createElement('details');dt.className='agcp';
+    var chips=DIAS_ORD.filter(function(d){return d!==agDia;}).map(function(d){return '<button type="button" data-d="'+d+'" aria-pressed="'+(!!agCopia[d])+'">'+NOMES[d]+'</button>';}).join('');
+    dt.innerHTML='<summary>Copiar este dia para outros dias</summary><div class="chips" id="agCp">'+chips+'</div><div class="lin"><button type="button" id="agCopiar">Copiar</button></div>';
+    box.appendChild(dt);
+    dt.open=Object.keys(agCopia).length>0;
+    dt.querySelectorAll('#agCp button').forEach(function(b){
+      b.addEventListener('click',function(){
+        var d=+b.getAttribute('data-d');
+        if(agCopia[d])delete agCopia[d];else agCopia[d]=true;
+        b.setAttribute('aria-pressed',agCopia[d]?'true':'false');
+      });
+    });
+    dt.querySelector('#agCopiar').addEventListener('click',function(){
+      var alvos=Object.keys(agCopia).map(Number);
+      if(!alvos.length){toast('Escolha ao menos um dia para receber a cópia.');return;}
+      var antes={s:db.sess?JSON.stringify(db.sess):null,r:JSON.stringify(db.rot)};
+      sessGarante();
+      var orig=db.sess.d[agDia]||[];
+      alvos.forEach(function(d){db.sess.d[d]=orig.map(function(s){return {m:s.m,h:s.h,j:s.j,min:s.min};});});
+      agCopia={};agAb=-1;
+      aplicaSess();salvar();vib();render();
+      toast('Treinos copiados para '+alvos.length+(alvos.length===1?' dia.':' dias.'),function(){db.sess=antes.s?JSON.parse(antes.s):null;db.rot=JSON.parse(antes.r);salvar();render();});
+    });
+  }
+  var rs=$('agRest');
+  if(rs)rs.hidden=!db.sess;
+}
+function ligarAgenda(){
+  document.querySelectorAll('.calw button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var dk=key(semana[selIdx]);(db.agua[dk]||(db.agua[dk]=[])).push(+b.getAttribute('data-ml'));
+      salvar();vib();render();
+    });
+  });
+  var rs=$('agRest');
+  if(rs)rs.addEventListener('click',function(){
+    if(!db.sess)return;
+    var antes={s:JSON.stringify(db.sess),r:JSON.stringify(db.rot),c:db.caneta?JSON.stringify(db.caneta):null};
+    sessRestaura();agAb=-1;
+    salvar();vib();render();
+    toast('Agenda de treinos desfeita: voltou ao treino anterior.',function(){db.sess=JSON.parse(antes.s);db.rot=JSON.parse(antes.r);db.caneta=antes.c?JSON.parse(antes.c):null;salvar();render();});
+  });
+  var ir=$('agIr');
+  if(ir)ir.addEventListener('click',function(){
+    var el=$('agenda');
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+}
+
+/* ---------- v12: caneta emagrecedora (GLP-1): medicamento, dose, apetite e cardápio ---------- */
+var CN_DICAS=[
+  'Coma devagar, em porções pequenas, e pare quando estiver satisfeito. A caneta diminui a fome, mas a proteína continua sendo prioridade.',
+  'Comece a refeição pela proteína (carne, ovo, peixe, iogurte). Ela ajuda a manter os músculos enquanto o peso cai.',
+  'A sede também diminui: beba água aos poucos ao longo do dia, mesmo sem vontade.',
+  'Com enjoo, evite frituras, comidas gordurosas, álcool e refrigerante. Prefira refeições leves e mais frias.',
+  'Prisão de ventre é comum: inclua salada, frutas, aveia e bastante água.',
+  'O treino de força (musculação) ajuda a perder gordura e preservar massa muscular durante o uso da caneta.',
+  'Evite pular refeições. Várias refeições pequenas costumam cair melhor do que poucas grandes.'
+];
+var CN_APS=[[1,'Um pouco menos','−5%'],[2,'Bem menos','−15%'],[3,'Quase nada','−30%']];
+function canetaOn(){return !!(db.caneta&&db.caneta.on);}
+function apSug(c){
+  var M=MEDS[c.med];
+  if(!M||!M.niv)return 2;
+  return c.dose<=M.niv[0]?1:(c.dose<M.niv[1]?2:3);
+}
+function pisoKcal(){
+  var s=(db.perfil&&db.perfil.sexo==='f')?1200:1500;
+  if(db.res&&db.res.bmr)s=Math.max(s,r10(db.res.bmr*0.85));
+  return s;
+}
+function rotDe(b){return b.rot||((db.onb&&db.perfil&&db.res)?rotinaGerada(db.perfil,db.res,db.gerado||{}):ROT0);}
+function protDeRot(r){
+  var s=0;
+  r.forEach(function(i){if(!i.dias||i.dias.indexOf(1)>-1)s+=+i.p||0;});
+  return Math.max(20,Math.round(s/5)*5);
+}
+function capBase(){return {rot:db.rot?clone(db.rot):null,res:null,k:db.kcalMeta,p:db.protMeta,meta:db.meta};}
+function restauraBase(b){
+  db.rot=b.rot?clone(b.rot):null;
+  db.kcalMeta=b.k;db.protMeta=b.p;db.meta=b.meta;
+}
+/* metas com a caneta: calorias reduzidas pelo apetite (com piso de segurança), proteína mantida */
+function canetaAlvo(c,b){
+  var k0=b.k,f=AP_F[c.ap]||1,piso=pisoKcal(),k=r10(k0*f),limitado=false;
+  if(k<piso){k=Math.min(k0,piso);limitado=k>r10(k0*f);}
+  var p=b.p||((db.res&&db.res.prot)?db.res.prot:0)||protDeRot(rotDe(b));
+  return {k0:k0,k:k,f:f,limitado:limitado,p:p,piso:piso,agua:Math.max(b.meta,2500)};
+}
+function aplicaCaneta(){
+  var c=db.caneta;
+  if(!c||!c.on)return false;
+  if(c.aplic&&c.base)restauraBase(c.base);else c.base=capBase();
+  var b=c.base,al=canetaAlvo(c,b),r=editavel();
+  var pk=planoKcal(1),pP=planoProt(1),f=1,M=10,q;
+  if(pk>0){
+    f=Math.max(0.5,Math.min(1.2,al.k/pk));
+    for(q=0;q<3;q++){
+      var S=Math.max(0,al.p-pP*f);
+      M=Math.max(10,Math.min(30,Math.round(S/5)*5));
+      f=Math.max(0.5,Math.min(1.2,(al.k-M*5)/pk));
+    }
+    r.forEach(function(i){
+      if(!(+i.k>0))return;
+      i.k=Math.max(5,Math.round(i.k*f/5)*5);
+      i.p=Math.max(0,Math.round((+i.p||0)*f));
+      i.d=escalaTxt(i.d,f);
+      if(i.df)i.df=escalaTxt(i.df,f);
+    });
+    var cf=r.filter(function(i){return i.id==='cafe';})[0],alm=r.filter(function(i){return i.id==='almoco';})[0];
+    var hMini=(cf&&alm)?hm(arr15((minutos(cf.h)+minutos(alm.h))/2)):'11:00';
+    var w=Math.round(M/0.8/5)*5;
+    r.push({id:'mini',t:'Mini-refeição proteica',h:hMini,d:'Porção pequena e rica em proteína: cerca de '+w+' g de whey em água ou 1 iogurte natural/grego. Tome devagar.',dias:null,k:M*5,p:M});
+  }
+  db.kcalMeta=al.k;db.protMeta=al.p;db.meta=al.agua;
+  c.aplic=true;
+  if(db.sess)aplicaSess();
+  return true;
+}
+function desfazCaneta(){
+  var c=db.caneta;
+  if(!c||!c.aplic||!c.base){if(c){c.aplic=false;delete c.base;}return;}
+  restauraBase(c.base);
+  delete c.base;c.aplic=false;
+  if(db.sess)aplicaSess();
+}
+function pushHist(c){
+  var l=c.hist[c.hist.length-1];
+  if(!l||l.dose!==c.dose||l.med!==c.med)c.hist.push({d:hojeK,dose:c.dose,med:c.med});
+  if(c.hist.length>12)c.hist=c.hist.slice(-12);
+}
+function novaCaneta(){
+  var c=canetaLimpa({on:true,med:'sema',dose:MEDS.sema.doses[0],dia:new Date().getDay(),ap:1,ini:hojeK,h:'08:00'});
+  pushHist(c);
+  return c;
+}
+function proxAplic(c,dk){
+  var d=dateDe(dk),q;
+  for(q=0;q<8;q++){if(d.getDay()===c.dia)return key(d);d.setDate(d.getDate()+1);}
+  return dk;
+}
+function eventoCaneta(){
+  var c=db.caneta;
+  if(!c||!c.on)return null;
+  return {i:{id:'caneta',t:'Aplicar caneta'},t:'Aplicar caneta',ic:'💉',h:c.h,dias:[c.dia],dur:15,d:'Aplicação semanal ('+MEDS[c.med].cur+' '+fmtK(c.dose)+' mg). Confira a dose combinada com o seu médico.'};
+}
+function diaAno(dk){var d=dateDe(dk);return Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);}
+function dicaCaneta(c,dk){
+  var dw=dateDe(dk).getDay();
+  if(dw===(c.dia+1)%7)return 'No dia seguinte à aplicação o apetite e o enjoo costumam ser maiores: prefira refeições leves, coma devagar e beba água aos poucos.';
+  return CN_DICAS[diaAno(dk)%CN_DICAS.length];
+}
+
+/* ---------- Hoje: aviso da aplicação ---------- */
+function renderCanetaHoje(dk,dw){
+  var el=$('cnHoje');
+  if(!el)return;
+  var c=db.caneta;
+  if(!canetaOn()){el.hidden=true;el.innerHTML='';return;}
+  el.hidden=false;
+  var dia=dw===c.dia,feita=!!c.apl[dk],fut=dk>hojeK;
+  var h='<b>💉 Caneta: '+esc(MEDS[c.med].cur)+' '+esc(fmtK(c.dose))+' mg</b>';
+  if(dia){
+    h+='<span class="cnl">'+(feita?'Aplicação deste dia registrada ✓':(fut?'A aplicação é neste dia, às '+esc(c.h)+'.':'Hoje é dia da aplicação (lembrete às '+esc(c.h)+').'))+'</span>';
+  }else{
+    var pr=proxAplic(c,dk);
+    h+='<span class="cnl">Próxima aplicação: '+DIAS_NOME[c.dia].toLowerCase()+', '+fmtData(pr)+'.</span>';
+  }
+  h+='<span class="cnd">'+esc(dicaCaneta(c,dk))+'</span>';
+  if(dia&&!fut)h+='<button type="button" id="cnMarca">'+(feita?'Desmarcar aplicação':'Marcar aplicação como feita')+'</button>';
+  if(!c.aplic)h+='<button type="button" id="cnIrAj">Ajustar cardápio e metas para a caneta</button>';
+  el.innerHTML=h;
+  if($('cnMarca'))$('cnMarca').addEventListener('click',function(){
+    if(c.apl[dk])delete c.apl[dk];else c.apl[dk]=c.dose;
+    var ks=Object.keys(c.apl).sort();while(ks.length>60)delete c.apl[ks.shift()];
+    salvar();vib();render();
+  });
+  if($('cnIrAj'))$('cnIrAj').addEventListener('click',function(){
+    irAba('ajustes');
+    var d=$('cardCaneta');if(d){d.open=true;d.scrollIntoView({block:'start'});}
+  });
+}
+
+/* ---------- Ajustes: cadastro da caneta ---------- */
+function cnDoseOpts(c){
+  var M=MEDS[c.med],h='',achou=false;
+  if(M.doses)M.doses.forEach(function(d){
+    var s=d===c.dose;if(s)achou=true;
+    h+='<option value="'+d+'"'+(s?' selected':'')+'>'+fmtK(d)+' mg</option>';
+  });
+  h+='<option value="x"'+(achou?'':' selected')+'>Outra dose…</option>';
+  return {html:h,outra:!achou};
+}
+function renderCaneta(){
+  var c=db.caneta,on=canetaOn();
+  var cx=$('cnOn');
+  if(!cx)return;
+  cx.checked=on;
+  $('cnBox').hidden=!on;
+  if(!on)return;
+  $('cnMed').value=c.med;
+  var o=cnDoseOpts(c);
+  $('cnDose').innerHTML=o.html;
+  $('cnOutraL').hidden=!o.outra;
+  if(o.outra)$('cnOutra').value=fmtK(c.dose);
+  $('cnDia').value=String(c.dia);
+  $('cnHora').value=c.h;
+  $('cnIni').value=c.ini||'';
+  var ap=$('cnAp');ap.innerHTML='';
+  CN_APS.forEach(function(a){
+    var b=document.createElement('button');b.type='button';
+    b.setAttribute('aria-pressed',c.ap===a[0]?'true':'false');
+    b.innerHTML=esc(a[1])+'<small>'+a[2]+' de calorias</small>';
+    b.addEventListener('click',function(){c.ap=a[0];salvar();vib();renderCaneta();});
+    ap.appendChild(b);
+  });
+  var sug=apSug(c);
+  $('cnSug').textContent='Pela dose informada, o apetite costuma cair como em "'+CN_APS[sug-1][1].toLowerCase()+'". Escolha o que você sente de verdade: cada pessoa responde de um jeito.';
+  var al=canetaAlvo(c,(c.aplic&&c.base)?c.base:capBase());
+  var pc=Math.round((1-al.k/al.k0)*100);
+  var t='Calorias: '+fmtN(al.k0)+' → <b>'+fmtN(al.k)+' kcal</b>'+(pc>0?' (−'+pc+'%)':'')+'.';
+  t+=' Proteína mantida em <b>'+fmtN(al.p)+' g</b>.';
+  t+=' Porções menores e uma mini-refeição proteica (6 refeições pequenas por dia).';
+  t+=' Água: pelo menos '+fmtL(al.agua)+'.';
+  if(al.limitado)t+=' A redução foi limitada ao mínimo de segurança de '+fmtN(al.piso)+' kcal.';
+  $('cnPrev').innerHTML=t;
+  $('cnAplic').textContent=c.aplic?'Recalcular cardápio e metas':'Ajustar cardápio e metas';
+  $('cnDesf').hidden=!c.aplic;
+  var hs=$('cnHist');hs.innerHTML='';
+  c.hist.slice().reverse().forEach(function(x){
+    var li=document.createElement('li');
+    li.innerHTML='<span>'+fmtDataL(x.d)+'</span><b>'+esc(MEDS[x.med]?MEDS[x.med].cur:'Caneta')+' '+esc(fmtK(x.dose))+' mg</b>';
+    hs.appendChild(li);
+  });
+  $('cnHistBox').hidden=!c.hist.length;
+  var ult=Object.keys(c.apl).sort();
+  $('cnUlt').textContent=ult.length?'Última aplicação marcada: '+fmtDataL(ult[ult.length-1])+' ('+fmtK(c.apl[ult[ult.length-1]])+' mg).':'';
+}
+function cnMsg(t){$('cnMsg').textContent=t||'';}
+function cnDesfazer(est){
+  return function(){
+    db.rot=est.rot?JSON.parse(est.rot):null;db.kcalMeta=est.k;db.protMeta=est.p;db.meta=est.m;
+    db.caneta=est.c?JSON.parse(est.c):null;
+    salvar();render();renderCaneta();renderEdRot();
+  };
+}
+function ligarCaneta(){
+  if(!$('cnOn'))return;
+  $('cnDicas').innerHTML=CN_DICAS.map(function(t){return '<li><span>'+esc(t)+'</span></li>';}).join('');
+  $('cnMed').innerHTML=MED_ORD.map(function(m){return '<option value="'+m+'">'+esc(MEDS[m].n)+'</option>';}).join('');
+  $('cnDia').innerHTML=DIAS_ORD.map(function(d){return '<option value="'+d+'">'+DIAS_NOME[d]+'</option>';}).join('');
+  $('cnOn').addEventListener('change',function(){
+    if($('cnOn').checked){
+      if(!db.caneta)db.caneta=novaCaneta();else{db.caneta.on=true;pushHist(db.caneta);}
+      salvar();vib();renderCaneta();render();
+      cnMsg('Informe o medicamento e a dose e toque em "Ajustar cardápio e metas".');
+    }else if(db.caneta){
+      var est={rot:JSON.stringify(db.rot),k:db.kcalMeta,p:db.protMeta,m:db.meta,c:JSON.stringify(db.caneta)};
+      var tinha=db.caneta.aplic;
+      if(tinha)desfazCaneta();
+      db.caneta.on=false;
+      salvar();vib();renderCaneta();render();renderEdRot();
+      cnMsg('');
+      toast(tinha?'Caneta desativada. Cardápio e metas voltaram ao que eram antes do ajuste.':'Caneta desativada.',cnDesfazer(est));
+    }
+  });
+  $('cnMed').addEventListener('change',function(){
+    var c=db.caneta;if(!c)return;
+    c.med=$('cnMed').value;
+    c.dose=MEDS[c.med].doses?MEDS[c.med].doses[0]:1;
+    c.ap=apSug(c);pushHist(c);
+    salvar();renderCaneta();cnMsg(c.aplic?'Medicamento alterado. Toque em "Recalcular cardápio e metas".':'');
+  });
+  $('cnDose').addEventListener('change',function(){
+    var c=db.caneta;if(!c)return;
+    var v=$('cnDose').value;
+    if(v==='x'){$('cnOutraL').hidden=false;$('cnOutra').focus();return;}
+    c.dose=+v;c.ap=apSug(c);pushHist(c);
+    salvar();renderCaneta();cnMsg(c.aplic?'Dose alterada. Toque em "Recalcular cardápio e metas".':'');
+  });
+  $('cnOutra').addEventListener('change',function(){
+    var c=db.caneta;if(!c)return;
+    var v=num($('cnOutra').value);
+    if(v===null||v<=0||v>30){cnMsg('Informe uma dose entre 0,1 e 30 mg.');return;}
+    c.dose=Math.round(v*100)/100;c.ap=apSug(c);pushHist(c);
+    salvar();renderCaneta();cnMsg(c.aplic?'Dose alterada. Toque em "Recalcular cardápio e metas".':'');
+  });
+  $('cnDia').addEventListener('change',function(){var c=db.caneta;if(!c)return;c.dia=+$('cnDia').value;salvar();renderCaneta();render();});
+  $('cnHora').addEventListener('change',function(){var c=db.caneta;if(!c)return;c.h=pad($('cnHora').value)||c.h;salvar();renderCaneta();});
+  $('cnIni').addEventListener('change',function(){var c=db.caneta;if(!c)return;var v=$('cnIni').value;c.ini=/^\d{4}-\d{2}-\d{2}$/.test(v)?v:null;salvar();});
+  $('cnAplic').addEventListener('click',function(){
+    var c=db.caneta;if(!c||!c.on)return;
+    var est={rot:JSON.stringify(db.rot),k:db.kcalMeta,p:db.protMeta,m:db.meta,c:JSON.stringify(c)};
+    aplicaCaneta();
+    salvar();vib();renderCaneta();render();renderEdRot();
+    cnMsg('Pronto: metas e cardápio ajustados para o uso da caneta. Veja a aba Hoje.');
+    toast('Cardápio e metas ajustados para a caneta.',cnDesfazer(est));
+  });
+  $('cnDesf').addEventListener('click',function(){
+    var c=db.caneta;if(!c||!c.aplic)return;
+    var est={rot:JSON.stringify(db.rot),k:db.kcalMeta,p:db.protMeta,m:db.meta,c:JSON.stringify(c)};
+    desfazCaneta();
+    salvar();vib();renderCaneta();render();renderEdRot();
+    cnMsg('Ajustes desfeitos: cardápio e metas voltaram ao que eram.');
+    toast('Ajustes da caneta desfeitos.',cnDesfazer(est));
+  });
 }
 
 /* ---------- sincronização na nuvem (opcional, espaço privado do usuário) ---------- */
@@ -2908,7 +3630,7 @@ function syGuardar(){try{localStorage.setItem(SYK,JSON.stringify(sy));}catch(e){
 function hashS(str){var h=5381,i;for(i=0;i<str.length;i++)h=((h<<5)+h+str.charCodeAt(i))|0;return (h>>>0).toString(36)+':'+str.length;}
 
 var COLS=[['dias','d'],['peso','p'],['agua','a'],['tr','t'],['log','l'],['cardio','c'],['medidas','m'],['extras','e'],['trocas','x']];
-var CFGK=['meta','kcalMeta','protMeta','perfil','gerado','usaGerado','res','rot','metaPeso','compras','onb'];
+var CFGK=['meta','kcalMeta','protMeta','perfil','gerado','usaGerado','res','rot','metaPeso','compras','onb','sess','caneta'];
 function fatiaDia(dk){var o={};COLS.forEach(function(c){var v=db[c[0]][dk];if(v!==undefined&&v!==null)o[c[1]]=v;});return o;}
 function aplicaDia(dk,v){
   COLS.forEach(function(c){
@@ -3226,6 +3948,21 @@ function montaForms(){
   $('obBoxCorpo').innerHTML=formCorpoHtml('ob');
   $('obBoxObj').innerHTML=formObjHtml('ob',3);
   $('obBoxHoras').innerHTML=formHorasHtml('ob');
+  $('obBoxExtra').innerHTML=formExtraHtml();
+  $('obCan').addEventListener('change',obCanMuda);
+}
+function formExtraHtml(){
+  return '<label style="grid-column:1/-1">Treina de manhã em jejum?<select id="obJejum"><option value="">Não</option><option value="1">Sim, em jejum</option></select></label>'+
+    '<p class="nota" style="grid-column:1/-1;margin:-4px 0 0">Vale se o horário do treino for antes das 12h. Depois dá para marcar natação, ciclismo, corrida e dois treinos no dia na aba Treino.</p>'+
+    '<label style="grid-column:1/-1">Usa caneta emagrecedora?<select id="obCan"><option value="">Não</option>'+MED_ORD.map(function(m){return '<option value="'+m+'">'+esc(MEDS[m].n)+'</option>';}).join('')+'</select></label>'+
+    '<label style="grid-column:1/-1" id="obCanDoseL" hidden>Dose atual<select id="obCanDose"></select></label>';
+}
+function obCanMuda(){
+  var m=$('obCan').value,L=$('obCanDoseL');
+  L.hidden=!m;
+  if(!m)return;
+  var d=MEDS[m].doses||[1];
+  $('obCanDose').innerHTML=d.map(function(x){return '<option value="'+x+'">'+fmtK(x)+' mg</option>';}).join('');
 }
 var OB_TIT=['Você','Objetivo e rotina','Prévia do plano'];
 function obIr(n){
@@ -3236,7 +3973,7 @@ function obIr(n){
   var t=$('onbT');t.tabIndex=-1;try{t.focus({preventScroll:true});}catch(e){}
 }
 function limpaOnb(){
-  $('obNome').value='';$('obSexo').value='m';$('obIdade').value='';$('obAlt').value='';$('obPeso').value='';$('obObj').value='manter';$('obDias').value='3';
+  $('obNome').value='';$('obSexo').value='m';$('obIdade').value='';$('obAlt').value='';$('obPeso').value='';$('obObj').value='manter';$('obDias').value='3';$('obJejum').value='';$('obCan').value='';$('obCanDoseL').hidden=true;
   HCAMPOS.forEach(function(c){$('ob'+c[2]).value=HDEF[c[0]];});
   $('obErro1').textContent='';$('obErro2').textContent='';$('obSyncMsg').textContent='';
 }
@@ -3283,6 +4020,8 @@ function previaHtml(p,nome){
   rt.slice().sort(function(a,b){return minutos(a.h)-minutos(b.h);}).forEach(function(i){
     h+='<div class="ref"><b><span>'+esc(pad(i.h))+' · '+esc(i.t)+'</span><span>'+(i.k>0?fmtN(i.k)+' kcal':'')+'</span></b><small>'+esc(i.d)+'</small></div>';
   });
+  if($('obJejum').value==='1'&&minutos(p.h.treino)<720)h+='<p class="nota" style="margin-top:10px"><b>Treino em jejum:</b> o café da manhã fica para depois do treino.</p>';
+  if($('obCan').value)h+='<p class="nota" style="margin-top:6px"><b>Caneta:</b> ao criar, o app reduz as porções, divide a comida em 6 refeições pequenas e mantém a proteína.</p>';
   h+='<p class="nota" style="margin-top:10px">São estimativas gerais. Depois de criar, dá para ajustar horários, porções e metas em Ajustes e em Meu plano.</p>';
   return h;
 }
@@ -3292,6 +4031,18 @@ function concluirOnb(){
   p.nome=nome;
   db.perfil=p;db.res=calc(p);db.gerado=gerarTreino(p.dias,p.obj);db.usaGerado=true;db.onb=true;db.novo=false;
   aplicarPlano();
+  if($('obJejum').value==='1'&&minutos(p.h.treino)<720){
+    sessGarante();
+    Object.keys(db.sess.d).forEach(function(dw){var a=db.sess.d[dw];if(a[0]&&minutos(a[0].h)<720)a[0].j=true;});
+    aplicaSess();
+  }
+  if($('obCan').value){
+    db.caneta=novaCaneta();
+    db.caneta.med=$('obCan').value;
+    db.caneta.dose=+$('obCanDose').value||(MEDS[db.caneta.med].doses?MEDS[db.caneta.med].doses[0]:1);
+    db.caneta.ap=apSug(db.caneta);db.caneta.hist=[];pushHist(db.caneta);
+    aplicaCaneta();
+  }
   db.peso[hojeK]=Math.round(p.peso*10)/10;
   perfilAtual().nome=nome;salvarIdx();
   salvar();vib();
@@ -3485,7 +4236,7 @@ function ligarPerfis(){
 
 /* ---------- início ---------- */
 function virouDia(){var k=key(new Date());if(k!==hojeK){hojeK=k;agora=new Date();irParaDia(hojeK);render();}}
-montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarSync();ligarPerfis();ligarUx();fillPerfil();renderRes();irAba('hoje');
+montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarUx();fillPerfil();renderRes();irAba('hoje');
 if(temPin(perfilAtual()))abreLock();else if(db.novo)abreOnb();
 fotosCarregar(function(){if(ativa==='treino')renderTreino();});
 document.addEventListener('visibilitychange',function(){
