@@ -1,0 +1,62 @@
+name: Gerar APK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'android/**'
+      - '.github/workflows/apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Colocar o app dentro do projeto Android
+        run: |
+          mkdir -p android/app/src/main/assets
+          cp index.html android/app/src/main/assets/index.html
+
+      - name: Compilar
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          set -o pipefail
+          ./gradlew --no-daemon --console=plain assembleRelease -PverCode=${{ github.run_number }} 2>&1 | tee "$GITHUB_WORKSPACE/build.log"
+
+      - name: Mostrar o erro da compilação
+        if: failure()
+        run: |
+          python3 - <<'PY'
+          t = open('build.log', errors='replace').read()[-6000:]
+          t = t.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          print('::error title=Falha na compilacao::' + t)
+          PY
+
+      - name: Conferir a assinatura
+        run: |
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort | tail -1)
+          "$APKSIGNER" verify --print-certs android/app/build/outputs/apk/release/app-release.apk | head -5
+
+      - name: Publicar o APK para download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/release/app-release.apk Rotina.apk
+          gh release delete apk-latest --cleanup-tag --yes || true
+          gh release create apk-latest Rotina.apk \
+            --title "Rotina (Android)" \
+            --notes "APK mais recente do app Rotina & Protocolo (compilação ${{ github.run_number }}). Baixe o arquivo Rotina.apk e instale no celular." \
+            --target "$GITHUB_SHA"
