@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.application'
+}
+
+def codigo = (project.findProperty('verCode') ?: '1').toString().toInteger()
+
+android {
+    namespace 'app.rotina'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'app.rotina.protocolo'
+        minSdk 29
+        targetSdk 34
+        versionCode codigo
+        versionName "1.0.${codigo}"
+    }
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file('keystore/rotina.jks')
+            storePassword 'rotina-app'
+            keyAlias 'rotina'
+            keyPassword 'rotina-app'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}

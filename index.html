@@ -2495,9 +2495,20 @@ function renderEv(){
 function rpDias(){return parseInt($('rpDias').value,10)||30;}
 function renderRel(){$('rpPrev').textContent=textoRel(rpDias());}
 var MIMES={ics:'text/calendar',csv:'text/csv',pdf:'application/pdf',json:'application/json',txt:'text/plain',zip:'application/zip'};
+function paraBase64(data){
+  var by=typeof data==='string'?new TextEncoder().encode(data):(data instanceof ArrayBuffer?new Uint8Array(data):new Uint8Array(data.buffer,data.byteOffset,data.byteLength));
+  var bin='',i,CH=32768;
+  for(i=0;i<by.length;i+=CH)bin+=String.fromCharCode.apply(null,by.subarray(i,i+CH));
+  return btoa(bin);
+}
 function baixarLocal(nome,data,ok,fail){
   try{
     var ext=nome.slice(nome.lastIndexOf('.')+1).toLowerCase();
+    if(window.RotinaAndroid&&typeof window.RotinaAndroid.salvar==='function'){
+      var r=window.RotinaAndroid.salvar(nome,MIMES[ext]||'application/octet-stream',paraBase64(data));
+      if(r==='ok')ok();else fail('Não consegui salvar o arquivo'+(r?' ('+r+')':'')+'.');
+      return;
+    }
     var blob=new Blob([data],{type:(MIMES[ext]||'application/octet-stream')+(typeof data==='string'?';charset=utf-8':'')});
     var u=URL.createObjectURL(blob),a=document.createElement('a');
     a.href=u;a.download=nome;a.rel='noopener';a.style.display='none';
@@ -2823,7 +2834,7 @@ function baixarLembretes(){
   if(STANDALONE){
     msg.textContent='Preparando…';
     baixarLocal(base+'.ics',icsTexto(evs,o.ant),function(){
-      msg.textContent='Arquivo baixado ('+evs.length+' lembretes). Toque nele (em Downloads ou na notificação) e escolha Calendário ou Google Agenda.';
+      msg.textContent=window.RotinaAndroid?'Arquivo salvo em Downloads ('+evs.length+' lembretes). Se o Calendário não abrir sozinho, toque no arquivo em Downloads e escolha o Calendário.':'Arquivo baixado ('+evs.length+' lembretes). Toque nele (em Downloads ou na notificação) e escolha Calendário ou Google Agenda.';
     },function(t){msg.textContent=t;});
     return;
   }
@@ -2841,6 +2852,10 @@ function ligarInstalar(){
   $('cardSync').hidden=true;
   $('lbBaixar').textContent='Baixar lembretes (.ics)';
   $('lbComo').textContent='1. Toque no arquivo .ics baixado (em Downloads ou na notificação do download). 2. Escolha Calendário ou Google Agenda e confirme. 3. Para poder apagar tudo depois de uma vez, crie antes uma agenda só para isso (por exemplo "Rotina") e importe nela. 4. Se mudar horários no app, apague essa agenda e importe de novo.';
+  if(window.RotinaAndroid){
+    $('lbComo').textContent='1. O arquivo é salvo em Downloads e o Calendário abre para você confirmar a importação. 2. Para poder apagar tudo depois de uma vez, crie antes uma agenda só para isso (por exemplo "Rotina") e importe nela. 3. Se mudar horários no app, apague essa agenda e importe de novo.';
+    return;
+  }
   var jaApp=false;
   try{jaApp=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;}catch(e){}
   if(jaApp)return;
@@ -3479,7 +3494,7 @@ document.addEventListener('visibilitychange',function(){
 });
 if(sy.on&&!db.novo)setTimeout(function(){sincronizar(true);},1500);
 setInterval(function(){if(!document.hidden)syVolta();},180000);
-if(STANDALONE&&'serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){try{navigator.serviceWorker.register('sw.js').catch(function(){});}catch(e){}}
+if(STANDALONE&&!window.RotinaAndroid&&'serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){try{navigator.serviceWorker.register('sw.js').catch(function(){});}catch(e){}}
 })();
 </script>
 </body>
