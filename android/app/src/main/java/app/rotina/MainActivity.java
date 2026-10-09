@@ -370,6 +370,41 @@ public class MainActivity extends Activity {
             return Alarmes.salvarEAgendar(MainActivity.this, json);
         }
 
+        /** Respostas dadas nos botões do aviso (Bebi, Feito) desde a última vez, em JSON. Esvazia a fila. */
+        @JavascriptInterface
+        public String acoes() {
+            return Alarmes.consumirAcoes(MainActivity.this);
+        }
+
+        /** A página diz o que já foi feito hoje, para o app não avisar de novo. */
+        @JavascriptInterface
+        public String estadoDia(String json) {
+            return Alarmes.salvarDia(MainActivity.this, json);
+        }
+
+        /** Abre o menu de compartilhar do Android com um texto (lista de compras, por exemplo). */
+        @JavascriptInterface
+        public String compartilhar(final String titulo, final String texto) {
+            if (texto == null || texto.length() == 0) return "vazio";
+            final String t = texto.length() > 20000 ? texto.substring(0, 20000) : texto;
+            final String ti = titulo == null ? "" : (titulo.length() > 100 ? titulo.substring(0, 100) : titulo);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Intent it = new Intent(Intent.ACTION_SEND);
+                        it.setType("text/plain");
+                        it.putExtra(Intent.EXTRA_SUBJECT, ti);
+                        it.putExtra(Intent.EXTRA_TEXT, t);
+                        startActivity(Intent.createChooser(it, ti.length() > 0 ? ti : "Compartilhar"));
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "Não consegui abrir o compartilhamento.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+            return "ok";
+        }
+
         /** Desliga todos os alarmes do app. */
         @JavascriptInterface
         public String cancelar() {

@@ -10,7 +10,15 @@ Plano alimentar com caneta (Mounjaro, Ozempic, Wegovy e parecidas): na aba Dieta
 Registro diário da caneta: apetite, enjoo e energia com um toque, com sugestões (por exemplo, ajustar o nível de apetite do cardápio) e alerta de proteína atrasada no fim do dia. Sinais de enjoo forte ou energia baixa repetidos mandam procurar o médico.
 Perfil com foto: tirar foto ou escolher da galeria, recorte quadrado. A foto entra no arquivo de backup e volta ao importar.
 Backup: no app Android há backup automático semanal na pasta Downloads (perfis com PIN ficam de fora).
-Aparência: texto normal, grande ou muito grande, e o modo "só o essencial" (Hoje, Treino, Dieta e Ajustes), em Ajustes.
+Aparência: texto normal, grande ou muito grande, e o modo "só o essencial" (Hoje, Treino, Dieta e Ajustes), e tema claro, escuro ou automático, em Ajustes.
+Avisos com botões (Android): as notificações de água, refeição e treino têm botões "Marcar feito", "+250 ml" e "Adiar 15 min" que funcionam sem abrir o app; no dia livre ou de doença os avisos ficam em silêncio.
+Preferências alimentares: em Ajustes, marque sem lactose, sem glúten, vegetariano ou sem ovo e liste o que evita; o cardápio, as trocas, as sugestões e a lista de compras respeitam isso, com aviso nos itens que conflitam.
+"O que comer agora": na aba Hoje, quando falta proteína para a meta, o app sugere até 3 alimentos com a quantidade que fecha a conta, sem passar das calorias.
+Resumo da semana e sequência: em Progresso › Mês e, aos domingos, na aba Hoje (dias cumpridos, proteína, água, peso e treinos, com uma dica), mais a sequência de dias com 80% ou mais da rotina e o recorde, sem culpa.
+Treino: sugestão de volta leve depois de uma pausa e aviso de platô de carga, com ajuste da carga em um toque.
+Fotos de progresso: em Progresso › Corpo, fotos de frente, lado e costas ficam só no aparelho e podem ser comparadas (antes e depois) com o peso da época.
+Dia livre ou doente: pausa o dia sem quebrar a sequência nem entrar nas médias.
+Lista de compras: compartilhar pelo WhatsApp ou outro app (só os itens que faltam).
 Alarmes nativos (só no app Android): lembretes de refeições, treinos, água e da caneta tocam com a tela fechada e voltam sozinhos depois de reiniciar o celular. Ligue em Ajustes › Lembretes no celular. No Android 13 ou mais novo, o app pede permissão para mostrar avisos.
 Fontes (Barlow e Barlow Condensed) vão embutidas no arquivo, sem depender da internet; licença SIL OFL 1.1 em `licencas/`.
 

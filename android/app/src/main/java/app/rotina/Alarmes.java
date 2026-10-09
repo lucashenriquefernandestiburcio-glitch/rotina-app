@@ -8,12 +8,15 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.os.Bundle;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Alarmes nativos da Rotina Fitness.
@@ -76,6 +79,11 @@ final class Alarmes {
                 item.put("dias", dl);
                 item.put("t", corta(o.optString("t", "Rotina"), 80));
                 item.put("d", corta(o.optString("d", ""), 300));
+                String tipo = o.optString("k", "");
+                if (tipo.equals("agua") || tipo.equals("ref") || tipo.equals("cn")) item.put("k", tipo);
+                item.put("id", corta(o.optString("id", ""), 40));
+                int ml = o.optInt("ml", 0);
+                if (ml >= 50 && ml <= 1000) item.put("ml", ml);
                 limpa.put(item);
             }
             criarCanal(c);
@@ -191,9 +199,14 @@ final class Alarmes {
             if (i < 0 || i >= lista.length()) return;
             JSONObject e = lista.getJSONObject(i);
             long agora = System.currentTimeMillis();
-            if (quando <= 0 || agora - quando <= ATRASO_MAX_MS) {
+            if ((quando <= 0 || agora - quando <= ATRASO_MAX_MS) && !jaFeito(c, e)) {
+                Bundle ex = new Bundle();
+                ex.putString("tipo", e.optString("k", ""));
+                ex.putString("id", e.optString("id", ""));
+                ex.putInt("ml", e.optInt("ml", 250));
+                ex.putInt("idx", i);
                 notificar(c, 100 + i, e.optString("t", "Rotina"), e.optString("d", ""),
-                        p.getString("perfil", ""));
+                        p.getString("perfil", ""), ex);
             }
             agendarUm(c, i, e, Math.max(agora, quando) + 1000L);
         } catch (Exception ignorado) {
@@ -224,6 +237,15 @@ final class Alarmes {
 
     /** Mostra uma notificação agora. Devolve false se o aparelho não deixa o app avisar. */
     static boolean notificar(Context c, int id, String titulo, String texto, String perfil) {
+        return notificar(c, id, titulo, texto, perfil, null);
+    }
+
+    /**
+     * Notificação com botões. extras (opcional) leva: tipo ("agua", "ref" ou "cn"), id do item,
+     * ml (água) e idx. Com tipo válido ganha "Bebi X ml"/"Feito" e "Adiar 10 min".
+     */
+    static boolean notificar(Context c, int id, String titulo, String texto, String perfil,
+                             Bundle extras) {
         if (!notifOk(c)) return false;
         criarCanal(c);
         NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -244,7 +266,180 @@ final class Alarmes {
                 .setShowWhen(true)
                 .setWhen(System.currentTimeMillis());
         if (perfil != null && perfil.length() > 0) b.setSubText(perfil);
+
+        String tipo = extras == null ? "" : extras.getString("tipo", "");
+        if (tipo.equals("agua") || tipo.equals("ref") || tipo.equals("cn")) {
+            Bundle ex = new Bundle(extras);
+            ex.putInt("nid", id);
+            ex.putString("t", titulo);
+            ex.putString("d", texto);
+            ex.putString("perfil", perfil == null ? "" : perfil);
+            int ml = ex.getInt("ml", 250);
+            if (ml < 50 || ml > 1000) {
+                ml = 250;
+                ex.putInt("ml", ml);
+            }
+            String rotulo = tipo.equals("agua") ? "Bebi " + ml + " ml" : "Feito";
+            b.addAction(acao(c, icone, rotulo, AcaoReceiver.FEITO, ex, id * 4 + 1));
+            b.addAction(acao(c, icone, "Adiar 10 min", AcaoReceiver.ADIAR, ex, id * 4 + 2));
+        }
         nm.notify(id, b.build());
         return true;
+    }
+
+    private static Notification.Action acao(Context c, int icone, String rotulo, String acao,
+                                            Bundle ex, int codigo) {
+        Intent it = new Intent(c, AcaoReceiver.class).setAction(acao);
+        it.putExtras(ex);
+        PendingIntent pi = PendingIntent.getBroadcast(c, 200000 + codigo, it,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        return new Notification.Action.Builder(Icon.createWithResource(c, icone), rotulo, pi).build();
+    }
+
+    // ----- respostas dadas nos botões do aviso e estado do dia -----
+
+    static String chaveHoje() {
+        Calendar x = Calendar.getInstance();
+        return String.format(Locale.US, "%04d-%02d-%02d", x.get(Calendar.YEAR),
+                x.get(Calendar.MONTH) + 1, x.get(Calendar.DAY_OF_MONTH));
+    }
+
+    /** Guarda uma resposta ("Bebi", "Feito") até a página abrir e aplicar no registro do dia. */
+    static synchronized void registrarAcao(Context c, String tipo, String id, int ml) {
+        try {
+            SharedPreferences p = prefs(c);
+            JSONArray fila = new JSONArray(p.getString("fila", "[]"));
+            if (fila.length() >= 200) return;
+            JSONObject o = new JSONObject();
+            o.put("tipo", tipo == null ? "" : tipo);
+            o.put("id", id == null ? "" : id);
+            o.put("ml", ml);
+            o.put("dk", chaveHoje());
+            o.put("q", System.currentTimeMillis());
+            fila.put(o);
+            p.edit().putString("fila", fila.toString()).apply();
+        } catch (Exception ignorado) {
+            // sem fila, a resposta se perde, mas o app segue
+        }
+    }
+
+    /** Entrega (e esvazia) a fila de respostas, em JSON. */
+    static synchronized String consumirAcoes(Context c) {
+        SharedPreferences p = prefs(c);
+        String f = p.getString("fila", "[]");
+        if (!"[]".equals(f)) p.edit().putString("fila", "[]").apply();
+        return f;
+    }
+
+    /** A página informa o que já foi feito hoje: {"dk","ml","meta","feitos":[ids],"livres":[datas de pausa]}. */
+    static String salvarDia(Context c, String json) {
+        try {
+            JSONObject o = new JSONObject(json);
+            JSONObject limpo = new JSONObject();
+            limpo.put("dk", corta(o.optString("dk", ""), 10));
+            limpo.put("ml", Math.max(0, o.optLong("ml", 0)));
+            limpo.put("meta", Math.max(0, o.optLong("meta", 0)));
+            JSONArray fe = new JSONArray();
+            JSONArray origem = o.optJSONArray("feitos");
+            for (int k = 0; origem != null && k < origem.length() && k < 100; k++) {
+                fe.put(corta(origem.optString(k, ""), 40));
+            }
+            limpo.put("feitos", fe);
+            // dias de pausa (dia livre ou doente): sem avisos nesses dias
+            JSONArray lv = new JSONArray();
+            JSONArray lo = o.optJSONArray("livres");
+            for (int k = 0; lo != null && k < lo.length() && k < 62; k++) {
+                String d = corta(lo.optString(k, ""), 10);
+                if (d.length() == 10) lv.put(d);
+            }
+            limpo.put("livres", lv);
+            prefs(c).edit().putString("dia", limpo.toString()).apply();
+            return "ok";
+        } catch (Exception e) {
+            return "erro: " + e.getMessage();
+        }
+    }
+
+    /** Verdadeiro se o lembrete já não faz sentido: meta de água batida ou item já marcado hoje. */
+    static boolean jaFeito(Context c, JSONObject e) {
+        try {
+            SharedPreferences p = prefs(c);
+            return jaFeito(e, new JSONObject(p.getString("dia", "{}")),
+                    new JSONArray(p.getString("fila", "[]")), chaveHoje());
+        } catch (Exception ignorado) {
+            return false; // sem estado, avisa normalmente
+        }
+    }
+
+    /** Regra pura (testável): e = lembrete, dia = estado enviado pela página, fila = respostas dos botões. */
+    static boolean jaFeito(JSONObject e, JSONObject dia, JSONArray fila, String hoje) {
+        JSONArray livres = dia.optJSONArray("livres");
+        for (int j = 0; livres != null && j < livres.length(); j++) {
+            if (hoje.equals(livres.optString(j))) return true; // dia livre ou de doença: não avisa
+        }
+        String k = e.optString("k", "");
+        if (k.length() == 0) return false;
+        boolean mesmoDia = hoje.equals(dia.optString("dk", ""));
+        if (k.equals("agua")) {
+            long ml = mesmoDia ? dia.optLong("ml", 0) : 0;
+            long meta = dia.optLong("meta", 0);
+            for (int j = 0; j < fila.length(); j++) {
+                JSONObject a = fila.optJSONObject(j);
+                if (a != null && "agua".equals(a.optString("tipo")) && hoje.equals(a.optString("dk"))) {
+                    ml += a.optLong("ml", 0);
+                }
+            }
+            return meta > 0 && ml >= meta;
+        }
+        String id = e.optString("id", "");
+        if (id.length() == 0) return false;
+        JSONArray fe = dia.optJSONArray("feitos");
+        for (int j = 0; mesmoDia && fe != null && j < fe.length(); j++) {
+            if (id.equals(fe.optString(j))) return true;
+        }
+        for (int j = 0; j < fila.length(); j++) {
+            JSONObject a = fila.optJSONObject(j);
+            if (a != null && k.equals(a.optString("tipo")) && id.equals(a.optString("id"))
+                    && hoje.equals(a.optString("dk"))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** "Adiar 10 min": agenda o mesmo aviso de novo daqui a 10 minutos. */
+    static void adiar(Context c, Bundle ex) {
+        if (ex == null) return;
+        AlarmManager am = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
+        Intent it = new Intent(c, AcaoReceiver.class).setAction(AcaoReceiver.SONECA);
+        it.putExtras(ex);
+        int idx = ex.getInt("idx", 0);
+        PendingIntent pi = PendingIntent.getBroadcast(c, 300000 + idx, it,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        long quando = System.currentTimeMillis() + 10L * 60L * 1000L;
+        try {
+            if (podeExato(c)) {
+                am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, quando, pi);
+            } else {
+                am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, quando, pi);
+            }
+        } catch (SecurityException semPermissao) {
+            am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, quando, pi);
+        }
+    }
+
+    /** O aviso adiado chegou: mostra de novo, a menos que o item tenha sido feito nesse meio tempo. */
+    static void reavisar(Context c, Bundle ex) {
+        if (ex == null) return;
+        try {
+            JSONObject e = new JSONObject();
+            e.put("k", ex.getString("tipo", ""));
+            e.put("id", ex.getString("id", ""));
+            if (jaFeito(c, e)) return;
+            notificar(c, ex.getInt("nid", 100), ex.getString("t", "Rotina"), ex.getString("d", ""),
+                    ex.getString("perfil", ""), ex);
+        } catch (Exception ignorado) {
+            // nada a fazer
+        }
     }
 }
