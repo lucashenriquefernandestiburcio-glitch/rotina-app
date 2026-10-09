@@ -30,6 +30,7 @@
   --pool:#0e7c86; --pool-soft:#d8eef0; --on-pool:#fff; --done:#2f7d4f; --done-soft:#e0f0e5;
   --gold:#8a5a00; --gold-soft:#fbefd0; --amber:#d08a00; --danger:#b3342b;
   --c-lo:#f6d9d5; --c-mid:#fbefd0; --c-hi:#cfe8d7; --c-full:#2f7d4f; --on-full:#fff;
+  --pur:#6741d9; --pur-soft:#ece5ff; --pur-ink:#5f3dc4;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -37,6 +38,7 @@
     --pool:#3cc0cc; --pool-soft:#143a42; --on-pool:#06222a; --done:#5fcf8b; --done-soft:#173826;
     --gold:#f2c14e; --gold-soft:#3a2f12; --amber:#f2c14e; --danger:#ff7a6e;
     --c-lo:#4a2420; --c-mid:#3a2f12; --c-hi:#1d4a30; --c-full:#5fcf8b; --on-full:#06220f;
+    --pur:#7b57ea; --pur-soft:#2b2250; --pur-ink:#c9b6ff;
   }
 }
 :root[data-theme="dark"]{
@@ -44,6 +46,7 @@
   --pool:#3cc0cc; --pool-soft:#143a42; --on-pool:#06222a; --done:#5fcf8b; --done-soft:#173826;
   --gold:#f2c14e; --gold-soft:#3a2f12; --amber:#f2c14e; --danger:#ff7a6e;
   --c-lo:#4a2420; --c-mid:#3a2f12; --c-hi:#1d4a30; --c-full:#5fcf8b; --on-full:#06220f;
+    --pur:#7b57ea; --pur-soft:#2b2250; --pur-ink:#c9b6ff;
 }
 *,*::before,*::after{box-sizing:inherit}
 [hidden]{display:none!important}
@@ -771,6 +774,72 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{box-sizing:border-b
 .cnhoje .cnpula,.cnhoje .cnver{display:block;width:100%;margin:6px 0 0;min-height:44px;font:inherit;font-weight:600;font-size:calc(14px*var(--ft));border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
 html[data-tam=x] .cnlg{grid-template-columns:minmax(0,1fr)}
 html[data-tam=x] .cnst{grid-template-columns:minmax(0,1fr)}
+/* ---------- v19: caixas que abrem e fecham, topo da aba Hoje mais limpo ---------- */
+.hhd{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;margin:0 0 4px}
+.hhd h1{margin:2px 0}
+.hhd .pfn{margin:0;padding:3px 11px;border-radius:99px;background:var(--pool-soft);color:var(--pool);font-size:calc(13px*var(--ft))}
+.card.cal{padding:12px 14px;margin-bottom:10px}
+.cal .row{margin:0 0 3px}
+.cal .row b{font-size:calc(20px*var(--ft))}
+.cal .bar+.row{margin-top:8px}
+.calw{margin-top:8px}
+.calw button.calmais{flex:none;width:44px;padding:0;display:grid;place-items:center;position:relative}
+.calmais svg{width:20px;height:20px}
+.calmais.on{background:rgba(25,113,194,.14)}
+.calmais.al::after{content:'';position:absolute;top:5px;right:5px;width:10px;height:10px;border-radius:50%;background:var(--amber);border:2px solid var(--card)}
+.calx{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.calx .regra{margin:0 0 8px;font-size:calc(13.5px*var(--ft))}
+.calx .nota{margin:0}
+.bxs{display:flex;flex-direction:column;gap:8px;margin:0 0 12px}
+.bxw{min-width:0}
+.bx{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.bxc{display:flex;align-items:center}
+.bx .bxh{flex:1;min-width:0;display:flex;align-items:center;gap:10px;min-height:52px;margin:0;padding:8px 12px;font:inherit;text-align:left;background:transparent;border:0;border-radius:0;color:var(--ink);cursor:pointer}
+.bxi{flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--pool-soft);color:var(--pool)}
+.bxi svg{width:18px;height:18px}
+.bxt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.bx .bxt b{display:block;margin:0;font-size:calc(15.5px*var(--ft));line-height:1.25;font-weight:700}
+.bxt small{display:block;color:var(--mute);font-size:calc(13px*var(--ft));font-weight:500;line-height:1.3}
+.bxch{display:inline-block;margin-left:4px;vertical-align:1px;font-size:calc(12px*var(--ft));font-weight:700;line-height:1.4;padding:1px 9px;border-radius:99px;background:var(--pool-soft);color:var(--pool)}
+.bxv{flex:none;width:9px;height:9px;margin:0 5px 3px 2px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);transition:transform .15s}
+.bx.on>.bxc .bxv{transform:rotate(-135deg);margin:5px 5px 0 2px}
+.bxb{padding:0 12px 12px}
+.bxp{margin:0 0 8px;font-size:calc(14.5px*var(--ft))}
+.bxbt{display:flex;gap:8px;flex-wrap:wrap}
+.bxbt button{font:inherit;font-weight:600;min-height:44px;padding:0 14px;border-radius:10px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.bx .bxa{flex:none;margin:0 10px 0 0;min-height:44px;padding:0 14px;font:inherit;font-weight:700;font-size:calc(14px*var(--ft));border-radius:10px;border:0;background:var(--pur);color:#fff;cursor:pointer}
+.bx.warn{background:var(--gold-soft);border-color:transparent;color:var(--gold)}
+.bx.warn .bxh,.bx.warn .bxt small{color:var(--gold)}
+.bx.warn .bxi{background:rgba(138,90,0,.12);color:var(--gold)}
+.bx.cn{border-left:5px solid var(--pur)}
+.bx.cn .bxi{background:var(--pur-soft);color:var(--pur-ink)}
+.bx.cn .bxch{background:var(--pur-soft);color:var(--pur-ink)}
+.bx.cn.due{border-color:var(--pur)}
+.bx.due>.bxc{flex-wrap:wrap}
+.bx.due>.bxc .bxh{flex:1 1 100%}
+.bx.due>.bxc .bxa{flex:1 1 100%;margin:0 12px 12px}
+.bx.cn.due .bxch{background:var(--pur);color:#fff}
+.bxb .bx{background:var(--bg);border-radius:12px;margin:8px 0 0}
+.bxb .bx .bxh{min-height:48px;padding:6px 10px}
+.bxb .bx .bxt b{font-size:calc(14.5px*var(--ft))}
+.bx .cnreg{margin:0;padding:0;border:0;background:none}
+.bxw.cnhoje{border-left:0}
+.cnhoje .bxb>button{margin:8px 0 0;font:inherit;font-weight:600;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--pool);background:transparent;color:var(--pool);cursor:pointer}
+.cnlk{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.cnlk .cnver{margin:0}
+.bx.cd{border-radius:16px;border-top:3px solid var(--pool);box-shadow:0 1px 2px rgba(15,28,36,.05),0 10px 22px -14px rgba(15,28,36,.35);margin-bottom:12px}
+.bx.cd>.bxc .bxh{min-height:60px;padding:10px 14px}
+.bx.cd>.bxc .bxi{background:var(--pool-soft)}
+.bx.cd>.bxc .bxt b{font-size:calc(17px*var(--ft));color:var(--pool)}
+.bx.cd>.bxb{padding:0 16px 16px}
+.bx.cd.cncard>.bxc .bxi{background:var(--pur-soft);color:var(--pur-ink)}
+.bx.cd.cncard>.bxc .bxt b{color:var(--pur-ink)}
+.pausa:empty{display:none}
+@media (prefers-reduced-motion: reduce){.bxv{transition:none}}
+#pausaOp{margin:6px 0 0}
+#pausaOp .pausab{margin:0 0 8px}
+.btn.reset{border-color:var(--line);color:var(--mute);font-weight:600}
+html[data-simples] #oqAgora,html[data-simples] #rsHoje,html[data-simples] #calMais,html[data-simples] #calX{display:none!important}
 </style>
 <script>(function(){try{var u=JSON.parse(localStorage.getItem('rotina_ui_v1')||'{}'),h=document.documentElement;
 if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true)h.setAttribute('data-simples','');if(u.tema==='claro')h.setAttribute('data-theme','light');else if(u.tema==='escuro')h.setAttribute('data-theme','dark');}catch(e){}})();</script>
@@ -787,16 +856,10 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
 
   <!-- HOJE -->
   <section class="aba on" id="a-hoje">
-    <h1 class="h1l"><img class="lg" alt="" width="36" height="36" src="data:image/png;base64,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">Rotina Fitness</h1>
-    <p class="pfn" id="pfNomeHoje" hidden></p>
-    <p class="regra" id="regra"></p>
+    <div class="hhd"><h1 class="h1l"><img class="lg" alt="" width="36" height="36" src="data:image/png;base64,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">Rotina Fitness</h1>
+    <p class="pfn" id="pfNomeHoje" hidden></p></div>
     <p class="dtit" id="dtit"></p>
     <div class="pausa" id="pausaBox"></div>
-    <div class="tipcard" id="dicaHoje" hidden><b>Primeiros passos</b>Toque num item para marcar como feito. Use "Trocar alimento" para mudar a proteína ou o carboidrato, e adicione extras no fim da lista. O contador de calorias e proteína acompanha tudo.<br><button type="button" id="dicaHojeOk">Entendi</button></div>
-
-    <div class="tipcard cnhoje" id="cnHoje" hidden></div>
-
-    <div class="card rsh" id="rsHoje" hidden></div>
 
     <div class="card cal" id="cal">
       <div class="row"><span>Calorias</span><b id="calKt"></b></div>
@@ -805,16 +868,22 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
       <div class="bar pr"><i id="calPb"></i></div>
       <div class="row"><span>Água</span><b id="calWt"></b></div>
       <div class="bar wa"><i id="calWb"></i></div>
-      <div class="calw"><button type="button" data-ml="250">+ 250 ml</button><button type="button" data-ml="500">+ 500 ml</button></div>
-      <p class="nota" id="calNota" style="margin-top:10px"></p>
-      <button type="button" class="calaj" id="calAjusta" hidden></button>
+      <div class="calw"><button type="button" data-ml="250">+ 250 ml</button><button type="button" data-ml="500">+ 500 ml</button><button type="button" class="calmais" id="calMais" aria-expanded="false" aria-controls="calX" aria-label="Detalhes das metas"><i class="ii" data-i="info"></i></button></div>
+      <div class="calx" id="calX" hidden>
+        <p class="regra" id="regra"></p>
+        <p class="nota" id="calNota"></p>
+        <button type="button" class="calaj" id="calAjusta" hidden></button>
+      </div>
     </div>
 
-    <div class="card oq" id="oqAgora" hidden></div>
-
-    <div class="aviso" id="bkAviso" hidden><span id="bkAvisoT"></span><br><button type="button" id="bkAgora">Baixar backup agora</button> <button type="button" id="bkIr">Abrir backup</button></div>
-
-    <div class="aviso" id="pAviso" hidden></div>
+    <div class="bxs" id="bxHoje">
+      <div class="bxw cnhoje" id="cnHoje" hidden></div>
+      <div class="bxw" id="pAviso" hidden></div>
+      <div class="bxw" id="bkAviso" hidden><div class="bx warn" data-bx="bk" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-bk"><span class="bxi" aria-hidden="true"><i class="ii" data-i="alerta"></i></span><span class="bxt"><b>Faça um backup</b><small id="bkSub"></small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-bk" hidden><p class="bxp" id="bkAvisoT"></p><div class="bxbt"><button type="button" id="bkAgora">Baixar backup agora</button><button type="button" id="bkIr">Abrir backup</button></div></div></div></div>
+      <div class="bxw rsh" id="rsHoje" hidden></div>
+      <div class="bxw oq" id="oqAgora" hidden></div>
+      <div class="bxw" id="dicaHoje" hidden><div class="bx" data-bx="dh" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-dh"><span class="bxi" aria-hidden="true"><i class="ii" data-i="info"></i></span><span class="bxt"><b>Primeiros passos</b><small>Toque para ver como usar o app</small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-dh" hidden><p class="bxp">Toque num item para marcar como feito. Use "Trocar alimento" para mudar a proteína ou o carboidrato, e adicione extras no fim da lista. O contador de calorias e proteína acompanha tudo.</p><div class="bxbt"><button type="button" id="dicaHojeOk">Entendi</button></div></div></div></div>
+    </div>
 
     <ul id="lista"></ul>
     <p class="nota" id="sub" style="text-align:center"></p>
@@ -837,6 +906,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
       <ul id="exLista"></ul>
     </details>
 
+    <div class="pausa" id="pausaOp"></div>
     <button class="btn reset" id="reset" type="button">Reiniciar o Dia</button>
   </section>
 
@@ -1024,7 +1094,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
     <div class="dseg" data-cur="perfil"></div>
     <h1>Meu plano</h1>
     <p class="pfn" hidden></p>
-    <div class="card">
+    <div class="bx cd" id="mpDados" data-bx="mp-dados" data-def="1"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-mp-dados"><span class="bxi" aria-hidden="true"><i class="ii" data-i="usuario"></i></span><span class="bxt"><b>Seus dados e objetivo</b><small id="mpDadosSub"></small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-mp-dados" hidden>
       <p class="nota">Preencha seus dados e o app calcula calorias, macros, água, uma dieta e um treino. São estimativas gerais, que não substituem nutricionista ou médico.</p>
       <div class="form" id="fForm"></div>
       <details><summary>Horários da sua rotina</summary>
@@ -1034,9 +1104,9 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
       <p class="nota" id="fErro" style="color:var(--danger)"></p>
       <p class="nota" id="fAviso"></p>
       <button class="btn pri" id="fGerar" type="button">Gerar minha dieta e meu treino</button>
-    </div>
-    <div class="card cncard" id="cardCaneta">
-      <h2 class="h2i"><i class="ii" data-i="seringa"></i><span id="cnTit">Mounjaro e outras canetas</span></h2>
+    </div></div>
+    <div class="bx cd cncard" id="cardCaneta" data-bx="mp-cn" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-mp-cn"><span class="bxi" aria-hidden="true"><i class="ii" data-i="seringa"></i></span><span class="bxt"><b id="cnTit">Mounjaro e outras canetas</b><small id="cnSubT"></small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-mp-cn" hidden>
+
       <p class="nota">Usa Mounjaro, Ozempic, Wegovy, Saxenda ou parecida? Informe o medicamento e a dose: o app reduz as porções, divide a comida em 6 refeições pequenas, mantém a proteína, aumenta a água e lembra do dia da aplicação.</p>
       <label class="chk-l"><input type="checkbox" id="cnOn"> <span>Estou usando caneta emagrecedora</span></label>
       <div id="cnBox" hidden>
@@ -1057,17 +1127,17 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         <div class="chips cnap" id="cnAp"></div>
         <p class="nota" id="cnSug"></p>
         <div class="cnprev" id="cnPrev"></div>
-        <div class="cnplano" id="cnPlano"></div>
+        <div class="bx" data-bx="mp-plano" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-mp-plano"><span class="bxt"><b>Ver o cardápio ajustado</b><small id="cnPlanoSub"></small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-mp-plano" hidden><div class="cnplano" id="cnPlano"></div></div></div>
         <div class="lin"><button type="button" id="cnAplic" class="selb">Ajustar cardápio e metas</button><button type="button" id="cnDesf" hidden>Desfazer ajustes</button></div>
         <p class="nota" id="cnMsg" role="status" style="margin-top:8px"></p>
         <p class="nota" id="cnUlt"></p>
         <button type="button" id="cnVerAj" class="btn sec">Ver gráficos e histórico da caneta</button>
-        <div id="cnRegBox" hidden><h3>Como você tem se sentido</h3><ul id="cnRegL" class="lista-n"></ul></div>
-        <div id="cnHistBox" hidden><h3>Histórico de doses</h3><ul id="cnHist" class="lista-n"></ul></div>
+        <div id="cnRegBox" hidden><div class="bx" data-bx="mp-reg" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-mp-reg"><span class="bxt"><b>Como você tem se sentido</b></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-mp-reg" hidden><ul id="cnRegL" class="lista-n"></ul></div></div></div>
+        <div id="cnHistBox" hidden><div class="bx" data-bx="mp-hist" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-mp-hist"><span class="bxt"><b>Histórico de doses</b></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-mp-hist" hidden><ul id="cnHist" class="lista-n"></ul></div></div></div>
         <details class="cndet"><summary>Dicas para quem usa caneta</summary><ul id="cnDicas" class="lista-n"></ul></details>
         <p class="nota cnaviso">Informação geral, que não substitui orientação médica ou de nutricionista. Não mude a dose por conta própria. Fale com o seu médico se tiver enjoo forte, vômitos que não passam, dor forte na barriga ou sinais de desidratação.</p>
       </div>
-    </div>
+    </div></div>
     <div id="res"></div>
   </section>
 
@@ -2096,6 +2166,7 @@ function irAba(id){
   document.querySelectorAll('nav button').forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-aba')===g?'true':'false');});
   if(id==='ajustes')renderAjustes();
   render();
+  bxAplica();
   encReset();
   window.scrollTo(0,0);
 }
@@ -2245,6 +2316,8 @@ function renderHoje(){
   var ca=$('calAjusta');
   if(pk>0&&(pk<kM*0.9||pk>kM*1.1)){ca.hidden=false;ca.textContent=(pk<kM?'Ajustar porções para chegar em ':'Reduzir porções para chegar em ')+fmtN(kM)+' kcal';}
   else ca.hidden=true;
+  var cmb=$('calMais');
+  if(cmb){cmb.classList.toggle('al',!ca.hidden);cmb.setAttribute('aria-label',ca.hidden?'Detalhes das metas':'Detalhes das metas: o plano está fora da meta');}
   $('dicaHoje').hidden=!(isHoje&&!db.dicas.hoje&&Object.keys(db.dias).length<3);
   renderPausa(dk,isHoje);
   renderOQ(dk,dw,isHoje,minAgora);
@@ -2265,15 +2338,22 @@ function renderHoje(){
 
   // ritmo do peso
   var an=analisePeso(),pav=$('pAviso');
-  if(isHoje&&an&&an.alerta){pav.hidden=false;pav.textContent='Seu peso está caindo cerca de '+Math.abs(an.sem).toFixed(1).replace('.',',')+' kg por semana ('+Math.abs(an.pct).toFixed(1).replace('.',',')+'% do peso), acima de 1%. Perder rápido demais tende a custar músculo e é difícil de manter. Veja detalhes em Progresso.';}
-  else pav.hidden=true;
+  if(isHoje&&an&&an.alerta){
+    var qs=Math.abs(an.sem).toFixed(1).replace('.',',');
+    pav.hidden=false;
+    pav.innerHTML=bxHtml('pa','alerta','Perda de peso rápida','cerca de '+qs+' kg por semana','<p class="bxp">Seu peso está caindo cerca de '+qs+' kg por semana ('+Math.abs(an.pct).toFixed(1).replace('.',',')+'% do peso), acima de 1%. Perder rápido demais tende a custar músculo e é difícil de manter. Veja detalhes em Progresso.</p>',{tom:'warn'});
+  }else{pav.hidden=true;pav.innerHTML='';}
 
   // lembrete de backup
   var comDados=Object.keys(db.dias).length>=3,dias=null;
   if(db.ultBackup)dias=Math.round((dateDe(hojeK)-dateDe(db.ultBackup))/864e5);
   var precisa=comDados&&(dias===null||dias>=7)&&!bkAutoAtivo();
   $('bkAviso').hidden=!precisa;
-  if(precisa)$('bkAvisoT').textContent=dias===null?'Seus registros ficam só neste aparelho e você ainda não fez backup.':'Seu último backup foi há '+dias+' dias. Seus registros só existem neste aparelho.';
+  if(precisa){
+    $('bkAvisoT').textContent=dias===null?'Seus registros ficam só neste aparelho e você ainda não fez backup.':'Seu último backup foi há '+dias+' dias. Seus registros só existem neste aparelho.';
+    $('bkSub').textContent=dias===null?'Você ainda não fez nenhum':'O último foi há '+dias+' dias';
+  }
+  bxAplica($('a-hoje'));
 }
 
 /* ---------- TREINO ---------- */
@@ -2822,19 +2902,20 @@ function aplicarPlano(forca){
 }
 function renderRes(){
   var el=$('res');
+  mpSubs();
   if(!db.res||!db.perfil||!db.gerado){el.innerHTML='';return;}
-  var r=db.res,p=db.perfil,h='';
+  var r=db.res,p=db.perfil,h='',cor='';
   var cn=canetaOn(),c=db.caneta,al=null,te=null,f=1;
   if(cn){al=canetaAlvo(c,{k:r.k,p:r.prot,meta:r.agua,rot:null});te=escalaCaneta(r.k,r.prot,al);f=te.f;}
   var KC=cn?al.k:r.k,AG=cn?al.agua:r.agua,CB=Math.round(r.carb*f),GD=Math.round(r.gord*f);
   var ob={emagrecer:'perder gordura',manter:'manter o peso',ganhar:'ganhar massa'}[p.obj]||'';
-  h+='<div class="card"><h2>Suas metas (objetivo: '+ob+')</h2>';
   if(cn)h+='<p class="cnflag">'+ico('seringa')+'<span>Metas ajustadas para o <b>'+esc(MEDS[c.med].cur)+' '+esc(fmtK(c.dose))+' mg</b>: menos calorias, proteína mantida e mais água.</span></p>';
   h+='<div class="kpis"><div><b>'+fmtN(KC)+' kcal</b><small>por dia'+(cn?' (com a caneta)':'')+'</small></div><div><b>'+fmtL(AG)+'</b><small>de água por dia</small></div><div><b>'+r.prot+' g</b><small>proteína</small></div><div><b>'+CB+' g · '+GD+' g</b><small>carboidrato · gordura</small></div></div>';
   h+='<p class="nota">Gasto basal estimado: '+fmtN(r.bmr)+' kcal. Gasto total com seus treinos: cerca de '+fmtN(r.tdee)+' kcal. Cálculo de Mifflin-St Jeor.'+(cn?' Sem a caneta, a meta seria de '+fmtN(r.k)+' kcal por dia.':'')+(cn&&al.limitado?' A redução foi limitada ao mínimo de segurança de '+fmtN(al.piso)+' kcal.':'')+'</p>';
   h+='<button class="btn sec" id="bAgua" type="button">Usar '+fmtL(AG)+' como meta de água</button>';
-  h+='<button class="btn sec" id="bKcal" type="button">Usar '+fmtN(KC)+' kcal como meta de calorias</button></div>';
-  h+='<div class="card"><h2>Dieta sugerida'+(cn?' com o '+esc(MEDS[c.med].cur):'')+'</h2><p class="nota">'+(cn?'Porções menores em 6 refeições pequenas, com uma mini-refeição proteica para manter a proteína mesmo com pouco apetite. ':'')+(db.onb?'Refeições montadas para o seu objetivo, com 1 única fonte de proteína por refeição.':'Mesma estrutura de refeições da sua rotina, com 1 única fonte de proteína por refeição. Sua rotina da aba Hoje só muda se você tocar no botão no fim desta dieta.')+' As quantidades são um ponto de partida: ajuste para chegar nos totais do dia.</p>';
+  h+='<button class="btn sec" id="bKcal" type="button">Usar '+fmtN(KC)+' kcal como meta de calorias</button>';
+  cor+=bxHtml('mp-metas','alvo','Suas metas',fmtN(KC)+' kcal · '+r.prot+' g de proteína · '+fmtL(AG)+' de água',h,{tom:'cd',aberto:true});
+  h='<p class="nota">'+(cn?'Porções menores em 6 refeições pequenas, com uma mini-refeição proteica para manter a proteína mesmo com pouco apetite. ':'')+(db.onb?'Refeições montadas para o seu objetivo, com 1 única fonte de proteína por refeição.':'Mesma estrutura de refeições da sua rotina, com 1 única fonte de proteína por refeição. Sua rotina da aba Hoje só muda se você tocar no botão no fim desta dieta.')+' As quantidades são um ponto de partida: ajuste para chegar nos totais do dia.</p>';
   REF.forEach(function(m,i){
     var P=Math.round(r.prot*m[1]*f),C=Math.round(r.carb*m[1]*f),G=Math.round(r.gord*m[1]*f),K=r10(r.k*m[1]*f);
     h+='<div class="ref m-ref'+i+'"><b><span>'+ico(['cafe','almoco','lanche','jantar','ceia'][i])+m[0]+'</span><span>'+K+' kcal</span></b><small>P '+P+' g · C '+C+' g · G '+G+' g</small><small style="color:var(--ink)">'+sugestao(i,P,C)+'</small></div>';
@@ -2842,14 +2923,17 @@ function renderRes(){
   });
   if(db.onb)h+='<p class="nota" style="margin-top:8px">Estas refeições e horários já estão na aba Hoje.</p>';
   else h+='<button class="btn sec" id="bRot" type="button" style="margin-top:10px">'+(cn?'Usar esta dieta (ajustada para a caneta) como minha rotina':'Usar esta dieta como minha rotina')+'</button>';
-  h+='</div><div class="card"><h2>Treino sugerido ('+p.dias+' dias)</h2>';
+  cor+=bxHtml('mp-dieta','prato','Dieta sugerida'+(cn?' com o '+MEDS[c.med].cur:''),REF.length+' refeições'+(cn?' pequenas + mini-refeição':'')+' · '+fmtN(KC)+' kcal',h,{tom:'cd'});
+  h='';
   var pl=db.gerado;
   Object.keys(pl).sort().forEach(function(k){h+='<div class="ref"><b><span>'+NOMES[k]+' · '+esc(pl[k].n)+'</span></b><small>'+pl[k].ex.map(function(e){return esc(e[0])+' '+esc(e[1]);}).join(', ')+'</small></div>';});
   if(p.obj==='emagrecer')h+='<p class="nota" style="margin-top:8px">Para perder gordura, some 20 a 30 min de cardio leve depois do treino, 2 a 3 vezes na semana.</p>';
   if(!db.onb)h+='<button class="btn pri" id="bTreino" type="button" style="margin-top:10px">Usar este treino na aba Treino</button>';
   else h+='<p class="nota" style="margin-top:8px">Este treino já está na aba Treino.</p>';
-  h+='</div>';
+  cor+=bxHtml('mp-treino','musc','Treino sugerido',p.dias+' dias por semana',h,{tom:'cd'});
+  h=cor;
   el.innerHTML=h;
+  bxAplica(el);
   $('bAgua').addEventListener('click',function(){db.meta=AG;if(c&&c.aplic&&c.base)c.base.meta=r.agua;salvar();vib();$('bAgua').textContent='Meta de água atualizada ✓';});
   $('bKcal').addEventListener('click',function(){db.kcalMeta=KC;if(c&&c.aplic&&c.base)c.base.k=r.k;salvar();vib();$('bKcal').textContent='Meta de calorias atualizada ✓';});
   if($('bTreino'))$('bTreino').addEventListener('click',function(){db.usaGerado=true;salvar();vib();$('bTreino').textContent='Treino aplicado ✓';});
@@ -4077,6 +4161,7 @@ function cnAjustaAp(v){
   salvar();vib();render();renderCaneta();
   toast(c.aplic?'Cardápio e metas recalculados para "'+CN_APS[v-1][1].toLowerCase()+'".':'Nível de apetite atualizado.',cnDesfazer(est));
 }
+var cnAbriu=false;
 function renderCanetaHoje(dk,dw){
   var el=$('cnHoje');
   if(!el)return;
@@ -4084,16 +4169,13 @@ function renderCanetaHoje(dk,dw){
   if(!canetaOn()){el.hidden=true;el.innerHTML='';return;}
   el.hidden=false;
   var dia=dw===c.dia,feita=!!c.apl[dk],fut=dk>hojeK,isHoje=dk===hojeK,px=cnProx(c);
-  var h='<b>'+ico('seringa')+esc(MEDS[c.med].cur)+' '+esc(fmtK(c.dose))+' mg</b>';
-  if(dia){
-    h+='<span class="cnl">'+(feita?'Aplicação deste dia registrada ✓':(fut?'A aplicação é neste dia, às '+esc(c.h)+'.':'Hoje é dia da aplicação (lembrete às '+esc(c.h)+').'))+'</span>';
-  }else{
-    var pr=proxAplic(c,dk);
-    h+='<span class="cnl">Próxima aplicação: '+DIAS_NOME[c.dia].toLowerCase()+', '+fmtData(pr)+'.</span>';
-  }
-  h+='<span class="cnd">'+esc(dicaCaneta(c,dk))+'</span>';
+  var elig=(dia&&!fut)||(isHoje&&px.st==='atraso'&&!feita),precisa=elig&&!feita;
+  var sub;
+  if(dia)sub=feita?'Aplicação deste dia registrada ✓':(fut?'A aplicação é neste dia, às '+c.h+'.':'Hoje é dia da aplicação (lembrete às '+c.h+').');
+  else sub='Próxima aplicação: '+DIAS_NOME[c.dia].toLowerCase()+', '+fmtData(proxAplic(c,dk))+'.';
+  var gz=null,et=null,h='<span class="cnd">'+esc(dicaCaneta(c,dk))+'</span>';
   if(isHoje){
-    var gz=cnGuia(c,px),et=cnEstoqueTxt(c);
+    gz=cnGuia(c,px);et=cnEstoqueTxt(c);
     if(gz)h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>'+esc(gz)+'</span></p>';
     if(et)h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>'+esc(et)+'</span></p>';
   }
@@ -4105,24 +4187,29 @@ function renderCanetaHoje(dk,dw){
     h+='</div><button type="button" id="cnLocPula" class="cnpula">Não informar</button></div>';
   }
   if(!fut){
-    var rg=(c.reg&&c.reg[dk])||{};
-    h+='<div class="cnreg" role="group" aria-label="Como você está '+(isHoje?'hoje':'neste dia')+'"><span class="cnrt">Como você está '+(isHoje?'hoje':'neste dia')+'?</span>';
+    var rg=(c.reg&&c.reg[dk])||{},rs=[],rb='<div class="cnreg" role="group" aria-label="Como você está '+(isHoje?'hoje':'neste dia')+'">';
     CN_REG.forEach(function(g){
-      h+='<div class="rr"><span class="rl">'+g.t+'</span><div class="rc">';
-      g.o.forEach(function(o){h+='<button type="button" data-g="'+g.k+'" data-v="'+o[0]+'" aria-pressed="'+(rg[g.k]===o[0]?'true':'false')+'">'+o[1]+'</button>';});
-      h+='</div></div>';
+      if(rg[g.k]!==undefined)rs.push(g.t+': '+cnRotulo(g.k,rg[g.k]).toLowerCase());
+      rb+='<div class="rr"><span class="rl">'+g.t+'</span><div class="rc">';
+      g.o.forEach(function(o){rb+='<button type="button" data-g="'+g.k+'" data-v="'+o[0]+'" aria-pressed="'+(rg[g.k]===o[0]?'true':'false')+'">'+o[1]+'</button>';});
+      rb+='</div></div>';
     });
-    h+='</div>';
+    rb+='</div>';
+    h+=bxHtml('cnreg',null,'Como você está '+(isHoje?'hoje':'neste dia')+'?',rs.length?rs.join(' · '):'Toque para registrar apetite, enjoo e energia',rb,{});
   }
   var ins=cnInsights(c,dk,dw,isHoje);
   ins.forEach(function(x,ix){
     h+='<p class="cnins '+x.n+'" role="status">'+(x.n==='al'?ico('alerta'):ico('info'))+'<span>'+esc(x.t)+'</span></p>';
     if(x.ac)h+='<button type="button" class="cnact" data-i="'+ix+'">'+esc(x.al)+'</button>';
   });
-  if((dia&&!fut)||(isHoje&&px.st==='atraso'&&!feita))h+='<button type="button" id="cnMarca">'+(feita?'Desmarcar aplicação':'Marcar aplicação como feita')+'</button>';
-  h+='<button type="button" id="cnVer" class="cnver">Ver gráficos e histórico da caneta</button>';
-  if(!c.aplic)h+='<button type="button" id="cnIrAj">Ajustar o plano alimentar para o '+esc(MEDS[c.med].cur)+'</button>';
-  el.innerHTML=h;
+  if(elig&&feita)h+='<button type="button" id="cnMarca">Desmarcar aplicação</button>';
+  h+='<div class="cnlk"><button type="button" id="cnVer" class="cnver">Gráficos e histórico</button>';
+  if(!c.aplic)h+='<button type="button" id="cnIrAj" class="cnver">Ajustar o plano alimentar para o '+esc(MEDS[c.med].cur)+'</button>';
+  h+='</div>';
+  var alerta=!!(gz||et||ins.filter(function(x){return x.n==='al';}).length);
+  var chip=precisa?(px.st==='atraso'?'Atrasada':''):(pedeLoc?'Local?':(alerta?'Atenção':''));
+  var acao=precisa?'<button type="button" id="cnMarca" class="bxa" aria-label="Marcar aplicação como feita">Marcar feita</button>':'';
+  el.innerHTML=bxHtml('cn','seringa',MEDS[c.med].cur+' '+fmtK(c.dose)+' mg',sub,h,{tom:'cn'+(precisa?' due':''),chip:chip,acao:acao});
   el.querySelectorAll('.cnreg button').forEach(function(b){
     b.addEventListener('click',function(){
       var g=b.getAttribute('data-g'),v=+b.getAttribute('data-v');
@@ -4138,18 +4225,29 @@ function renderCanetaHoje(dk,dw){
     b.addEventListener('click',function(){cnAjustaAp(ins[+b.getAttribute('data-i')].ac);});
   });
   if($('cnMarca'))$('cnMarca').addEventListener('click',function(){
-    if(c.apl[dk])cnRemove(dk);else cnRegistra(dk,c.dose,undefined);
+    if(c.apl[dk])cnRemove(dk);
+    else{
+      cnRegistra(dk,c.dose,undefined);
+      /* abre a caixa para a pessoa informar onde aplicou */
+      cnAbriu=bxEstado('cn')!==1;bxSet('cn',1);
+    }
     salvar();vib();render();renderCaneta();
   });
   el.querySelectorAll('.cnlg button').forEach(function(b){
     b.addEventListener('click',function(){
       cnRegistra(dk,c.apl[dk],b.getAttribute('data-lc'));
+      if(cnAbriu){cnAbriu=false;bxSet('cn',null);}
       salvar();vib();render();renderCaneta();
     });
   });
-  if($('cnLocPula'))$('cnLocPula').addEventListener('click',function(){cnPula=dk;render();});
+  if($('cnLocPula'))$('cnLocPula').addEventListener('click',function(){
+    cnPula=dk;
+    if(cnAbriu){cnAbriu=false;bxSet('cn',null);}
+    render();
+  });
   if($('cnVer'))$('cnVer').addEventListener('click',function(){progSec='caneta';irAba('prog');});
   if($('cnIrAj'))$('cnIrAj').addEventListener('click',function(){
+    bxSet('mp-cn',1);
     irAba('perfil');
     var d=$('cardCaneta');if(d)d.scrollIntoView({block:'start'});
   });
@@ -4199,6 +4297,8 @@ function renderCanetaCard(){
   cx.checked=on;
   $('cnBox').hidden=!on;
   var tt=$('cnTit');if(tt)tt.textContent=on?'Plano alimentar com o '+MEDS[c.med].cur:'Mounjaro e outras canetas';
+  var stt=$('cnSubT');if(stt)stt.textContent=on?MEDS[c.med].cur+' '+fmtK(c.dose)+' mg · aplicação '+(c.dia===0||c.dia===6?'no ':'na ')+DIAS_NOME[c.dia].toLowerCase()+(c.aplic?' · cardápio ajustado':''):'Usa caneta emagrecedora? Toque para configurar';
+  mpSubs();
   if(!on)return;
   $('cnMed').value=c.med;
   var M=MEDS[c.med];
@@ -4247,6 +4347,7 @@ function renderCanetaCard(){
   if(al.limitado)t+=' A redução foi limitada ao mínimo de segurança de '+fmtN(al.piso)+' kcal.';
   $('cnPrev').innerHTML=t;
   $('cnPlano').innerHTML=cnPlanoHtml(c);
+  var cps=$('cnPlanoSub');if(cps)cps.textContent=c.aplic?'Está valendo na aba Hoje':'Prévia: só vale depois de ajustar';
   $('cnAplic').textContent=c.aplic?'Recalcular cardápio e metas':'Ajustar cardápio e metas';
   $('cnDesf').hidden=!c.aplic;
   var hs=$('cnHist');hs.innerHTML='';
@@ -5102,12 +5203,16 @@ function ligarFoto(){
 /* ---------- v16: aparência (texto maior, só o essencial) ---------- */
 var UI_KEY='rotina_ui_v1';
 function uiLer(){
-  var u={tam:'m',simples:false,tema:'auto'};
+  var u={tam:'m',simples:false,tema:'auto',cx:{}};
   try{
     var r=JSON.parse(localStorage.getItem(UI_KEY)||'{}');
     if(r&&(r.tam==='g'||r.tam==='x'))u.tam=r.tam;
     if(r&&r.simples===true)u.simples=true;
     if(r&&(r.tema==='claro'||r.tema==='escuro'))u.tema=r.tema;
+    if(r&&r.cx&&typeof r.cx==='object'&&!Array.isArray(r.cx)){
+      var ck=Object.keys(r.cx).filter(function(k){return /^[a-z0-9-]{1,24}$/.test(k)&&(r.cx[k]===0||r.cx[k]===1);}).slice(0,60);
+      ck.forEach(function(k){u.cx[k]=r.cx[k];});
+    }
   }catch(e){}
   return u;
 }
@@ -5565,12 +5670,11 @@ function renderOQ(dk,dw,isHoje,minAgora){
   if(!box)return;
   var s=(isHoje&&!pausado(dk))?sugAgora(dk,dw,minAgora):null;
   if(!s){box.hidden=true;box.innerHTML='';return;}
-  var h='<h2>'+ico('prato')+'O que comer agora</h2>';
-  h+='<p class="nota">Pelo que já foi feito e pelo que ainda está no cardápio, faltam cerca de <b>'+fmtN(s.falta)+' g de proteína</b> para a meta de hoje'+(s.leve?'. Sobram poucas calorias ('+fmtN(Math.max(0,s.sobra))+' kcal): as opções abaixo são as mais enxutas':' e sobram cerca de '+fmtN(s.sobra)+' kcal')+'.</p>';
+  var h='<p class="nota">Pelo que já foi feito e pelo que ainda está no cardápio, faltam cerca de <b>'+fmtN(s.falta)+' g de proteína</b> para a meta de hoje'+(s.leve?'. Sobram poucas calorias ('+fmtN(Math.max(0,s.sobra))+' kcal): as opções abaixo são as mais enxutas':' e sobram cerca de '+fmtN(s.sobra)+' kcal')+'.</p>';
   h+='<ul class="lista-n"></ul>';
   if(s.prox)h+='<p class="nota">Próximo no cardápio: '+esc(tit(s.prox,dw))+' às '+esc(hh(s.prox,dw))+'.</p>';
   h+='<p class="nota">Toque numa opção para registrar como extra.</p>';
-  box.innerHTML=h;box.hidden=false;
+  box.innerHTML=bxHtml('oq','prato','O que comer agora','faltam cerca de '+fmtN(s.falta)+' g de proteína',h,{});box.hidden=false;
   var ul=box.querySelector('ul');
   s.itens.forEach(function(c){
     var li=document.createElement('li');li.className='fdi';
@@ -5734,11 +5838,11 @@ function renderRsHoje(isHoje,dw){
   if(!box)return;
   var ini=somaDias(hojeK,-7),R=resumoSemana(ini),P=resumoSemana(somaDias(ini,-7));
   if(!(isHoje&&dw===0&&db.dicas.rs!==hojeK&&(R.reg>0||R.pau>0))){box.hidden=true;box.innerHTML='';return;}
-  var h='<h2>'+ico('prog')+'Como foi a semana passada</h2>'+rsHtml(R,P);
+  var h=rsHtml(R,P);
   var dc=dicaSemana(R,P);
   if(dc)h+='<p class="rsd">'+esc(dc)+'</p>';
   h+='<div class="lin"><button type="button" class="btn sec" id="rsMais">Ver detalhes</button><button type="button" class="btn sec" id="rsOk">Entendi</button></div>';
-  box.innerHTML=h;box.hidden=false;
+  box.innerHTML=bxHtml('rs','prog','Como foi a semana passada',R.n?R.ok+' de '+R.n+' dias cumpridos':'Resumo da semana',h,{});box.hidden=false;
   $('rsOk').addEventListener('click',function(){db.dicas.rs=hojeK;salvar();vib();render();});
   $('rsMais').addEventListener('click',function(){
     db.dicas.rs=hojeK;salvar();
@@ -5957,17 +6061,18 @@ function pzDefine(dk,t){
   return antes;
 }
 function renderPausa(dk,isHoje){
-  var box=$('pausaBox');
+  var box=$('pausaBox'),op=$('pausaOp');
   if(!box)return;
-  var t=pausado(dk)?db.livre[dk]:null,h='';
+  var t=pausado(dk)?db.livre[dk]:null,h='',o='';
   if(t){
     var x=pzTxt(t);
     h='<div class="aviso pz"><b>'+esc(x[0])+'</b><br>'+esc(x[1])+'<br><button type="button" id="pzVolta">Voltar à rotina deste dia</button></div>';
   }else{
-    h='<button type="button" class="pausab" id="pzAbre" aria-expanded="'+(pzAb?'true':'false')+'">Dia livre ou doente? Pausar a rotina</button>';
-    if(pzAb)h+='<div class="pausaop"><button type="button" id="pzLivre">Dia livre</button><button type="button" id="pzDoente">Estou doente</button></div><p class="nota">O dia sai das médias e não quebra a sua sequência. Você pode desfazer quando quiser.</p>';
+    o='<button type="button" class="pausab" id="pzAbre" aria-expanded="'+(pzAb?'true':'false')+'">Dia livre ou doente? Pausar a rotina</button>';
+    if(pzAb)o+='<div class="pausaop"><button type="button" id="pzLivre">Dia livre</button><button type="button" id="pzDoente">Estou doente</button></div><p class="nota">O dia sai das médias e não quebra a sua sequência. Você pode desfazer quando quiser.</p>';
   }
   box.innerHTML=h;
+  if(op)op.innerHTML=o;
   $('lista').classList.toggle('pausada',!!t);
   if($('pzVolta'))$('pzVolta').addEventListener('click',function(){
     var antes=pzDefine(dk,null);
@@ -6596,10 +6701,76 @@ function ligarCnProg(){
   });
   if($('cnVerAj'))$('cnVerAj').addEventListener('click',function(){progSec='caneta';irAba('prog');});
 }
+/* ---------- v19: caixas que abrem e fecham (aba Hoje e Meu plano) ----------
+   Cada caixa tem uma chave (data-bx) e um padrão (data-def: 1 aberta, 0 fechada).
+   Quando a pessoa abre ou fecha, a escolha fica guardada neste aparelho (rotina_ui_v1.cx)
+   e vale para todos os dias, até ela mudar de novo. */
+function bxHtml(k,ic,t,sub,corpo,o){
+  o=o||{};
+  return '<div class="bx'+(o.tom?' '+o.tom:'')+'" data-bx="'+k+'" data-def="'+(o.aberto?1:0)+'">'+
+    '<div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-'+k+'">'+
+    (ic?'<span class="bxi" aria-hidden="true">'+ico(ic)+'</span>':'')+
+    '<span class="bxt"><b>'+esc(t)+(o.chip?' <span class="bxch">'+esc(o.chip)+'</span>':'')+'</b>'+(sub?'<small>'+esc(sub)+'</small>':'')+'</span>'+
+    '<span class="bxv" aria-hidden="true"></span></button>'+(o.acao||'')+'</div>'+
+    '<div class="bxb" id="bxb-'+k+'" hidden>'+corpo+'</div></div>';
+}
+function bxUm(bx,cx){
+  var k=bx.getAttribute('data-bx'),c=bx.children[0],h=c&&c.querySelector('.bxh'),b=bx.children[1],ab;
+  if(!h||!b)return;
+  if(window.__bxAbrir)ab=true;
+  else if(cx[k]===0||cx[k]===1)ab=cx[k]===1;
+  else ab=bx.getAttribute('data-def')==='1';
+  h.setAttribute('aria-expanded',ab?'true':'false');
+  b.hidden=!ab;
+  bx.classList.toggle('on',ab);
+}
+/* se o navegador não deixa gravar, a escolha vale até fechar o app */
+var bxMem={};
+function bxCx(){var c=uiLer().cx,k;for(k in bxMem)c[k]=bxMem[k];return c;}
+function bxAplica(raiz){
+  var cx=bxCx(),q=(raiz||document).querySelectorAll('.bx[data-bx]'),i;
+  for(i=0;i<q.length;i++)bxUm(q[i],cx);
+  var cm=$('calMais'),cxx=$('calX');
+  if(cm&&cxx){var ab=!!window.__bxAbrir||cx.calx===1;cxx.hidden=!ab;cm.setAttribute('aria-expanded',ab?'true':'false');cm.classList.toggle('on',ab);}
+}
+/* v: 1 abre, 0 fecha, null volta ao padrão */
+function bxSet(k,v){
+  var u=uiLer();
+  if(v===null||v===undefined){delete u.cx[k];delete bxMem[k];}else{u.cx[k]=v?1:0;bxMem[k]=u.cx[k];}
+  var ks=Object.keys(u.cx);while(ks.length>60)delete u.cx[ks.shift()];
+  uiGravar(u);
+  var cx=bxCx(),q=document.querySelectorAll('.bx[data-bx="'+k+'"]'),i;
+  for(i=0;i<q.length;i++)bxUm(q[i],cx);
+  if(k==='calx')bxAplica();
+}
+function bxEstado(k){var v=bxCx()[k];return v===1?1:(v===0?0:null);}
+function ligarCaixas(){
+  document.addEventListener('click',function(e){
+    var t=e.target;if(!t||!t.closest)return;
+    var h=t.closest('.bxh');
+    if(h){
+      var bx=h.closest('.bx');if(!bx)return;
+      bxSet(bx.getAttribute('data-bx'),h.getAttribute('aria-expanded')==='true'?0:1);
+      return;
+    }
+    if(t.closest('#calMais'))bxSet('calx',$('calMais').getAttribute('aria-expanded')==='true'?0:1);
+  });
+}
+
+/* aba Meu plano: resumo de cada caixa e padrão (dados abertos só enquanto não há plano) */
+function mpSubs(){
+  var d=$('mpDados');if(!d)return;
+  var p=db.perfil,t,ob={emagrecer:'perder gordura',manter:'manter o peso',ganhar:'ganhar massa'};
+  if(p&&db.gerado)t=p.idade+' anos · '+p.alt+' cm · '+fmtK(p.peso)+' kg · '+(ob[p.obj]||'')+' · '+p.dias+' treinos por semana';
+  else t='Preencha para gerar sua dieta e seu treino';
+  $('mpDadosSub').textContent=t;
+  d.setAttribute('data-def',(p&&db.gerado)?'0':'1');
+  bxUm(d,bxCx());
+}
 
 /* ---------- início ---------- */
 function virouDia(){var k=key(new Date());if(k!==hojeK){hojeK=k;agora=new Date();irParaDia(hojeK);render();}}
-montaIcones();montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarFoto();ligarUx();ligarAparencia();ligarAlarmes();ligarPrefs();ligarFp();ligarExtras();ligarCnProg();fillPerfil();renderRes();renderCanetaCard();irAba('hoje');
+montaIcones();montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarFoto();ligarUx();ligarAparencia();ligarAlarmes();ligarPrefs();ligarFp();ligarExtras();ligarCnProg();ligarCaixas();fillPerfil();renderRes();renderCanetaCard();irAba('hoje');
 if(temPin(perfilAtual()))abreLock();else if(db.novo)abreOnb();
 fotosCarregar(function(){if(ativa==='treino')renderTreino();});
 setTimeout(checaBackupAuto,2500);
