@@ -928,6 +928,15 @@ html[data-simples] .vgt[data-vg=prog],html[data-simples] .vgt[data-vg=agua]{disp
 .dseg button{padding:8px 2px;font-size:calc(13.5px*var(--ft));line-height:1.15}
 html[data-tam="g"] .dseg,html[data-tam="x"] .dseg{grid-template-columns:repeat(2,minmax(0,1fr))}
 html[data-tam="g"] .dseg button,html[data-tam="x"] .dseg button{padding:10px 4px}
+/* v21: pergunta da caneta ao gerar o cardápio */
+.canq h3{margin:16px 0 6px;color:var(--ink);font-size:calc(16px*var(--ft))}
+.cnyn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:6px 0 8px}
+.cnyn button{font:inherit;font-size:calc(17px*var(--ft));font-weight:700;min-height:52px;padding:8px 6px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;line-height:1.15}
+.cnyn button[aria-checked="true"]{background:var(--pool);border-color:var(--pool);color:var(--on-pool)}
+.canbox{margin:8px 0 6px;padding:12px;border:1px solid var(--line);border-radius:14px}
+.canbox[hidden]{display:none}
+html[data-tam="x"] .canbox{grid-template-columns:minmax(0,1fr)}
+@media (max-width:359px){html[data-tam="g"] .canbox{grid-template-columns:minmax(0,1fr)}}
 </style>
 <script>(function(){try{var u=JSON.parse(localStorage.getItem('rotina_ui_v1')||'{}'),h=document.documentElement;
 if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true)h.setAttribute('data-simples','');if(u.tema==='claro')h.setAttribute('data-theme','light');else if(u.tema==='escuro')h.setAttribute('data-theme','dark');}catch(e){}})();</script>
@@ -1188,6 +1197,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         <p class="nota" style="margin-top:6px">Usados para montar os horários das refeições e do treino quando você aplica a dieta à sua rotina.</p>
         <div class="form" id="fHoras"></div>
       </details>
+      <div class="canq" id="fBoxCan"></div>
       <p class="nota" id="fErro" style="color:var(--danger)"></p>
       <p class="nota" id="fAviso"></p>
       <button class="btn pri" id="fGerar" type="button">Gerar minha dieta e meu treino</button>
@@ -1371,9 +1381,10 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
   <div id="ob2" hidden>
     <div class="card">
       <div class="form" id="obBoxObj"></div>
+      <div class="canq" id="obBoxCan"></div>
       <h3>Horários da sua rotina</h3>
       <div class="form" id="obBoxHoras"></div>
-      <h3>Treino em jejum e caneta (opcional)</h3>
+      <h3>Treino em jejum (opcional)</h3>
       <div class="form" id="obBoxExtra"></div>
       <p class="nota" id="obErro2" style="color:var(--danger)" role="alert"></p>
       <div class="obnav"><button class="btn sec" id="obVolta2" type="button">Voltar</button><button class="btn pri" id="obProx2" type="button">Ver prévia</button></div>
@@ -2994,6 +3005,7 @@ function fillPerfil(){
     HCAMPOS.forEach(function(c){$('f'+c[2]).value=HDEF[c[0]];});
     var ks=Object.keys(db.peso).sort();if(ks.length)$('fPeso').value=fmtK(db.peso[ks[ks.length-1]]);
   }
+  canPreenche('f',db.caneta);
   $('fGerar').textContent=db.onb?'Refazer meu plano (dieta, treino e rotina)':'Gerar minha dieta e meu treino';
   $('fAviso').textContent=db.onb?'Ao refazer o plano, o app recalcula metas, treino, refeições e horários da aba Hoje com os novos dados. Edições manuais da rotina são substituídas.':'';
 }
@@ -3246,11 +3258,15 @@ function ligar(){
   $('fGerar').addEventListener('click',function(){
     var p=lerPerfil('f'),er=$('fErro');
     if(!validaPerfil(p)){er.textContent='Confira idade (18 a 90), altura (120 a 230 cm) e peso (30 a 400 kg).';return;}
+    var L=canLer('f');
+    if(L.sim&&L.erro){er.textContent=L.erro;$('fCanDose').focus();return;}
     er.textContent='';
     if(db.perfil&&db.perfil.nome)p.nome=db.perfil.nome;
     db.perfil=p;db.res=calc(p);db.gerado=gerarTreino(p.dias,p.obj);
-    if(db.onb){db.usaGerado=true;aplicarPlano();}
+    var cs=canGrava(L);
+    if(db.onb){db.usaGerado=true;aplicarPlano(L.sim);}
     salvar();vib();renderRes();fillPerfil();
+    if(cs){render();renderCaneta();renderEdRot();toast(cs==='on'?(db.onb?'Plano refeito e ajustado para o '+MEDS[L.med].cur+'. Veja a aba Hoje.':'Dieta ajustada para o '+MEDS[L.med].cur+'.'):'Caneta desativada.'+(db.onb?' O plano foi refeito sem o ajuste da caneta.':''));}
     $('res').scrollIntoView({behavior:'smooth',block:'start'});
   });
 
@@ -4101,9 +4117,10 @@ function apSug(c){
   if(!M||!M.niv)return 2;
   return c.dose<=M.niv[0]?1:(c.dose<M.niv[1]?2:3);
 }
-function pisoKcal(){
-  var s=(db.perfil&&db.perfil.sexo==='f')?1200:1500;
-  if(db.res&&db.res.bmr)s=Math.max(s,r10(db.res.bmr*0.85));
+function pisoKcal(pf,rs){
+  pf=pf||db.perfil;rs=rs||db.res;
+  var s=(pf&&pf.sexo==='f')?1200:1500;
+  if(rs&&rs.bmr)s=Math.max(s,r10(rs.bmr*0.85));
   return s;
 }
 function rotDe(b){return b.rot||((db.onb&&db.perfil&&db.res)?rotinaGerada(db.perfil,db.res,db.gerado||{}):ROT0);}
@@ -4118,8 +4135,8 @@ function restauraBase(b){
   db.kcalMeta=b.k;db.protMeta=b.p;db.meta=b.meta;
 }
 /* metas com a caneta: calorias reduzidas pelo apetite (com piso de segurança), proteína mantida */
-function canetaAlvo(c,b){
-  var k0=b.k,f=AP_F[c.ap]||1,piso=pisoKcal(),k=r10(k0*f),limitado=false;
+function canetaAlvo(c,b,pf,rs){
+  var k0=b.k,f=AP_F[c.ap]||1,piso=pisoKcal(pf,rs),k=r10(k0*f),limitado=false;
   if(k<piso){k=Math.min(k0,piso);limitado=k>r10(k0*f);}
   var p=b.p||((db.onb&&db.res&&db.res.prot)?db.res.prot:0)||protDeRot(rotDe(b));
   return {k0:k0,k:k,f:f,limitado:limitado,p:p,piso:piso,agua:Math.max(b.meta,2500)};
@@ -4397,7 +4414,7 @@ function cnSetDose(v){
   salvar();vib();renderCaneta();
   cnMsg(c.aplic?'Dose alterada. Toque em "Recalcular cardápio e metas".':'');
 }
-function renderCaneta(){renderCanetaCard();renderRes();}
+function renderCaneta(){renderCanetaCard();renderRes();canPreenche('f',db.caneta);}
 function renderCanetaCard(){
   var c=db.caneta,on=canetaOn();
   var cx=$('cnOn');
@@ -4889,20 +4906,14 @@ function montaForms(){
   $('obBoxObj').innerHTML=formObjHtml('ob',3);
   $('obBoxHoras').innerHTML=formHorasHtml('ob');
   $('obBoxExtra').innerHTML=formExtraHtml();
-  $('obCan').addEventListener('change',obCanMuda);
+  $('obBoxCan').innerHTML=canFormHtml('ob');
+  $('fBoxCan').innerHTML=canFormHtml('f');
+  canLiga('ob');canLiga('f');
+  canPreenche('ob',null);canPreenche('f',null);
 }
 function formExtraHtml(){
   return '<label style="grid-column:1/-1">Treina de manhã em jejum?<select id="obJejum"><option value="">Não</option><option value="1">Sim, em jejum</option></select></label>'+
-    '<p class="nota" style="grid-column:1/-1;margin:-4px 0 0">Vale se o horário do treino for antes das 12h. Depois dá para marcar natação, ciclismo, corrida e dois treinos no dia na aba Treino.</p>'+
-    '<label style="grid-column:1/-1">Usa caneta emagrecedora?<select id="obCan"><option value="">Não</option>'+MED_ORD.map(function(m){return '<option value="'+m+'">'+esc(MEDS[m].n)+'</option>';}).join('')+'</select></label>'+
-    '<label style="grid-column:1/-1" id="obCanDoseL" hidden>Dose atual<select id="obCanDose"></select></label>';
-}
-function obCanMuda(){
-  var m=$('obCan').value,L=$('obCanDoseL');
-  L.hidden=!m;
-  if(!m)return;
-  var d=MEDS[m].doses||[1];
-  $('obCanDose').innerHTML=d.map(function(x){return '<option value="'+x+'">'+fmtK(x)+' mg</option>';}).join('');
+    '<p class="nota" style="grid-column:1/-1;margin:-4px 0 0">Vale se o horário do treino for antes das 12h. Depois dá para marcar natação, ciclismo, corrida e dois treinos no dia na aba Treino.</p>';
 }
 var OB_TIT=['Você','Objetivo e rotina','Prévia do plano'];
 function obIr(n){
@@ -4913,7 +4924,7 @@ function obIr(n){
   var t=$('onbT');t.tabIndex=-1;try{t.focus({preventScroll:true});}catch(e){}
 }
 function limpaOnb(){
-  $('obNome').value='';$('obSexo').value='m';$('obIdade').value='';$('obAlt').value='';$('obPeso').value='';$('obObj').value='manter';$('obDias').value='3';$('obJejum').value='';$('obCan').value='';$('obCanDoseL').hidden=true;
+  $('obNome').value='';$('obSexo').value='m';$('obIdade').value='';$('obAlt').value='';$('obPeso').value='';$('obObj').value='manter';$('obDias').value='3';$('obJejum').value='';canPreenche('ob',null);
   HCAMPOS.forEach(function(c){$('ob'+c[2]).value=HDEF[c[0]];});
   $('obErro1').textContent='';$('obErro2').textContent='';$('obSyncMsg').textContent='';
 }
@@ -4946,28 +4957,42 @@ function obProx2(){
   var p=lerPerfil('ob'),er=$('obErro2'),e=erroHoras(p.h);
   if(e){er.textContent=e;return;}
   if(!validaPerfil(p)){er.textContent='Confira os campos do passo anterior.';return;}
+  var L=canLer('ob');
+  if(L.sim&&L.erro){er.textContent=L.erro;$('obCanDose').focus();return;}
   er.textContent='';
   $('obPrev').innerHTML=previaHtml(p,$('obNome').value.trim());
   obIr(3);
 }
 function previaHtml(p,nome){
   var r=calc(p),pl=gerarTreino(p.dias,p.obj),rt=rotinaGerada(p,r,pl);
+  var L=canLer('ob'),cn=L.sim&&!L.erro,al=null,f=1,KC=r.k,AG=r.agua;
+  if(cn){
+    var c0={med:L.med,dose:L.dose,ap:L.ap};
+    al=canetaAlvo(c0,{k:r.k,p:r.prot,meta:r.agua,rot:null},p,r);
+    f=escalaCaneta(r.k,r.prot,al).f;
+    rt=canetaTransf(rt,al).rot;
+    KC=al.k;AG=al.agua;
+  }
   var ob={emagrecer:'perder gordura',manter:'manter o peso',ganhar:'ganhar massa'}[p.obj]||'';
   var h='<h2>Seu plano, '+esc(nome)+'</h2><p class="nota">Objetivo: '+ob+'.</p>';
-  h+='<div class="kpis"><div><b>'+fmtN(r.k)+' kcal</b><small>por dia</small></div><div><b>'+r.prot+' g</b><small>de proteína</small></div><div><b>'+fmtL(r.agua)+'</b><small>de água por dia</small></div><div><b>'+r.carb+' g · '+r.gord+' g</b><small>carboidrato · gordura</small></div></div>';
+  if(cn)h+='<p class="cnflag">'+ico('seringa')+'<span>Plano ajustado para o <b>'+esc(MEDS[L.med].cur)+' '+esc(fmtK(L.dose))+' mg</b>: porções menores em 6 refeições, proteína mantida e mais água.</span></p>';
+  h+='<div class="kpis"><div><b>'+fmtN(KC)+' kcal</b><small>por dia'+(cn?' (com a caneta)':'')+'</small></div><div><b>'+r.prot+' g</b><small>de proteína</small></div><div><b>'+fmtL(AG)+'</b><small>de água por dia</small></div><div><b>'+Math.round(r.carb*f)+' g · '+Math.round(r.gord*f)+' g</b><small>carboidrato · gordura</small></div></div>';
+  if(cn&&al.limitado)h+='<p class="nota">A redução foi limitada ao mínimo de segurança de '+fmtN(al.piso)+' kcal. Sem a caneta, a meta seria de '+fmtN(r.k)+' kcal.</p>';
+  else if(cn)h+='<p class="nota">Sem a caneta, a meta seria de '+fmtN(r.k)+' kcal por dia.</p>';
   h+='<h3>Treino ('+p.dias+' dias por semana)</h3><div>'+Object.keys(pl).map(Number).sort(function(a,b){return ((a+6)%7)-((b+6)%7);}).map(function(dw){return '<span class="tchip">'+NOMES[dw]+' · '+esc(pl[dw].n)+'</span>';}).join('')+'</div>';
   h+='<h3>Seu dia</h3>';
   rt.slice().sort(function(a,b){return minutos(a.h)-minutos(b.h);}).forEach(function(i){
     h+='<div class="ref"><b><span>'+esc(pad(i.h))+' · '+esc(i.t)+'</span><span>'+(i.k>0?fmtN(i.k)+' kcal':'')+'</span></b><small>'+esc(i.d)+'</small></div>';
   });
   if($('obJejum').value==='1'&&minutos(p.h.treino)<720)h+='<p class="nota" style="margin-top:10px"><b>Treino em jejum:</b> o café da manhã fica para depois do treino.</p>';
-  if($('obCan').value)h+='<p class="nota" style="margin-top:6px"><b>Caneta:</b> ao criar, o app reduz as porções, divide a comida em 6 refeições pequenas e mantém a proteína.</p>';
+  if(!cn)h+='<p class="nota" style="margin-top:6px">Sem caneta. Se você usar uma depois, ative em Meu plano e o app ajusta o cardápio.</p>';
   h+='<p class="nota" style="margin-top:10px">São estimativas gerais. Depois de criar, dá para ajustar horários, porções e metas em Ajustes e em Meu plano.</p>';
   return h;
 }
 function concluirOnb(){
-  var nome=$('obNome').value.trim().slice(0,24),p=lerPerfil('ob');
+  var nome=$('obNome').value.trim().slice(0,24),p=lerPerfil('ob'),L=canLer('ob');
   if(!nome||!validaCorpo(p)||!validaPerfil(p)||erroHoras(p.h)){obIr(1);obProx1();return;}
+  if(L.sim&&L.erro){obIr(2);$('obErro2').textContent=L.erro;return;}
   p.nome=nome;
   db.perfil=p;db.res=calc(p);db.gerado=gerarTreino(p.dias,p.obj);db.usaGerado=true;db.onb=true;db.novo=false;
   aplicarPlano();
@@ -4976,11 +5001,8 @@ function concluirOnb(){
     Object.keys(db.sess.d).forEach(function(dw){var a=db.sess.d[dw];if(a[0]&&minutos(a[0].h)<720)a[0].j=true;});
     aplicaSess();
   }
-  if($('obCan').value){
-    db.caneta=novaCaneta();
-    db.caneta.med=$('obCan').value;
-    db.caneta.dose=+$('obCanDose').value||(MEDS[db.caneta.med].doses?MEDS[db.caneta.med].doses[0]:1);
-    db.caneta.ap=apSug(db.caneta);db.caneta.hist=[];pushHist(db.caneta);
+  if(L.sim){
+    canGrava(L);
     aplicaCaneta();
   }
   db.peso[hojeK]=Math.round(p.peso*10)/10;
@@ -7370,6 +7392,103 @@ function ligarCardapio(){
     clearTimeout(tm);
     tm=setTimeout(function(){if(ativa==='cardapio'&&Math.abs(cdLargura()-cdLarg)>8)renderCardapio();},200);
   });
+}
+/* ---------- v21: pergunta "Você usa caneta emagrecedora?" na hora de gerar o cardápio (cadastro e Meu plano) ---------- */
+/* o mesmo bloco serve aos dois lugares; pre = 'ob' (cadastro, passo 2) ou 'f' (Meu plano) */
+function canFormHtml(pre){
+  var med=MED_ORD.map(function(m){return '<option value="'+m+'">'+esc(MEDS[m].n)+'</option>';}).join('');
+  var dia=DIAS_ORD.map(function(d){return '<option value="'+d+'">'+DIAS_NOME[d]+'</option>';}).join('');
+  var ap=CN_APS.map(function(a){return '<option value="'+a[0]+'">'+esc(a[1])+' ('+a[2]+')</option>';}).join('');
+  return '<h3 id="'+pre+'CanT">Você usa caneta emagrecedora?</h3>'+
+    '<div class="cnyn" id="'+pre+'CanYN" role="radiogroup" aria-labelledby="'+pre+'CanT">'+
+      '<button type="button" role="radio" aria-checked="true" id="'+pre+'CanNao">Não</button>'+
+      '<button type="button" role="radio" aria-checked="false" id="'+pre+'CanSim">Sim</button>'+
+    '</div>'+
+    '<p class="nota" id="'+pre+'CanNota">Mounjaro, Ozempic, Wegovy, Saxenda ou parecida. Com a caneta o apetite cai, então o cardápio muda: porções menores, 6 refeições pequenas e proteína mantida. Responda antes de gerar para o plano já sair ajustado.</p>'+
+    '<div class="form canbox" id="'+pre+'CanBox" hidden>'+
+      '<label style="grid-column:1/-1">Qual medicamento?<select id="'+pre+'Can">'+med+'</select></label>'+
+      '<p class="nota cninfo" id="'+pre+'CanInfo" style="grid-column:1/-1;margin:-2px 0 0" hidden></p>'+
+      '<label id="'+pre+'CanDoseL">Dose atual<select id="'+pre+'CanDose"></select></label>'+
+      '<label id="'+pre+'CanOutraL" hidden>Outra dose (mg)<input id="'+pre+'CanOutra" type="text" inputmode="decimal"></label>'+
+      '<label id="'+pre+'CanDiaL">Dia da aplicação<select id="'+pre+'CanDia">'+dia+'</select></label>'+
+      '<label style="grid-column:1/-1">Quanto o seu apetite diminuiu?<select id="'+pre+'CanAp">'+ap+'</select></label>'+
+      '<p class="nota" id="'+pre+'CanSug" style="grid-column:1/-1;margin:-2px 0 0"></p>'+
+    '</div>';
+}
+function canYN(pre,sim){
+  if(!$(pre+'CanSim'))return;
+  $(pre+'CanSim').setAttribute('aria-checked',sim?'true':'false');
+  $(pre+'CanNao').setAttribute('aria-checked',sim?'false':'true');
+  $(pre+'CanBox').hidden=!sim;
+}
+/* monta as doses do medicamento escolhido; dose (opcional) é a que deve ficar marcada */
+function canSetMed(pre,dose){
+  var m=$(pre+'Can').value,M=MEDS[m]||MEDS.tirz;
+  var d=dose>0?dose:(M.doses?M.doses[0]:1);
+  var o=cnDoseOpts({med:m,dose:d});
+  $(pre+'CanDose').innerHTML=o.html;
+  $(pre+'CanOutraL').hidden=!o.outra;
+  if(o.outra)$(pre+'CanOutra').value=fmtK(d);
+  var inf=$(pre+'CanInfo');inf.textContent=M.info||'';inf.hidden=!M.info;
+  $(pre+'CanDiaL').hidden=M.sem===false;
+  $(pre+'CanDoseL').hidden=!M.doses;
+}
+function canDoseVal(pre){
+  var v=$(pre+'CanDose').value;
+  if(v==='x'){var x=num($(pre+'CanOutra').value);return (x!==null&&x>0&&x<=30)?Math.round(x*100)/100:null;}
+  return +v;
+}
+/* sugere o nível de apetite pela dose; a pessoa pode trocar */
+function canSugAp(pre){
+  var d=canDoseVal(pre),m=$(pre+'Can').value;
+  if(d===null)return;
+  var s=apSug({med:m,dose:d});
+  $(pre+'CanAp').value=String(s);
+  $(pre+'CanSug').textContent='Pela dose informada, o apetite costuma cair como em "'+CN_APS[s-1][1].toLowerCase()+'". Escolha o que você sente de verdade: cada pessoa responde de um jeito.';
+}
+/* c = caneta salva (ou null): preenche a pergunta com o que já existe */
+function canPreenche(pre,c){
+  if(!$(pre+'Can'))return;
+  canYN(pre,!!(c&&c.on));
+  $(pre+'Can').value=(c&&MEDS[c.med])?c.med:'tirz';
+  canSetMed(pre,c?c.dose:0);
+  $(pre+'CanDia').value=String(c?c.dia:new Date().getDay());
+  canSugAp(pre);
+  if(c&&(c.ap===1||c.ap===2||c.ap===3))$(pre+'CanAp').value=String(c.ap);
+}
+/* lê a resposta: {sim:false} ou {sim:true,med,dose,dia,ap,erro} */
+function canLer(pre){
+  if(!$(pre+'CanSim')||$(pre+'CanSim').getAttribute('aria-checked')!=='true')return {sim:false};
+  var d=canDoseVal(pre);
+  return {sim:true,med:$(pre+'Can').value,dose:d,dia:+$(pre+'CanDia').value,ap:+$(pre+'CanAp').value,erro:d===null?'Informe a dose da caneta (entre 0,1 e 30 mg).':''};
+}
+/* grava a resposta em db.caneta (sem mexer na rotina; quem chama aplica o plano) */
+function canGrava(L){
+  var c=db.caneta;
+  if(L.sim){
+    var criou=false;
+    if(!c){c=db.caneta=novaCaneta();criou=true;}
+    c.on=true;c.med=L.med;c.dose=L.dose;c.dia=L.dia;c.ap=L.ap;
+    if(criou)c.hist=[];
+    pushHist(c);
+    return 'on';
+  }
+  if(c&&c.on){
+    if(c.aplic)desfazCaneta();
+    c.on=false;
+    return 'off';
+  }
+  return '';
+}
+function canLiga(pre){
+  $(pre+'CanNao').addEventListener('click',function(){canYN(pre,false);});
+  $(pre+'CanSim').addEventListener('click',function(){canYN(pre,true);});
+  $(pre+'Can').addEventListener('change',function(){canSetMed(pre);canSugAp(pre);});
+  $(pre+'CanDose').addEventListener('change',function(){
+    if($(pre+'CanDose').value==='x'){$(pre+'CanOutraL').hidden=false;$(pre+'CanOutra').focus();return;}
+    $(pre+'CanOutraL').hidden=true;canSugAp(pre);
+  });
+  $(pre+'CanOutra').addEventListener('change',function(){canSugAp(pre);});
 }
 
 /* ---------- início ---------- */
