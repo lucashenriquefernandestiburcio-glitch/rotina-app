@@ -178,13 +178,20 @@ html[data-tam=x] .rsg{grid-template-columns:1fr}
 .bd{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .eq{fill:none;stroke:var(--pool);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 svg text{font:600 9px 'Barlow',system-ui,sans-serif;fill:var(--mute)}
-.ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0;margin-bottom:12px;overflow:hidden}
 .ex.on{background:var(--done-soft);border-color:var(--done)}
 .exi{background:var(--bg);border-radius:10px;padding:6px 4px;color:var(--ink)}
 .exi svg{display:block;width:100%;height:auto;max-height:150px}
-.exb .cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-top:10px}
-.exb .cab b{font-size:calc(17px*var(--ft))}
-.exb .cab span{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:calc(22px*var(--ft));font-weight:700;color:var(--pool);flex:none}
+.exh{width:100%;display:flex;align-items:center;gap:10px;min-height:60px;padding:10px 14px;margin:0;font:inherit;text-align:left;background:transparent;border:0;border-radius:0;color:var(--ink);cursor:pointer}
+.exh .exht{flex:1;min-width:0;display:block}
+.exh small{display:block;margin-top:1px;color:var(--mute);font-size:calc(13px*var(--ft));font-weight:500;line-height:1.3}
+.ex.on .exh small{color:var(--done);font-weight:700}
+.ex.ab>.exh .bxv{transform:rotate(-135deg);margin:5px 5px 0 2px}
+.exw{padding:0 12px 12px}
+.exw[hidden]{display:none}
+.exh .cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.exh .cab b{font-size:calc(17px*var(--ft))}
+.exh .cab span{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:calc(22px*var(--ft));font-weight:700;color:var(--pool);flex:none}
 .exb p{margin:4px 0 6px;color:var(--mute);font-size:calc(14.5px*var(--ft))}
 .exb p.ult{font-size:calc(13.5px*var(--ft));margin:2px 0 8px}
 .srow{display:grid;grid-template-columns:64px 1fr 1fr 46px;gap:6px;align-items:center;margin-top:6px}
@@ -937,6 +944,7 @@ html[data-tam="g"] .dseg button,html[data-tam="x"] .dseg button{padding:10px 4px
 .canbox[hidden]{display:none}
 html[data-tam="x"] .canbox{grid-template-columns:minmax(0,1fr)}
 @media (max-width:359px){html[data-tam="g"] .canbox{grid-template-columns:minmax(0,1fr)}}
+.bx.cd .bxb>h2:first-child{font-size:calc(15px*var(--ft));margin:0 0 8px;color:var(--mute);font-weight:600}
 </style>
 <script>(function(){try{var u=JSON.parse(localStorage.getItem('rotina_ui_v1')||'{}'),h=document.documentElement;
 if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true)h.setAttribute('data-simples','');if(u.tema==='claro')h.setAttribute('data-theme','light');else if(u.tema==='escuro')h.setAttribute('data-theme','dark');}catch(e){}})();</script>
@@ -1019,8 +1027,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
     <div class="tipcard" id="dicaFoto" hidden><b>Veja o exercício do jeito certo</b>Cada exercício tem um desenho esquemático e um link para ver a execução em vídeo. Se o seu personal mandou foto ou GIF, toque em "Usar minha foto ou GIF" no exercício: ela fica guardada só neste aparelho.<br><button type="button" id="dicaFotoOk">Entendi</button></div>
     <div id="trLista"></div>
 
-    <div class="card" id="cardio">
-      <h2>Natação, ciclismo e corrida</h2>
+    <div class="bx cd" id="cardio" data-bx="tr-cardio" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-tr-cardio"><span class="bxi" aria-hidden="true"><i class="ii" data-i="cardio"></i></span><span class="bxt"><b>Natação, ciclismo e corrida</b><small id="cdSub">Registrar o treino do dia</small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-tr-cardio" hidden>
       <p class="nota" id="cdDia"></p>
       <div class="form">
         <label>Tipo<select id="cdTipo"><option>Natação</option><option>Corrida</option><option>Ciclismo</option><option>Caminhada</option><option>Cardio leve</option><option>Outro</option></select></label>
@@ -1031,14 +1038,15 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
       <ul id="cdLista" class="lista-n"></ul>
       <h3>Últimos registros</h3>
       <ul id="cdHist" class="lista-n"></ul>
-    </div>
-    <div class="card" id="agenda">
-      <h2>Agenda de treinos da semana</h2>
+    
+      </div></div>
+    <div class="bx cd" id="agenda" data-bx="tr-agenda" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-tr-agenda"><span class="bxi" aria-hidden="true"><i class="ii" data-i="rotina"></i></span><span class="bxt"><b>Agenda de treinos da semana</b><small id="agSub">Modalidade e horário de cada treino</small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-tr-agenda" hidden>
       <p class="nota">Escolha a modalidade e o horário de cada treino, até 2 por dia (por exemplo, academia de manhã e natação à noite). O primeiro treino da manhã pode ser em jejum: o café da manhã passa a ser depois do treino.</p>
       <div class="agsem" id="agSem" role="group" aria-label="Dias da agenda"></div>
       <div id="agDiaBox"></div>
       <div class="lin"><button type="button" id="agRest" hidden>Desfazer a agenda e voltar ao treino anterior</button></div>
-    </div>
+    
+      </div></div>
     <p class="dica">As ilustrações são esquemáticas. O descanso sugerido vale como ponto de partida. Se sentir dor, pare e procure um profissional.</p>
   </section>
 
@@ -1081,8 +1089,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         </div>
         <div id="pGraf"></div>
       </div>
-      <div class="card">
-        <h2>Meta de peso</h2>
+      <div class="bx cd" id="mpBox" data-bx="pg-meta" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-pg-meta"><span class="bxi" aria-hidden="true"><i class="ii" data-i="alvo"></i></span><span class="bxt"><b>Meta de peso</b><small id="mpSub">Defina um peso-alvo</small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-pg-meta" hidden>
         <div id="mpRes"></div>
         <div class="form">
           <label>Peso-alvo (kg)<input id="mpKg" type="text" inputmode="decimal" placeholder="Ex.: 115"></label>
@@ -1090,9 +1097,9 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         </div>
         <p class="nota" id="mpErro" style="color:var(--danger)"></p>
         <div class="lin"><button type="button" id="mpSave" class="selb">Salvar meta</button><button type="button" id="mpDel">Remover meta</button></div>
-      </div>
-      <div class="card" id="fpBox">
-        <h2>Fotos de progresso</h2>
+      
+      </div></div>
+      <div class="bx cd" id="fpBox" data-bx="pg-fotos" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-pg-fotos"><span class="bxi" aria-hidden="true"><i class="ii" data-i="camera"></i></span><span class="bxt"><b>Fotos de progresso</b><small id="fpSub">Só neste aparelho</small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-pg-fotos" hidden>
         <p class="nota">As fotos ficam só neste aparelho: não entram no backup nem vão para a nuvem. Tire sempre com a mesma luz, distância e posição.</p>
         <div class="fpose" id="fpPose" role="radiogroup" aria-label="Posição da foto"></div>
         <div class="fpbar">
@@ -1101,8 +1108,9 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         </div>
         <label class="fpdt">Data da foto<input type="date" id="fpData"></label>
         <div id="fpGrade"></div>
-      </div>
-      <div class="card">
+      
+      </div></div>
+      <div class="bx cd" id="mdBox" data-bx="pg-med" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-pg-med"><span class="bxi" aria-hidden="true"><i class="ii" data-i="lapis"></i></span><span class="bxt"><b>Medidas</b><small id="mdSub">Cintura, peito, braço, coxa e quadril</small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-pg-med" hidden>
         <h2 id="mTit">Medidas (cm)</h2>
         <div class="form">
           <label>Cintura<input id="m-cintura" type="text" inputmode="decimal"></label>
@@ -1113,7 +1121,8 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         </div>
         <button class="btn pri" id="mSave" type="button">Salvar medidas</button>
         <div id="mHist" style="margin-top:12px"></div>
-      </div>
+      
+      </div></div>
     </div>
 
     <div class="psec" id="ps-mes" hidden>
@@ -2576,11 +2585,21 @@ function fotoPreparar(file,cb){
   img.src=url;
 }
 
+/* v22: cada exercício abre e fecha; por padrão só o próximo a fazer fica aberto */
+var exAb={},exProx=-1;
+function exAberto(k,i){
+  if(window.__bxAbrir)return true;
+  if(exAb[k]===true||exAb[k]===false)return exAb[k];
+  return i===exProx;
+}
 function cardEx(e,i,dk,tr){
   var nome=e[0],rep=e[1],pat=PAT[nome],c=document.createElement('div');
   var n=nSeries(rep),ds=descansoSeg(nome,rep),lg=(db.log[dk]||{})[nome]||[],ult=ultimaVez(nome,dk),rec=maiorCarga(nome);
   var sg=sugerir(nome,rep,dk),fu=fotos[nome]||null;
-  c.className='ex'+(tr[i]?' on':'');
+  var exk=dk+'|'+i,exa=exAberto(exk,i);
+  var feitas=lg.filter(function(a){return a&&a[0]!=null&&a[1]!=null;}).length;
+  var exst=tr[i]?'Feito ✓':(feitas?feitas+' de '+n+(n===1?' série anotada':' séries anotadas'):(i===exProx?'Próximo exercício':'Toque para abrir'));
+  c.className='ex'+(tr[i]?' on':'')+(exa?' ab':'');
   var rows='';
   for(var s=0;s<n;s++){
     var cur=lg[s]||[],pl=(ult&&ult.s[s])||[];
@@ -2597,15 +2616,26 @@ function cardEx(e,i,dk,tr){
   var fb=fu
     ?'<label>Trocar foto<input type="file" accept="image/*"></label><button type="button" class="frem">Remover foto</button>'
     :'<label>'+ico('camera')+' Usar minha foto ou GIF<input type="file" accept="image/*"></label>';
-  c.innerHTML='<div class="exi">'+(fu?'<img alt="Sua foto do exercício '+esc(nome)+'" src="'+esc(fu)+'">':svgFor(pat))+'</div><div class="fbar">'+fb+'</div><p class="nota fmsg" style="margin:4px 0 0"></p><div class="exb"><div class="cab"><b>'+esc(nome)+'</b><span>'+esc(rep.replace('x','×'))+'</span></div><p>'+esc(DICA[pat])+'</p><a class="vid" href="https://www.youtube.com/results?search_query='+encodeURIComponent(nome+' execução correta')+'" target="_blank" rel="noopener noreferrer">▶ Ver a execução em vídeo</a><p class="ult">'+esc(ultTxt)+'</p>'+
+  c.innerHTML='<button type="button" class="exh" aria-expanded="'+(exa?'true':'false')+'"><span class="exht"><span class="cab"><b>'+esc(nome)+'</b><span>'+esc(rep.replace('x','×'))+'</span></span><small>'+esc(exst)+'</small></span><span class="bxv" aria-hidden="true"></span></button><div class="exw"'+(exa?'':' hidden')+'><div class="exi">'+(fu?'<img alt="Sua foto do exercício '+esc(nome)+'" src="'+esc(fu)+'">':svgFor(pat))+'</div><div class="fbar">'+fb+'</div><p class="nota fmsg" style="margin:4px 0 0"></p><div class="exb"><p>'+esc(DICA[pat])+'</p><a class="vid" href="https://www.youtube.com/results?search_query='+encodeURIComponent(nome+' execução correta')+'" target="_blank" rel="noopener noreferrer">▶ Ver a execução em vídeo</a><p class="ult">'+esc(ultTxt)+'</p>'+
     (sg?'<div class="sug"><span>'+esc(sg.txt)+'</span><button type="button" class="usar">Usar '+esc(fmtK(sg.kg))+' kg nas séries vazias</button></div>':'')+
-    '<p class="rec" hidden></p>'+rows+'<button type="button" class="feito">'+(tr[i]?'Feito ✓':'Marcar como feito')+'</button></div>';
+    '<p class="rec" hidden></p>'+rows+'<button type="button" class="feito">'+(tr[i]?'Feito ✓':'Marcar como feito')+'</button></div></div>';
   if(fotoMsg.n===nome&&fotoMsg.t){c.querySelector('.fmsg').textContent=fotoMsg.t;fotoMsg={n:null,t:''};}
   function atualizaRec(){
     var r=recordeDia(nome,dk),el=c.querySelector('.rec');
     if(r){el.hidden=false;el.innerHTML=ico('trofeu')+'<span>'+esc(r.txt)+'</span>';}else el.hidden=true;
   }
   atualizaRec();
+  function atualizaSt(){
+    if(tr[i])return;
+    var a=(db.log[dk]||{})[nome]||[],f=a.filter(function(x){return !!(x&&x[0]!=null&&x[1]!=null);}).length;
+    c.querySelector('.exh small').textContent=f?f+' de '+n+(n===1?' série anotada':' séries anotadas'):(i===exProx?'Próximo exercício':'Toque para abrir');
+  }
+  c.querySelector('.exh').addEventListener('click',function(){
+    var a=c.classList.toggle('ab');
+    exAb[exk]=a;
+    this.setAttribute('aria-expanded',a?'true':'false');
+    c.querySelector('.exw').hidden=!a;
+  });
   c.querySelectorAll('.srow').forEach(function(row,s){
     var ik=row.querySelector('.ik'),ir=row.querySelector('.ir');
     function completa(a){return !!(a&&a[0]!=null&&a[1]!=null);}
@@ -2615,7 +2645,7 @@ function cardEx(e,i,dk,tr){
       while(arr.length<=s)arr.push(null);
       var antes=completa(arr[s]);
       arr[s]=(kg===null&&isNaN(r))?null:[kg,isNaN(r)?null:r];
-      salvar();atualizaRec();
+      salvar();atualizaRec();atualizaSt();
       if(!antes&&completa(arr[s])&&dk===hojeK&&s<n-1&&db.descAuto!==false)startTimer(ds,nome+' · série '+(s+1));
     }
     ik.addEventListener('change',sv);ir.addEventListener('change',sv);
@@ -2651,7 +2681,7 @@ function cardEx(e,i,dk,tr){
   var fr=c.querySelector('.frem');
   if(fr)fr.addEventListener('click',function(){fotoRemover(nome,function(){renderTreino();});});
   c.querySelector('.feito').addEventListener('click',function(){
-    var m=db.tr[dk]||(db.tr[dk]={});m[i]=!m[i];salvar();vib();renderTreino();
+    var m=db.tr[dk]||(db.tr[dk]={});m[i]=!m[i];delete exAb[exk];salvar();vib();renderTreino();
   });
   return c;
 }
@@ -2674,6 +2704,7 @@ function renderTreino(){
   if(!T){el.innerHTML='<div class="card"><p class="nota">Sem musculação neste dia. '+(ssd.length?'Registre abaixo o treino de hoje e mantenha água e alimentação em dia.':'Aproveite para descansar e manter água e alimentação em dia.')+'</p></div>';}
   else{
     var tr=db.tr[dk]||{};
+    exProx=-1;T.ex.forEach(function(e,i){if(exProx<0&&!tr[i])exProx=i;});
     T.ex.forEach(function(e,i){el.appendChild(cardEx(e,i,dk,tr));});
   }
   renderCardio(dk,dw);
@@ -2710,6 +2741,11 @@ function renderCardio(dk,dw){
     });
   });
   if(!cnt)h.innerHTML='<li><span class="nota">Nenhum registro ainda.</span></li>';
+  var sc=$('cdSub');
+  if(sc){
+    var tm=0;a.forEach(function(x){tm+=+x.min||0;});
+    sc.textContent=a.length?'Registrado no dia: '+fmtN(tm)+' min':(nm.length?'Hoje é dia de '+nm.map(function(s){return MODS[s.m].n.toLowerCase();}).join(' e '):'Registrar o treino do dia');
+  }
 }
 
 /* timer de descanso */
@@ -2816,6 +2852,12 @@ function renderMedidas(dk){
     h+='<div class="mh"><b>'+m[1]+': '+fmtK(v)+' cm</b><small>'+fmtData(l)+(t?' · '+t:'')+'</small></div>';
   });
   $('mHist').innerHTML=h||'<p class="nota">Nenhuma medida registrada ainda. Meça sempre no mesmo ponto e no mesmo horário.</p>';
+  var kd=Object.keys(db.medidas).filter(function(k){return MED.some(function(m){return db.medidas[k][m[0]]!=null;});}).sort();
+  var sb=$('mdSub');
+  if(sb){
+    if(!kd.length)sb.textContent='Cintura, peito, braço, coxa e quadril';
+    else{var ul=db.medidas[kd[kd.length-1]];sb.textContent='Última: '+fmtData(kd[kd.length-1])+(ul.cintura!=null?' · cintura '+fmtK(ul.cintura)+' cm':'');}
+  }
 }
 function renderProg(){
   renderPseg();
@@ -3094,7 +3136,7 @@ function renderEdRot(){
     box.appendChild(w);
     if(!aberto)return;
     if(w.querySelector('#ed-ag')){
-      w.querySelector('#ed-ag').addEventListener('click',function(){irAba('treino');var a=$('agenda');if(a)a.scrollIntoView({block:'start'});});
+      w.querySelector('#ed-ag').addEventListener('click',function(){irAba('treino');bxSet('tr-agenda',1);var a=$('agenda');if(a)a.scrollIntoView({block:'start'});});
       return;
     }
     w.querySelectorAll('#ed-dias button').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');});});
@@ -3369,6 +3411,8 @@ function renderMetaPeso(){
     }else h+='<p class="mp-l">Defina um peso-alvo abaixo para ver a projeção de data.</p>';
   }
   $('mpRes').innerHTML=h;
+  var sb=$('mpSub');
+  if(sb)sb.textContent=!mp?'Defina um peso-alvo':('Meta '+fmtKg(mp.kg)+(an.falta?'':(an.chegou?' · você chegou':' · faltam '+n1(an.dif)+' kg'))+(mp.ate?' até '+fmtData(mp.ate):''));
 }
 
 function classeDia(dk){
@@ -3987,6 +4031,8 @@ function renderAgenda(){
   var strip=$('agSem'),box=$('agDiaBox');
   if(!strip||!box)return;
   var dwSel=semana[selIdx].getDay();
+  var sa=$('agSub');
+  if(sa){var nt=DIAS_ORD.filter(function(dw){return sessDia(dw).length>0;}).length;sa.textContent=nt+(nt===1?' dia de treino':' dias de treino')+' na semana · toque para ajustar';}
   if(agUlt!==dwSel){agUlt=dwSel;agDia=dwSel;agAb=-1;agCopia={};}
   if(agDia===null)agDia=dwSel;
   strip.innerHTML='';
@@ -4096,7 +4142,7 @@ function ligarAgenda(){
   var ir=$('agIr');
   if(ir)ir.addEventListener('click',function(){
     var el=$('agenda');
-    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    if(el){bxSet('tr-agenda',1);el.scrollIntoView({behavior:'smooth',block:'start'});}
   });
 }
 
@@ -5023,7 +5069,7 @@ function trocarPerfil(id,semSalvar){
   KEY=chaveDe(id);
   db=carregarDb();
   syCarregar();syTxt='';
-  edAberto=null;cpModo='prot';progSec='corpo';calMes=null;evSel=null;ultDieta=dietaInicial();trAb={};
+  edAberto=null;cpModo='prot';progSec='corpo';calMes=null;evSel=null;ultDieta=dietaInicial();trAb={};exAb={};
   ocultaTimer();fechaToast();
   fotosLimpar();
   fotosCarregar(function(){if(ativa==='treino')renderTreino();});
@@ -6098,6 +6144,8 @@ function renderFp(){
     return;
   }
   var L=fp.itens.filter(function(x){return x.p===fp.pose;});
+  var sbf=$('fpSub');
+  if(sbf)sbf.textContent=fp.itens.length?fp.itens.length+(fp.itens.length===1?' foto guardada':' fotos guardadas')+' neste aparelho':'Só neste aparelho. Tire a primeira para comparar depois';
   if(!fpAcha(fp.A)||fpAcha(fp.A).p!==fp.pose)fp.A=L.length?L[0].k:null;
   if(!fpAcha(fp.B)||fpAcha(fp.B).p!==fp.pose)fp.B=L.length?L[L.length-1].k:null;
   var h='';
@@ -7372,7 +7420,7 @@ function renderVisao(dk,dw,isHoje){
   else bk='Sem backup';
   h+=vgTile('ajustes','ajustes','ajustes','Ajustes',bk,'perfil '+perfilAtual().nome);
   h+='</div>';
-  box.innerHTML=bxHtml('vg','hoje','Visão geral',isHoje?'Todas as abas de relance':'Dia '+fmtData(dk)+' e as outras abas',h,{aberto:true});
+  box.innerHTML=bxHtml('vg','hoje','Visão geral',isHoje?'Todas as abas de relance':'Dia '+fmtData(dk)+' e as outras abas',h,{});
   box.hidden=false;
 }
 
