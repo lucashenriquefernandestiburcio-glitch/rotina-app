@@ -678,6 +678,99 @@ html[data-simples] .regra,html[data-simples] .dica,html[data-simples] #reset,htm
 .lista-n li>b{max-width:52%;overflow-wrap:anywhere}
 .form label,.row2 label{min-width:0}
 input:not([type=checkbox]):not([type=radio]),select,textarea{box-sizing:border-box}
+
+/* ---------- v18: Progresso › Caneta ---------- */
+.pseg.c5{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.cnp .card h2{margin-top:0}
+.cnp .h2i{display:flex;align-items:center;gap:8px}
+.cnhero{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:8px 0}
+.cnring{position:relative;width:116px;height:116px;flex:none}
+.cnring svg{display:block;width:100%;height:100%}
+.cnring .trk{fill:none;stroke:var(--line);stroke-width:10}
+.cnring .prg{fill:none;stroke:var(--pool);stroke-width:10;stroke-linecap:round}
+.cnring.atraso .prg{stroke:var(--amber)}
+.cnring.pular .prg{stroke:var(--danger)}
+.cnrtx{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;padding:0 18px}
+.cnrtx b{font-family:'Barlow Condensed',system-ui,sans-serif;font-size:calc(30px + 0px);font-weight:700}
+.cnrtx span{font-size:calc(12.5px*min(var(--ft),1.15));color:var(--mute);font-weight:600}
+.cnht{flex:1;min-width:140px}
+.cnht b{display:block;font-size:calc(19px*var(--ft))}
+.cnht span{display:block;font-weight:600}
+.cnht small{display:block;color:var(--mute);font-size:calc(14px*var(--ft));margin-top:2px}
+.cnest{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line);font-weight:600}
+.cnest button{font:inherit;font-weight:600;font-size:calc(14px*var(--ft));min-height:44px;padding:6px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.cnstep{display:inline-flex;align-items:center;gap:6px}
+.cnstep button{min-width:44px;padding:6px 0;font-size:calc(20px*var(--ft))}
+.cnstep b{min-width:28px;text-align:center;font-size:calc(20px*var(--ft))}
+.cnp .btn.pri{margin-top:10px}
+.cng{position:relative;margin-top:10px}
+.cng svg{display:block;width:100%;height:auto;touch-action:pan-y;overflow:visible}
+.cng text{font-size:calc(11.5px*var(--ft));fill:var(--mute)}
+.cng .fl{fill:var(--ink);font-weight:600}
+.cng .gl{stroke:var(--line);stroke-width:1}
+.cng .nl{fill:none;stroke:var(--pool);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.cng .nl.fut{stroke-dasharray:5 4}
+.cng .na{fill:var(--pool);fill-opacity:.1;stroke:none}
+.cng .hj{stroke:var(--mute);stroke-width:1;stroke-dasharray:2 3}
+.cng .ap{fill:var(--pool);stroke:var(--card);stroke-width:2}
+.cng .apf{fill:var(--card);stroke:var(--pool);stroke-width:2}
+.cng .pl{fill:none;stroke:var(--pool);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.cng .fb{fill:var(--pool);fill-opacity:.09}
+.cng .dc{stroke:var(--mute);stroke-width:1;stroke-dasharray:3 3}
+.cng .cx{stroke:var(--ink);stroke-width:1;opacity:.55}
+.cng svg:focus-visible{outline:3px solid var(--pool);outline-offset:2px;border-radius:6px}
+.cntip{position:absolute;top:-6px;z-index:2;pointer-events:none;background:var(--ink);color:var(--card);border-radius:8px;padding:5px 9px;font-size:calc(13.5px*var(--ft));line-height:1.25;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.cnleg{display:flex;flex-wrap:wrap;gap:4px 14px;margin:8px 0;font-size:calc(13px*var(--ft));color:var(--mute)}
+.cnleg span{display:inline-flex;align-items:center;gap:6px}
+.cnleg i{display:inline-block;width:12px;height:12px;border-radius:50%;flex:none}
+.cnleg .k1,.cnleg .k4{background:var(--pool)}
+.cnleg .k2{border:2px solid var(--pool);background:var(--card)}
+.cnleg .k3{width:18px;height:0;border-radius:0;border-top:2px dashed var(--pool)}
+.cnleg .k5{background:var(--pool-soft);border:2px solid var(--pool)}
+.cnleg .k6{background:var(--card);border:2px dashed var(--mute)}
+.cnst{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cnst .rst b{font-size:calc(19px*var(--ft))}
+.cndet{margin:8px 0}
+.cntab{width:100%;border-collapse:collapse;margin-top:6px;font-size:calc(14px*var(--ft))}
+.cntab th,.cntab td{text-align:left;padding:6px 4px;border-top:1px solid var(--line)}
+.cntab th{color:var(--mute);font-weight:600}
+.cnheat{width:100%;border-collapse:separate;border-spacing:3px;table-layout:fixed;margin:6px 0 8px}
+.cnheat caption{caption-side:top;text-align:left;font-weight:700;color:var(--mute);font-size:calc(13.5px*var(--ft));padding:2px 0}
+.cnheat th{font-size:calc(12px*var(--ft));font-weight:600;color:var(--mute);text-align:center;padding:0;line-height:1.2}
+.cnheat th[scope=row]{width:62px;text-align:left;font-size:calc(12.5px*var(--ft))}
+.cnheat th.hj{color:var(--ink);text-decoration:underline}
+.cnheat td{height:30px;text-align:center;border-radius:6px;line-height:1;background:var(--bg);color:var(--ink);padding:0}
+.cnheat td.vz{background:transparent;border:1px dashed var(--line)}
+.cnheat td.l1{background:var(--pool-soft)}
+.cnheat td.l2{background:var(--pool);color:var(--on-pool)}
+.cnheat td.ap svg{width:16px;height:16px;color:var(--pool);vertical-align:middle}
+.bmap{position:relative;width:240px;max-width:100%;aspect-ratio:200/250;margin:8px auto}
+.cncorpo{position:absolute;inset:0;width:100%;height:100%}
+.cncorpo .cb{fill:var(--pool-soft);stroke:var(--line);stroke-width:1.5}
+.cncorpo .lm{fill:none;stroke:var(--pool-soft);stroke-width:26;stroke-linecap:round}
+.bl{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;border:2px dashed var(--mute);background:var(--card);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;font-size:calc(18px*var(--ft));line-height:1;color:var(--ink)}
+.bl.r2{background:var(--pool-soft);border:2px solid var(--pool)}
+.bl.r1{background:var(--pool);border:2px solid var(--pool);color:var(--on-pool)}
+.bl.sug{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--amber)}
+.bl.sel{outline:3px solid var(--ink);outline-offset:2px}
+.bl.sel span{display:none}
+.bl.sel::after{content:"✓";font-weight:700}
+.bl:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.cnlu{margin:10px 0}
+.cnlog li{align-items:center}
+.cnlog .cnlm{flex:1;min-width:0}
+.cnlog .cnlm span{display:block;color:var(--mute);font-size:calc(13.5px*var(--ft))}
+.cnlog .cnlm b{display:block;max-width:none;text-align:left;color:var(--ink);font-weight:600}
+.cnlog .cnlm small{display:block;color:var(--mute);font-size:calc(13.5px*var(--ft))}
+.cnlog li button{flex:none;font:inherit;font-size:calc(13.5px*var(--ft));font-weight:600;min-height:44px;padding:4px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.cgl{width:15px;height:15px;vertical-align:middle;flex:none}
+.cnloc{margin:10px 0 4px;padding:10px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.cnlg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:6px 0}
+.cnlg button{font:inherit;font-weight:600;font-size:calc(14px*var(--ft));min-height:44px;margin:0;padding:4px 6px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;line-height:1.15}
+.cnhoje .cnpula,.cnhoje .cnver{display:block;width:100%;margin:6px 0 0;min-height:44px;font:inherit;font-weight:600;font-size:calc(14px*var(--ft));border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+html[data-tam=x] .cnlg{grid-template-columns:minmax(0,1fr)}
+html[data-tam=x] .cnst{grid-template-columns:minmax(0,1fr)}
 </style>
 <script>(function(){try{var u=JSON.parse(localStorage.getItem('rotina_ui_v1')||'{}'),h=document.documentElement;
 if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true)h.setAttribute('data-simples','');if(u.tema==='claro')h.setAttribute('data-theme','light');else if(u.tema==='escuro')h.setAttribute('data-theme','dark');}catch(e){}})();</script>
@@ -880,6 +973,16 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
       </div>
     </div>
 
+    <div class="psec cnp" id="ps-caneta" hidden>
+      <div class="card" id="cnpHero"></div>
+      <div class="card" id="cnpResumo"></div>
+      <div class="card" id="cnpNivel"></div>
+      <div class="card" id="cnpPeso"></div>
+      <div class="card" id="cnpSint"></div>
+      <div class="card" id="cnpReg"></div>
+      <div class="card" id="cnpDoc"></div>
+    </div>
+
     <div class="psec" id="ps-rel" hidden>
       <div class="card">
         <h2>Relatório para nutricionista ou personal</h2>
@@ -958,6 +1061,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         <div class="lin"><button type="button" id="cnAplic" class="selb">Ajustar cardápio e metas</button><button type="button" id="cnDesf" hidden>Desfazer ajustes</button></div>
         <p class="nota" id="cnMsg" role="status" style="margin-top:8px"></p>
         <p class="nota" id="cnUlt"></p>
+        <button type="button" id="cnVerAj" class="btn sec">Ver gráficos e histórico da caneta</button>
         <div id="cnRegBox" hidden><h3>Como você tem se sentido</h3><ul id="cnRegL" class="lista-n"></ul></div>
         <div id="cnHistBox" hidden><h3>Histórico de doses</h3><ul id="cnHist" class="lista-n"></ul></div>
         <details class="cndet"><summary>Dicas para quem usa caneta</summary><ul id="cnDicas" class="lista-n"></ul></details>
@@ -1274,8 +1378,12 @@ function canetaLimpa(v){
   var dia=(typeof v.dia==='number'&&v.dia>=0&&v.dia<=6&&v.dia===Math.floor(v.dia))?v.dia:5;
   var ap=(v.ap===1||v.ap===2||v.ap===3)?v.ap:2;
   var ini=(typeof v.ini==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v.ini))?v.ini:null;
-  var o={on:!!v.on,med:med,dose:Math.round(dose*100)/100,dia:dia,ap:ap,ini:ini,aplic:!!v.aplic,h:pad(v.h)||'08:00',apl:{},hist:[],reg:{}};
+  var o={on:!!v.on,med:med,dose:Math.round(dose*100)/100,dia:dia,ap:ap,ini:ini,aplic:!!v.aplic,h:pad(v.h)||'08:00',apl:{},hist:[],reg:{},loc:{},obs:{},est:null};
   if(isObj(v.apl)){Object.keys(v.apl).sort().slice(-60).forEach(function(k){var x=+v.apl[k];if(/^\d{4}-\d{2}-\d{2}$/.test(k)&&x>0&&x<=30)o.apl[k]=Math.round(x*100)/100;});}
+  var LK={ae:1,ad:1,ce:1,cd:1,be:1,bd:1};
+  if(isObj(v.loc)){Object.keys(o.apl).forEach(function(k){if(typeof v.loc[k]==='string'&&LK[v.loc[k]]===1)o.loc[k]=v.loc[k];});}
+  if(isObj(v.obs)){Object.keys(o.apl).forEach(function(k){if(typeof v.obs[k]==='string'){var t=v.obs[k].replace(/\s+/g,' ').trim().slice(0,80);if(t)o.obs[k]=t;}});}
+  if(v.est!==null&&v.est!==undefined&&v.est!==''&&isFinite(+v.est)&&+v.est>=0&&+v.est<=99)o.est=Math.round(+v.est);
   if(Array.isArray(v.hist)){v.hist.slice(-12).forEach(function(q){if(isObj(q)&&typeof q.d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(q.d)&&+q.dose>0&&+q.dose<=30)o.hist.push({d:q.d,dose:Math.round(+q.dose*100)/100,med:MEDS[q.med]?q.med:med});});}
   if(isObj(v.reg)){Object.keys(v.reg).sort().slice(-45).forEach(function(k){
     var r=v.reg[k];if(!/^\d{4}-\d{2}-\d{2}$/.test(k)||!isObj(r))return;
@@ -2542,6 +2650,7 @@ function renderProg(){
   if(progSec==='mes')renderMes();
   if(progSec==='cargas')renderEv();
   if(progSec==='rel')renderRel();
+  if(progSec==='caneta')renderCnProg();
 }
 
 /* ---------- COMPRAS ---------- */
@@ -3013,6 +3122,9 @@ function ligar(){
 /* ---------- PROGRESSO: abas internas, meta de peso, calendário, cargas, relatório ---------- */
 function renderPseg(){
   var S=[['corpo','Corpo'],['mes','Mês'],['cargas','Cargas'],['rel','Relatório']],el=$('pseg');
+  if(canetaOn())S.splice(1,0,['caneta','Caneta']);
+  else if(progSec==='caneta')progSec='corpo';
+  el.classList.toggle('c5',S.length>4);
   el.innerHTML=S.map(function(x){return '<button type="button" data-ps="'+x[0]+'"'+(progSec===x[0]?' aria-current="true"':'')+'>'+x[1]+'</button>';}).join('');
   el.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){progSec=b.getAttribute('data-ps');renderProg();});});
   S.forEach(function(x){$('ps-'+x[0]).hidden=x[0]!==progSec;});
@@ -3971,7 +4083,7 @@ function renderCanetaHoje(dk,dw){
   var c=db.caneta;
   if(!canetaOn()){el.hidden=true;el.innerHTML='';return;}
   el.hidden=false;
-  var dia=dw===c.dia,feita=!!c.apl[dk],fut=dk>hojeK,isHoje=dk===hojeK;
+  var dia=dw===c.dia,feita=!!c.apl[dk],fut=dk>hojeK,isHoje=dk===hojeK,px=cnProx(c);
   var h='<b>'+ico('seringa')+esc(MEDS[c.med].cur)+' '+esc(fmtK(c.dose))+' mg</b>';
   if(dia){
     h+='<span class="cnl">'+(feita?'Aplicação deste dia registrada ✓':(fut?'A aplicação é neste dia, às '+esc(c.h)+'.':'Hoje é dia da aplicação (lembrete às '+esc(c.h)+').'))+'</span>';
@@ -3980,6 +4092,18 @@ function renderCanetaHoje(dk,dw){
     h+='<span class="cnl">Próxima aplicação: '+DIAS_NOME[c.dia].toLowerCase()+', '+fmtData(pr)+'.</span>';
   }
   h+='<span class="cnd">'+esc(dicaCaneta(c,dk))+'</span>';
+  if(isHoje){
+    var gz=cnGuia(c,px),et=cnEstoqueTxt(c);
+    if(gz)h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>'+esc(gz)+'</span></p>';
+    if(et)h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>'+esc(et)+'</span></p>';
+  }
+  var pedeLoc=feita&&!fut&&!(isObj(c.loc)&&c.loc[dk])&&cnPula!==dk;
+  if(pedeLoc){
+    var sg=cnSugerido(c);
+    h+='<div class="cnloc" role="group" aria-label="Onde você aplicou?"><span class="cnrt">Onde você aplicou?</span><div class="cnlg">';
+    CN_LOCS.forEach(function(x){h+='<button type="button" data-lc="'+x[0]+'">'+esc(x[1])+(x[0]===sg?' ★':'')+'</button>';});
+    h+='</div><button type="button" id="cnLocPula" class="cnpula">Não informar</button></div>';
+  }
   if(!fut){
     var rg=(c.reg&&c.reg[dk])||{};
     h+='<div class="cnreg" role="group" aria-label="Como você está '+(isHoje?'hoje':'neste dia')+'"><span class="cnrt">Como você está '+(isHoje?'hoje':'neste dia')+'?</span>';
@@ -3995,7 +4119,8 @@ function renderCanetaHoje(dk,dw){
     h+='<p class="cnins '+x.n+'" role="status">'+(x.n==='al'?ico('alerta'):ico('info'))+'<span>'+esc(x.t)+'</span></p>';
     if(x.ac)h+='<button type="button" class="cnact" data-i="'+ix+'">'+esc(x.al)+'</button>';
   });
-  if(dia&&!fut)h+='<button type="button" id="cnMarca">'+(feita?'Desmarcar aplicação':'Marcar aplicação como feita')+'</button>';
+  if((dia&&!fut)||(isHoje&&px.st==='atraso'&&!feita))h+='<button type="button" id="cnMarca">'+(feita?'Desmarcar aplicação':'Marcar aplicação como feita')+'</button>';
+  h+='<button type="button" id="cnVer" class="cnver">Ver gráficos e histórico da caneta</button>';
   if(!c.aplic)h+='<button type="button" id="cnIrAj">Ajustar o plano alimentar para o '+esc(MEDS[c.med].cur)+'</button>';
   el.innerHTML=h;
   el.querySelectorAll('.cnreg button').forEach(function(b){
@@ -4013,10 +4138,17 @@ function renderCanetaHoje(dk,dw){
     b.addEventListener('click',function(){cnAjustaAp(ins[+b.getAttribute('data-i')].ac);});
   });
   if($('cnMarca'))$('cnMarca').addEventListener('click',function(){
-    if(c.apl[dk])delete c.apl[dk];else c.apl[dk]=c.dose;
-    var ks=Object.keys(c.apl).sort();while(ks.length>60)delete c.apl[ks.shift()];
-    salvar();vib();render();
+    if(c.apl[dk])cnRemove(dk);else cnRegistra(dk,c.dose,undefined);
+    salvar();vib();render();renderCaneta();
   });
+  el.querySelectorAll('.cnlg button').forEach(function(b){
+    b.addEventListener('click',function(){
+      cnRegistra(dk,c.apl[dk],b.getAttribute('data-lc'));
+      salvar();vib();render();renderCaneta();
+    });
+  });
+  if($('cnLocPula'))$('cnLocPula').addEventListener('click',function(){cnPula=dk;render();});
+  if($('cnVer'))$('cnVer').addEventListener('click',function(){progSec='caneta';irAba('prog');});
   if($('cnIrAj'))$('cnIrAj').addEventListener('click',function(){
     irAba('perfil');
     var d=$('cardCaneta');if(d)d.scrollIntoView({block:'start'});
@@ -5077,7 +5209,7 @@ function alAplicarAcoes(){
       var it=rot().filter(function(i){return String(i.id)===String(a.id);})[0];
       if(it&&!(db.dias[a.dk]&&db.dias[a.dk][it.id])){(db.dias[a.dk]||(db.dias[a.dk]={}))[it.id]=true;feitos.push(it.t);}
     }else if(a.tipo==='cn'&&canetaOn()&&!db.caneta.apl[a.dk]){
-      db.caneta.apl[a.dk]=db.caneta.dose;cn++;
+      cnRegistra(a.dk,db.caneta.dose,undefined);cn++;
     }
   });
   if(!agua&&!feitos.length&&!cn)return;
@@ -5903,9 +6035,571 @@ function ligarExtras(){
   }
 }
 
+/* ---------- v18: acompanhamento da caneta (Progresso › Caneta): aplicações, local, nível estimado e gráficos ---------- */
+/* locais de aplicação (esquerda e direita são as do próprio corpo) */
+var CN_LOCS=[['ae','Abdômen esquerdo'],['ad','Abdômen direito'],['ce','Coxa esquerda'],['cd','Coxa direita'],['be','Braço esquerdo'],['bd','Braço direito']];
+/* modelo simplificado (1 compartimento, absorção de 1ª ordem) com valores médios das bulas: meia-vida (dias), taxa de absorção (1/dia),
+   biodisponibilidade e quantos dias depois do dia combinado ainda dá para aplicar uma dose esquecida */
+var CN_PK={tirz:{t:5,ka:1.5,F:0.8,atr:4},sema:{t:7,ka:1.2,F:0.89,atr:5},dula:{t:5,ka:1.4,F:0.47,atr:4}};
+var cnPula=null,cnF={dk:null,dose:null,loc:null,obs:''},cnLarg=0;
+
+function difDias(a,b){return Math.round((dateDe(b)-dateDe(a))/864e5);}
+function cnLocNome(k){var r='';CN_LOCS.forEach(function(x){if(x[0]===k)r=x[1];});return r;}
+function cnLocOk(k){return !!cnLocNome(k);}
+function cnLista(c){
+  return Object.keys(c.apl).sort().map(function(k){return {k:k,dose:c.apl[k],loc:(isObj(c.loc)&&c.loc[k])||null,obs:(isObj(c.obs)&&c.obs[k])||''};});
+}
+function cnPoda(c){
+  var ks=Object.keys(c.apl).sort();
+  while(ks.length>60){var k=ks.shift();delete c.apl[k];if(isObj(c.loc))delete c.loc[k];if(isObj(c.obs))delete c.obs[k];}
+}
+/* registra (ou atualiza) uma aplicação; loc undefined = mantém o local que já existe, null = sem local */
+function cnRegistra(dk,dose,loc,obs){
+  var c=db.caneta;
+  if(!c||!/^\d{4}-\d{2}-\d{2}$/.test(dk))return false;
+  var novo=!(dk in c.apl);
+  if(!isObj(c.loc))c.loc={};
+  if(!isObj(c.obs))c.obs={};
+  c.apl[dk]=Math.round((dose>0?dose:c.dose)*100)/100;
+  if(loc!==undefined){if(loc&&cnLocOk(loc))c.loc[dk]=loc;else delete c.loc[dk];}
+  if(typeof obs==='string'){var ob=obs.replace(/\s+/g,' ').trim().slice(0,80);if(ob)c.obs[dk]=ob;else delete c.obs[dk];}
+  if(novo&&typeof c.est==='number'&&c.est>0)c.est--;
+  cnPoda(c);
+  return true;
+}
+function cnRemove(dk){
+  var c=db.caneta;
+  if(!c||!(dk in c.apl))return;
+  delete c.apl[dk];
+  if(isObj(c.loc))delete c.loc[dk];
+  if(isObj(c.obs))delete c.obs[dk];
+  if(typeof c.est==='number'&&c.est<99&&dk>=somaDias(hojeK,-7))c.est++;
+}
+/* quanto cada local foi usado: última vez e total de vezes */
+function cnUsos(c){
+  var u={};
+  CN_LOCS.forEach(function(x){u[x[0]]={ult:null,n:0};});
+  cnLista(c).forEach(function(a){if(a.loc&&u[a.loc]){u[a.loc].n++;if(!u[a.loc].ult||a.k>u[a.loc].ult)u[a.loc].ult=a.k;}});
+  return u;
+}
+/* sugestão: o local que ficou mais tempo sem uso (os nunca usados vêm primeiro, na ordem da lista) */
+function cnSugerido(c){
+  var u=cnUsos(c),best=null,bk=null;
+  CN_LOCS.forEach(function(x){
+    var k=u[x[0]].ult||'0000-00-00';
+    if(best===null||k<bk){best=x[0];bk=k;}
+  });
+  return best;
+}
+
+/* próxima aplicação e situação (em dia, hoje, atrasada, dose para pular) */
+function cnProx(c){
+  var M=MEDS[c.med],ks=Object.keys(c.apl).sort(),last=ks.length?ks[ks.length-1]:null,P=CN_PK[c.med]||null;
+  var r={st:'sem',due:null,last:last,dias:0,late:0,atr:P?P.atr:null};
+  if(!M.sem){r.st='diaria';return r;}
+  var due;
+  if(last){
+    due=proxAplic(c,somaDias(last,1));
+    if(difDias(last,due)<3)due=somaDias(due,7);
+  }else due=proxAplic(c,hojeK);
+  r.due=due;
+  if(last&&difDias(last,hojeK)>14){r.st='longo';r.dias=difDias(last,hojeK);r.due=proxAplic(c,hojeK);return r;}
+  if(due<hojeK){
+    r.late=difDias(due,hojeK);
+    if(r.atr===null||r.late<=r.atr){r.st='atraso';r.dias=-r.late;}
+    else{r.st='pular';r.pulou=due;r.due=proxAplic(c,hojeK);r.dias=difDias(hojeK,r.due);}
+  }else{
+    r.dias=difDias(hojeK,due);
+    r.st=r.dias===0?'hoje':(last?'ok':'sem');
+  }
+  return r;
+}
+function cnDiaTxt(c,k){return DIAS_NOME[dateDe(k).getDay()].toLowerCase()+', '+fmtData(k);}
+function cnGuia(c,p){
+  var M=MEDS[c.med],dica=' Se você já aplicou, registre a data certa em Progresso › Caneta.';
+  if(p.st==='atraso'){
+    var t='A aplicação estava marcada para '+cnDiaTxt(c,p.due)+' e está atrasada '+p.late+(p.late===1?' dia':' dias')+'. ';
+    t+=p.atr!==null?'Pela bula do '+M.cur+', ainda dá para aplicar até '+p.atr+' dias depois do dia combinado; depois disso o certo é pular a dose. Nunca aplique duas doses com menos de 3 dias de intervalo.':'Veja na bula, ou com o seu médico, se ainda dá para aplicar.';
+    return t+dica;
+  }
+  if(p.st==='pular'){
+    return 'Já se passaram mais de '+p.atr+' dias do dia combinado ('+fmtData(p.pulou)+'). Pela bula do '+M.cur+', pule essa dose e aplique a próxima em '+cnDiaTxt(c,p.due)+', sem dobrar a dose. Em caso de dúvida, fale com o seu médico.'+dica;
+  }
+  if(p.st==='longo'){
+    return 'A última aplicação registrada foi em '+fmtData(p.last)+', há '+p.dias+' dias. Se você aplicou e não registrou, use "Registrar aplicação" abaixo. Se ficou mais de 2 semanas sem aplicar, converse com o seu médico antes de retomar, porque pode ser preciso ajustar a dose.';
+  }
+  return '';
+}
+function cnEstoqueTxt(c){
+  if(typeof c.est!=='number')return '';
+  if(c.est<=0)return 'A caneta acabou. Confira a reposição antes da próxima aplicação.';
+  if(c.est===1)return 'Resta 1 dose na caneta. Confira a reposição.';
+  return '';
+}
+
+/* ---------- modelo do nível estimado ---------- */
+function cnNivelEm(apls,P,ms){
+  var ke=Math.LN2/P.t,ka=P.ka,s=0;
+  apls.forEach(function(a){
+    var dt=(ms-a.t)/864e5;
+    if(dt>0)s+=P.F*a.d*ka/(ka-ke)*(Math.exp(-ke*dt)-Math.exp(-ka*dt));
+  });
+  return s;
+}
+function cnQuando(c,k){var p=k.split('-'),h=String(c.h||'08:00').split(':');return new Date(+p[0],+p[1]-1,+p[2],+h[0]||8,+h[1]||0).getTime();}
+function cnNice(m){var p=Math.pow(10,Math.floor(Math.log(m)/Math.LN10)),f=m/p;return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p;}
+function cnFmtMg(v){return fmtK(String(Math.round(v*10)/10));}
+function cnNivelDados(c){
+  var P=CN_PK[c.med];
+  if(!P)return {erro:'tipo'};
+  var ks=Object.keys(c.apl).sort();
+  if(!ks.length)return {erro:'vazio'};
+  var apls=ks.map(function(k){return {k:k,t:cnQuando(c,k),d:c.apl[k]};});
+  var agora=new Date().getTime(),px=cnProx(c),dia=864e5;
+  var pt=px.due?Math.max(cnQuando(c,px.due),agora):agora+7*dia;
+  var proj=apls.concat([{k:'prev',t:pt,d:c.dose}]);
+  var d0=dateDe(hojeK).getTime();
+  var ini=Math.max(apls[0].t-dia,d0-56*dia),fim=Math.max(pt+3*dia,agora+7*dia);
+  var N=Math.ceil((fim-ini)/(dia/4)),i,t,v,ant=[],fut=[],mx=0;
+  for(i=0;i<=N;i++){
+    t=ini+i*(dia/4);
+    if(t<=agora){v=cnNivelEm(apls,P,t);ant.push({t:t,v:v});}
+    else{v=cnNivelEm(proj,P,t);fut.push({t:t,v:v});}
+    if(v>mx)mx=v;
+  }
+  var va=cnNivelEm(apls,P,agora);
+  ant.push({t:agora,v:va});
+  fut.unshift({t:agora,v:va});
+  var ult=apls[apls.length-1],pico=0;
+  for(t=ult.t;t<=Math.max(pt,ult.t+7*dia);t+=dia/8){v=cnNivelEm(apls,P,t);if(v>pico)pico=v;}
+  return {P:P,apls:apls,ant:ant,fut:fut,ini:ini,fim:fim,agora:agora,pt:pt,max:mx,now:va,pico:pico,vale:cnNivelEm(apls,P,pt),proj:proj};
+}
+function cnTabNivel(D,c){
+  var rows='',t,n=0,dia=864e5,d0=Math.max(D.ini,dateDe(hojeK).getTime()-14*dia);
+  for(t=d0;t<=D.fim&&n<28;t+=dia,n++){
+    var dt=new Date(t),k=key(dt),fut=t>D.agora;
+    var tt=new Date(dt.getFullYear(),dt.getMonth(),dt.getDate(),12,0).getTime();
+    rows+='<tr><td>'+esc(fmtData(k))+(k===hojeK?' (hoje)':'')+'</td><td>'+esc(cnFmtMg(cnNivelEm(fut?D.proj:D.apls,D.P,tt)))+' mg'+(fut?' (previsto)':'')+'</td></tr>';
+  }
+  return '<details class="cndet"><summary>Ver os valores em tabela</summary><table class="cntab"><thead><tr><th scope="col">Dia</th><th scope="col">Nível estimado</th></tr></thead><tbody>'+rows+'</tbody></table></details>';
+}
+function cnTipLiga(box,pts,W){
+  var svg=box.querySelector('svg'),tip=box.querySelector('.cntip'),cx=svg.querySelector('.cx'),idx=-1;
+  function esconde(){idx=-1;tip.hidden=true;cx.style.display='none';}
+  function mostra(i){
+    if(i<0||i>=pts.length){esconde();return;}
+    idx=i;
+    var p=pts[i];
+    cx.setAttribute('x1',p.x);cx.setAttribute('x2',p.x);cx.style.display='';
+    tip.innerHTML=p.t;tip.hidden=false;
+    var w=tip.offsetWidth,bw=box.clientWidth,left=p.x*(bw/W)-w/2;
+    tip.style.left=Math.max(0,Math.min(bw-w,left))+'px';
+  }
+  function acha(ev){
+    var r=svg.getBoundingClientRect(),x=(ev.clientX-r.left)*(W/Math.max(1,r.width)),b=0,bd=1e9;
+    pts.forEach(function(p,i){var d=Math.abs(p.x-x);if(d<bd){bd=d;b=i;}});
+    return b;
+  }
+  svg.addEventListener('pointerdown',function(ev){mostra(acha(ev));});
+  svg.addEventListener('pointermove',function(ev){if(ev.pointerType==='mouse'||ev.buttons)mostra(acha(ev));});
+  svg.addEventListener('pointerleave',function(ev){if(ev.pointerType==='mouse')esconde();});
+  svg.addEventListener('keydown',function(ev){
+    if(ev.key==='ArrowRight'){mostra(Math.min(pts.length-1,idx<0?0:idx+1));ev.preventDefault();}
+    else if(ev.key==='ArrowLeft'){mostra(Math.max(0,idx<0?pts.length-1:idx-1));ev.preventDefault();}
+    else if(ev.key==='Escape')esconde();
+  });
+  svg.addEventListener('blur',esconde);
+}
+function cnLargura(){
+  var el=$('cnpNivel')||$('ps-caneta'),w=el?el.clientWidth:0;
+  return Math.max(240,Math.min(560,Math.round((w||300)-32)));
+}
+function cnNivelHtml(c){
+  var h='<h2>Nível estimado no organismo</h2>',D=cnNivelDados(c);
+  if(D.erro==='tipo')return h+'<p class="nota">O gráfico de nível estimado está disponível para Mounjaro, Ozempic/Wegovy e Trulicity (canetas semanais).</p>';
+  if(D.erro==='vazio')return h+'<p class="nota">Registre pelo menos uma aplicação (abaixo, em "Registrar aplicação") para ver a curva estimada do medicamento no corpo.</p>';
+  var W=cnLargura(),H=176,L=34,R=10,T=14,B=28,dia=864e5;
+  var step=cnNice(D.max*1.1/3),ymax=Math.max(step,Math.ceil(D.max*1.05/step)*step);
+  function X(t){return L+(W-L-R)*((t-D.ini)/(D.fim-D.ini));}
+  function Y(v){return T+(H-T-B)*(1-v/ymax);}
+  var s='<div class="cng" id="cnGN"><svg viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="Gráfico do nível estimado de '+esc(MEDS[c.med].cur)+' no organismo: agora cerca de '+cnFmtMg(D.now)+' mg, pico de cerca de '+cnFmtMg(D.pico)+' mg e vale de cerca de '+cnFmtMg(D.vale)+' mg antes da próxima dose. Use as setas para ver cada dia.">';
+  var v;
+  for(v=0;v<=ymax+step/10;v+=step){s+='<line class="gl" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'"/><text x="'+(L-6)+'" y="'+(Y(v)+4).toFixed(1)+'" text-anchor="end">'+esc(cnFmtMg(v))+'</text>';}
+  var pa=D.ant.map(function(p){return X(p.t).toFixed(1)+','+Y(p.v).toFixed(1);}),pf=D.fut.map(function(p){return X(p.t).toFixed(1)+','+Y(p.v).toFixed(1);});
+  s+='<polygon class="na" points="'+X(D.ant[0].t).toFixed(1)+','+Y(0).toFixed(1)+' '+pa.join(' ')+' '+X(D.agora).toFixed(1)+','+Y(0).toFixed(1)+'"/>';
+  s+='<polyline class="nl" points="'+pa.join(' ')+'"/><polyline class="nl fut" points="'+pf.join(' ')+'"/>';
+  var xh=X(D.agora);
+  s+='<line class="hj" x1="'+xh.toFixed(1)+'" x2="'+xh.toFixed(1)+'" y1="'+T+'" y2="'+(H-B)+'"/>';
+  D.apls.forEach(function(a){
+    if(a.t<D.ini)return;
+    s+='<line class="gl" x1="'+X(a.t).toFixed(1)+'" x2="'+X(a.t).toFixed(1)+'" y1="'+(H-B)+'" y2="'+(H-B+6)+'" style="stroke:var(--mute)"/>';
+    s+='<circle class="ap" cx="'+X(a.t).toFixed(1)+'" cy="'+Y(cnNivelEm(D.apls,D.P,a.t+1)).toFixed(1)+'" r="4.5"/>';
+  });
+  s+='<circle class="apf" cx="'+X(D.pt).toFixed(1)+'" cy="'+Y(cnNivelEm(D.proj,D.P,D.pt+1)).toFixed(1)+'" r="4.5"/>';
+  var ya=H-8;
+  s+='<text x="'+L+'" y="'+ya+'" text-anchor="start">'+esc(fmtData(key(new Date(D.ini))))+'</text><text x="'+(W-R)+'" y="'+ya+'" text-anchor="end">'+esc(fmtData(key(new Date(D.fim))))+'</text>';
+  if(xh-L>56&&(W-R)-xh>56)s+='<text x="'+xh.toFixed(1)+'" y="'+ya+'" text-anchor="middle">hoje</text>';
+  s+='<line class="cx" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" style="display:none"/></svg><div class="cntip" hidden></div></div>';
+  h+=s;
+  h+='<p class="cnleg"><span><i class="k1"></i>aplicação feita</span><span><i class="k2"></i>próxima</span><span><i class="k3"></i>previsão</span></p>';
+  h+='<div class="rsg cnst"><div class="rst"><b>≈ '+esc(cnFmtMg(D.now))+' mg</b><span>Agora</span><small>estimativa de hoje</small></div><div class="rst"><b>≈ '+esc(cnFmtMg(D.pico))+' mg</b><span>Pico</span><small>depois da última dose</small></div><div class="rst"><b>≈ '+esc(cnFmtMg(D.vale))+' mg</b><span>Vale</span><small>antes da próxima dose</small></div></div>';
+  h+=cnTabNivel(D,c);
+  h+='<p class="nota">Estimativa simplificada, feita com a meia-vida média da bula ('+(D.P.t===7?'cerca de 7 dias':'cerca de 5 dias')+') e as doses que você registrou. Serve para ver o ritmo de subida e queda ao longo da semana, não para decidir dose ou horário. Cada corpo responde de um jeito.</p>';
+  return h;
+}
+function cnNivelPontos(c,W){
+  var D=cnNivelDados(c);
+  if(D.erro)return [];
+  var L=34,R=10,pts=[],dia=864e5,d0=dateDe(key(new Date(D.ini))).getTime(),step=cnNice(D.max*1.1/3);
+  function X(t){return L+(W-L-R)*((t-D.ini)/(D.fim-D.ini));}
+  var t;
+  for(t=d0;t<=D.fim;t+=dia){
+    var dt=new Date(t),k=key(dt),m=new Date(dt.getFullYear(),dt.getMonth(),dt.getDate(),12,0).getTime(),fut=m>D.agora;
+    if(m<D.ini)continue;
+    pts.push({x:X(m),t:'<b>≈ '+esc(cnFmtMg(cnNivelEm(fut?D.proj:D.apls,D.P,m)))+' mg</b> em '+esc(fmtData(k))+(fut?' (previsto)':'')});
+  }
+  return pts;
+}
+
+/* ---------- peso por fase de dose ---------- */
+function cnPesoHtml(c){
+  var h='<h2>Peso por fase de dose</h2>';
+  var ls=cnLista(c),pk=Object.keys(db.peso).sort().filter(function(k){return typeof db.peso[k]==='number';});
+  if(ls.length)pk=pk.filter(function(k){return k>=somaDias(ls[0].k,-21);});
+  pk=pk.slice(-120);
+  if(pk.length<2)return h+'<p class="nota">Registre o peso em pelo menos 2 dias (em Progresso › Corpo) para ver como ele muda a cada dose.</p>';
+  var W=cnLargura(),H=180,L=38,R=10,T=26,B=28,k0=pk[0],k1=pk[pk.length-1],span=Math.max(1,difDias(k0,k1));
+  var vals=pk.map(function(k){return db.peso[k];}),mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),pd=Math.max(0.4,(mx-mn)*0.18);
+  mn-=pd;mx+=pd;
+  var stp=cnNice((mx-mn)/3);
+  mn=Math.floor(mn/stp+1e-9)*stp;mx=Math.ceil(mx/stp-1e-9)*stp;
+  function X(k){return L+(W-L-R)*(difDias(k0,k)/span);}
+  function Y(v){return T+(H-T-B)*(1-(v-mn)/(mx-mn));}
+  function doseEm(k){var d=null;ls.forEach(function(a){if(a.k<=k)d=a.dose;});return d;}
+  var fases=[],ant=null;
+  ls.forEach(function(a){if(a.dose!==ant){fases.push({k:a.k,dose:a.dose});ant=a.dose;}});
+  var s='<div class="cng" id="cnGP"><svg viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="Gráfico do peso de '+esc(fmtKg(vals[0]))+' a '+esc(fmtKg(vals[vals.length-1]))+', dividido por fase de dose. Use as setas para ver cada pesagem.">';
+  fases.forEach(function(f,i){
+    var a=f.k<k0?k0:f.k,b=(i<fases.length-1?fases[i+1].k:k1);
+    if(b<k0||a>k1)return;
+    if(b>k1)b=k1;
+    var xa=X(a),xb=X(b);
+    if(i%2===0)s+='<rect class="fb" x="'+xa.toFixed(1)+'" y="'+T+'" width="'+Math.max(0,xb-xa).toFixed(1)+'" height="'+(H-T-B)+'"/>';
+    if(xb-xa>34)s+='<text class="fl" x="'+(xa+4).toFixed(1)+'" y="'+(T-8)+'" text-anchor="start">'+esc(fmtK(f.dose))+' mg</text>';
+    s+='<line class="dc" x1="'+xa.toFixed(1)+'" x2="'+xa.toFixed(1)+'" y1="'+(T-4)+'" y2="'+(H-B)+'"/>';
+  });
+  var tv;
+  for(tv=mn;tv<=mx+stp/10;tv+=stp){
+    s+='<line class="gl" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(tv).toFixed(1)+'" y2="'+Y(tv).toFixed(1)+'"/><text x="'+(L-6)+'" y="'+(Y(tv)+4).toFixed(1)+'" text-anchor="end">'+esc(fmtK(String(Math.round(tv*10)/10)))+'</text>';
+  }
+  s+='<polyline class="pl" points="'+pk.map(function(k){return X(k).toFixed(1)+','+Y(db.peso[k]).toFixed(1);}).join(' ')+'"/>';
+  pk.forEach(function(k){s+='<circle class="ap" cx="'+X(k).toFixed(1)+'" cy="'+Y(db.peso[k]).toFixed(1)+'" r="4.5"/>';});
+  s+='<text x="'+L+'" y="'+(H-8)+'" text-anchor="start">'+esc(fmtData(k0))+'</text><text x="'+(W-R)+'" y="'+(H-8)+'" text-anchor="end">'+esc(fmtData(k1))+'</text>';
+  s+='<line class="cx" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" style="display:none"/></svg><div class="cntip" hidden></div></div>';
+  h+=s;
+  var dp=vals[vals.length-1]-vals[0];
+  h+='<p class="nota">Faixas claras e escuras alternadas mostram cada fase de dose, com a dose escrita no topo. De '+esc(fmtData(k0))+' a '+esc(fmtData(k1))+': <b>'+(Math.abs(dp)<0.05?'sem mudança':(dp>0?'+':'−')+n1(dp)+' kg')+'</b>. A balança oscila de um dia para o outro: olhe a tendência, não um dia só.</p>';
+  return h;
+}
+function cnPesoPontos(c,W){
+  var ls=cnLista(c),pk=Object.keys(db.peso).sort().filter(function(k){return typeof db.peso[k]==='number';});
+  if(ls.length)pk=pk.filter(function(k){return k>=somaDias(ls[0].k,-21);});
+  pk=pk.slice(-120);
+  if(pk.length<2)return [];
+  var L=38,R=10,k0=pk[0],k1=pk[pk.length-1],span=Math.max(1,difDias(k0,k1));
+  return pk.map(function(k){
+    var d=null;ls.forEach(function(a){if(a.k<=k)d=a.dose;});
+    return {x:L+(W-L-R)*(difDias(k0,k)/span),t:'<b>'+esc(fmtKg(db.peso[k]))+'</b> em '+esc(fmtData(k))+(d!==null?' · '+esc(fmtK(d))+' mg':'')};
+  });
+}
+
+/* ---------- como você se sente: apetite, enjoo e energia, por semana ---------- */
+var CN_NIV={a:{1:0,2:1,3:2},e:{0:0,1:1,2:2},g:{1:0,2:1,3:2}};
+function cnGl(n){
+  var c=n===2?'<circle cx="7" cy="7" r="5.9" fill="currentColor"/>':'<circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/>'+(n===1?'<path d="M7 2a5 5 0 0 0 0 10z" fill="currentColor"/>':'');
+  return '<svg class="cgl" viewBox="0 0 14 14" aria-hidden="true" focusable="false">'+c+'</svg>';
+}
+function cnSintHtml(c){
+  var h='<h2>Como você se sente</h2>',ks=Object.keys(c.reg||{}),dwh=dateDe(hojeK).getDay(),ini1=somaDias(hojeK,-dwh-7),w,i;
+  if(!ks.length)return h+'<p class="nota">Registre apetite, enjoo e energia na aba Hoje (um toque cada) e o quadro aparece aqui, junto com os dias de aplicação.</p>';
+  h+='<p class="cnleg"><span>'+cnGl(0)+' normal / nenhum / boa</span><span>'+cnGl(1)+' menor / leve / média</span><span>'+cnGl(2)+' quase nenhum / forte / baixa</span></p>';
+  var DL=['D','S','T','Q','Q','S','S'];
+  for(w=0;w<2;w++){
+    var ini=somaDias(ini1,w*7);
+    h+='<table class="cnheat"><caption>Semana de '+esc(fmtData(ini))+'</caption><thead><tr><th scope="col"><span class="sr">Item</span></th>';
+    for(i=0;i<7;i++){var k=somaDias(ini,i);h+='<th scope="col" class="'+(k===hojeK?'hj':'')+'">'+DL[i]+'<br>'+esc(k.slice(8))+'</th>';}
+    h+='</tr></thead><tbody>';
+    h+='<tr><th scope="row">Dose</th>';
+    for(i=0;i<7;i++){
+      var k2=somaDias(ini,i);
+      h+=(k2 in c.apl)?'<td class="ap" aria-label="Aplicação de '+esc(fmtK(c.apl[k2]))+' mg em '+esc(fmtData(k2))+'">'+ico('seringa')+'</td>':'<td class="vz"></td>';
+    }
+    h+='</tr>';
+    [['a','Apetite'],['e','Enjoo'],['g','Energia']].forEach(function(g){
+      h+='<tr><th scope="row">'+g[1]+'</th>';
+      for(i=0;i<7;i++){
+        var k3=somaDias(ini,i),r=c.reg[k3],v=r?r[g[0]]:undefined;
+        if(v===undefined)h+='<td class="vz" aria-label="'+g[1]+' em '+esc(fmtData(k3))+': sem registro"></td>';
+        else{var n=CN_NIV[g[0]][v];h+='<td class="l'+n+'" aria-label="'+g[1]+' em '+esc(fmtData(k3))+': '+esc(cnRotulo(g[0],v).toLowerCase())+'">'+cnGl(n)+'</td>';}
+      }
+      h+='</tr>';
+    });
+    h+='</tbody></table>';
+  }
+  var pd=cnPadrao(c);
+  if(pd)h+='<p class="cnins in" role="status">'+ico('info')+'<span>'+esc(pd)+'</span></p>';
+  return h;
+}
+/* enjoo costuma aparecer logo depois da aplicação? precisa de pelo menos 4 dias com enjoo registrados */
+function cnPadrao(c){
+  var ks=Object.keys(c.apl).sort(),n=0,perto=0;
+  if(ks.length<2)return '';
+  Object.keys(c.reg||{}).forEach(function(k){
+    var r=c.reg[k];
+    if(!r||!(r.e>=1))return;
+    var ult=null;ks.forEach(function(a){if(a<=k)ult=a;});
+    if(ult===null)return;
+    n++;
+    var d=difDias(ult,k);
+    if(d>=1&&d<=2)perto++;
+  });
+  if(n>=4&&perto/n>=0.6)return 'Em '+perto+' de '+n+' dias com enjoo, a aplicação tinha sido 1 ou 2 dias antes. É um padrão comum no começo e a cada aumento de dose. Comer devagar, em porções pequenas e sem gordura nesses dias costuma ajudar; se o enjoo for forte ou frequente, fale com o seu médico.';
+  return '';
+}
+
+/* ---------- locais de aplicação: mapa do rodízio e registro ---------- */
+function cnCorpoSvg(){
+  return '<svg class="cncorpo" viewBox="0 0 200 250" aria-hidden="true" focusable="false"><circle class="cb" cx="100" cy="22" r="17"/><path class="cb" d="M70 46 Q100 40 130 46 L136 126 Q137 136 126 138 L74 138 Q63 136 64 126 Z"/><path class="lm" d="M60 58 L42 124"/><path class="lm" d="M140 58 L158 124"/><path class="lm" d="M79 142 L78 232"/><path class="lm" d="M121 142 L122 232"/></svg>';
+}
+var CN_POS={ae:[38,40],ad:[62,40],ce:[38.5,70.4],cd:[61.5,70.4],be:[22,33.6],bd:[78,33.6]};
+function cnMapaHtml(c,sel,sug){
+  var u=cnUsos(c),h='<div class="bmap">'+cnCorpoSvg();
+  CN_LOCS.forEach(function(x){
+    var k=x[0],p=CN_POS[k],us=u[k],dias=us.ult?Math.max(0,difDias(us.ult,hojeK)):null;
+    var cls='bl'+(dias!==null&&dias<=7?' r1':(dias!==null&&dias<=21?' r2':''))+(sel===k?' sel':'')+(sug===k?' sug':'');
+    var rot=x[1]+(us.ult?', última vez há '+dias+(dias===1?' dia':' dias'):', ainda não usado')+(sug===k?', sugerido':'');
+    h+='<button type="button" class="'+cls+'" data-loc="'+k+'" style="left:'+p[0]+'%;top:'+p[1]+'%" aria-pressed="'+(sel===k?'true':'false')+'" aria-label="'+esc(rot)+'">'+(sug===k?'<span aria-hidden="true">★</span>':'')+'</button>';
+  });
+  h+='</div>';
+  return h;
+}
+function cnLocaisTxt(c){
+  var u=cnUsos(c),h='<ul class="lista-n cnlu">';
+  CN_LOCS.forEach(function(x){
+    var us=u[x[0]];
+    var dd=us.ult?Math.max(0,difDias(us.ult,hojeK)):0;
+    h+='<li><span>'+esc(x[1])+'</span><b>'+(us.ult?'há '+dd+(dd===1?' dia':' dias')+' · '+us.n+(us.n===1?' vez':' vezes'):'ainda não usado')+'</b></li>';
+  });
+  return h+'</ul>';
+}
+function cnDoseOpcoes(c,sel){
+  var M=MEDS[c.med],l=(M.doses||[]).slice();
+  if(l.indexOf(c.dose)<0)l.push(c.dose);
+  if(sel>0&&l.indexOf(sel)<0)l.push(sel);
+  l.sort(function(a,b){return a-b;});
+  return l.map(function(d){return '<option value="'+d+'"'+(d===sel?' selected':'')+'>'+esc(fmtK(d))+' mg</option>';}).join('');
+}
+function cnRegHtml(c){
+  if(!cnF.dk)cnF.dk=hojeK;
+  if(!cnF.dose)cnF.dose=c.dose;
+  var sug=cnSugerido(c),h='<h2>Registrar aplicação</h2>';
+  h+='<div class="row2"><label class="f1l">Data<input type="date" id="cnfData" value="'+esc(cnF.dk)+'" max="'+esc(hojeK)+'"></label><label class="f1l">Dose<select id="cnfDose">'+cnDoseOpcoes(c,cnF.dose)+'</select></label></div>';
+  h+='<p class="nota" style="margin-top:12px"><b>Onde você aplicou?</b> Toque no mapa. Esquerda e direita são as suas, como se você olhasse para o próprio corpo.</p>';
+  h+=cnMapaHtml(c,cnF.loc,sug);
+  h+='<p class="nota" id="cnfSel">'+(cnF.loc?'Escolhido: <b>'+esc(cnLocNome(cnF.loc))+'</b>.':(sug?'Sugerido para a próxima: <b>'+esc(cnLocNome(sug))+'</b> (★), o local há mais tempo sem uso. Mude alguns centímetros do ponto da vez anterior.':''))+'</p>';
+  h+='<p class="cnleg"><span><i class="k4"></i>usado há até 7 dias</span><span><i class="k5"></i>há até 3 semanas</span><span><i class="k6"></i>livre</span></p>';
+  h+='<label class="f1l">Observação (opcional)<input type="text" id="cnfObs" maxlength="80" value="'+esc(cnF.obs)+'" placeholder="Ex.: caneta nova, dor no local"></label>';
+  h+='<div class="lin"><button type="button" class="selb" data-act="salvar">Salvar aplicação</button><button type="button" data-act="semloc">Salvar sem local</button></div>';
+  h+='<p class="nota" id="cnfMsg" role="status"></p>';
+  h+=cnLocaisTxt(c);
+  var ls=cnLista(c).reverse();
+  h+='<h3>Histórico de aplicações</h3>';
+  if(!ls.length)h+='<p class="nota">Nenhuma aplicação registrada ainda.</p>';
+  else{
+    h+='<ul class="lista-n cnlog">';
+    ls.slice(0,20).forEach(function(a){
+      h+='<li><div class="cnlm"><span>'+esc(fmtDataL(a.k))+'</span><b>'+esc(fmtK(a.dose))+' mg'+(a.loc?' · '+esc(cnLocNome(a.loc)):'')+'</b>'+(a.obs?'<small>'+esc(a.obs)+'</small>':'')+'</div><button type="button" data-act="rem" data-k="'+esc(a.k)+'" aria-label="Remover a aplicação de '+esc(fmtData(a.k))+'">Remover</button></li>';
+    });
+    h+='</ul>';
+    if(ls.length>20)h+='<p class="nota">Mostrando as 20 mais recentes.</p>';
+  }
+  return h;
+}
+
+/* ---------- resumo do tratamento, doses na caneta e resumo para a consulta ---------- */
+function cnInicio(c){
+  var ls=cnLista(c),a=c.ini||null;
+  if(ls.length&&(!a||ls[0].k<a))a=ls[0].k;
+  return a;
+}
+function cnPesoInicio(c){
+  var ini=cnInicio(c);
+  if(!ini)return null;
+  var pk=Object.keys(db.peso).sort().filter(function(k){return typeof db.peso[k]==='number'&&k>=somaDias(ini,-14);});
+  if(pk.length<2)return null;
+  return {k0:pk[0],v0:db.peso[pk[0]],k1:pk[pk.length-1],v1:db.peso[pk[pk.length-1]]};
+}
+function cnResumoHtml(c){
+  var ls=cnLista(c),ini=cnInicio(c),pi=cnPesoInicio(c),sm=cnSemDose(c),t=[];
+  t.push([ini?String(Math.floor(Math.max(0,difDias(ini,hojeK))/7)+1):'–','Semana do tratamento',ini?'desde '+fmtDataL(ini):'informe a data de início em Ajustes']);
+  t.push([String(ls.length),ls.length===1?'Aplicação registrada':'Aplicações registradas',ls.length?'última em '+fmtData(ls[ls.length-1].k):'registre abaixo']);
+  if(pi){var dp=pi.v1-pi.v0;t.push([(Math.abs(dp)<0.05?'±0':(dp>0?'+':'−')+n1(dp))+' kg','Peso desde o início',fmtKg(pi.v0)+' → '+fmtKg(pi.v1)]);}
+  else t.push(['–','Peso desde o início','registre o peso em 2 dias ou mais']);
+  t.push([fmtK(c.dose)+' mg','Dose atual',sm===null?'':(sm<1?'iniciada há menos de 1 semana':'há '+sm+(sm===1?' semana':' semanas')+' nesta dose')]);
+  var h='<h2>Resumo do tratamento</h2><div class="rsg">';
+  t.forEach(function(x){h+='<div class="rst"><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span><small>'+esc(x[2])+'</small></div>';});
+  return h+'</div>';
+}
+function cnEstoqueHtml(c){
+  var h='<div class="cnest">';
+  if(typeof c.est!=='number'){
+    h+='<span>Controle de doses da caneta</span><button type="button" data-act="est4">Caneta nova: 4 doses</button>';
+  }else{
+    h+='<span>Doses na caneta</span><span class="cnstep"><button type="button" data-act="estm" aria-label="Menos uma dose">−</button><b aria-live="polite">'+c.est+'</b><button type="button" data-act="estp" aria-label="Mais uma dose">+</button></span><button type="button" data-act="est4">Caneta nova</button><button type="button" data-act="estx">Parar de controlar</button>';
+  }
+  return h+'</div>';
+}
+function cnHeroHtml(c){
+  var p=cnProx(c),M=MEDS[c.med],h='<h2 class="h2i">'+ico('seringa')+'Próxima aplicação</h2>';
+  if(p.st==='diaria'){
+    h+='<p class="nota">'+esc(M.cur)+' é aplicada todos os dias. O anel de contagem e o gráfico de nível aparecem para canetas semanais (Mounjaro, Ozempic/Wegovy e Trulicity). O histórico e o resumo funcionam normalmente.</p>';
+  }else{
+    var frac=0,big,peq,cls='';
+    if(p.st==='hoje'){frac=1;big='Hoje';peq='é o dia';}
+    else if(p.st==='atraso'){frac=1;big=String(p.late);peq=p.late===1?'dia de atraso':'dias de atraso';cls=' atraso';}
+    else if(p.st==='pular'){frac=1;big='Pular';peq='esta dose';cls=' pular';}
+    else if(p.st==='longo'){frac=1;big=String(p.dias);peq='dias sem registro';cls=' atraso';}
+    else{big=String(p.dias);peq=p.dias===1?'dia':'dias';frac=p.last?Math.min(1,Math.max(0,difDias(p.last,hojeK)/Math.max(1,difDias(p.last,p.due)))):0;}
+    var C=2*Math.PI*46;
+    h+='<div class="cnhero"><div class="cnring'+cls+'"><svg viewBox="0 0 120 120" role="img" aria-label="'+esc(big+' '+peq)+'"><circle class="trk" cx="60" cy="60" r="46"/><circle class="prg" cx="60" cy="60" r="46" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-frac)).toFixed(1)+'" transform="rotate(-90 60 60)"/></svg><div class="cnrtx"><b>'+esc(big)+'</b><span>'+esc(peq)+'</span></div></div>';
+    h+='<div class="cnht"><b>'+esc(M.cur)+' '+esc(fmtK(c.dose))+' mg</b><span>'+(p.st==='hoje'?'Hoje, às '+esc(c.h):(p.st==='atraso'?'Era ':'')+esc(cnDiaTxt(c,p.due))+', às '+esc(c.h))+'</span>';
+    h+='<small>'+(p.st==='ok'||p.st==='sem'?(p.dias===1?'Amanhã.':'Em '+p.dias+' dias.')+(p.st==='sem'?' Ainda não há aplicação registrada.':''):(p.st==='hoje'?(c.apl[hojeK]?'Aplicação de hoje já registrada.':'Ainda não registrada.'):''))+'</small></div></div>';
+    var g=cnGuia(c,p);
+    if(g)h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>'+esc(g)+'</span></p>';
+    if((p.st==='hoje'||p.st==='atraso')&&!c.apl[hojeK])h+='<button type="button" class="btn pri" data-act="hoje">Marcar aplicação de hoje como feita</button>';
+  }
+  var et=cnEstoqueTxt(c);
+  if(et)h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>'+esc(et)+'</span></p>';
+  h+=cnEstoqueHtml(c);
+  return h;
+}
+function cnDocTxt(c){
+  var M=MEDS[c.med],ls=cnLista(c),ini=cnInicio(c),pi=cnPesoInicio(c),sm=cnSemDose(c),t='Resumo da caneta ('+fmtDataL(hojeK)+')\n';
+  t+='Medicamento: '+M.cur+', dose atual '+fmtK(c.dose)+' mg'+(sm===null?'':(sm<1?' (iniciada há menos de 1 semana)':' (há '+sm+(sm===1?' semana':' semanas')+' nesta dose)'))+'\n';
+  t+='Dia da aplicação: '+DIAS_NOME[c.dia].toLowerCase()+', às '+c.h+'\n';
+  if(ini)t+='Início: '+fmtDataL(ini)+' (semana '+(Math.floor(Math.max(0,difDias(ini,hojeK))/7)+1)+' do tratamento)\n';
+  if(c.hist&&c.hist.length>1){t+='Doses ao longo do tempo: '+c.hist.map(function(x){return fmtData(x.d)+' '+fmtK(x.dose)+' mg';}).join('; ')+'\n';}
+  t+='Aplicações registradas: '+ls.length+'\n';
+  ls.slice(-8).forEach(function(a){t+='- '+fmtDataL(a.k)+': '+fmtK(a.dose)+' mg'+(a.loc?', '+cnLocNome(a.loc).toLowerCase():'')+(a.obs?' ('+a.obs+')':'')+'\n';});
+  if(pi){var dp=pi.v1-pi.v0;t+='Peso: '+fmtKg(pi.v0)+' ('+fmtData(pi.k0)+') → '+fmtKg(pi.v1)+' ('+fmtData(pi.k1)+'): '+(Math.abs(dp)<0.05?'sem mudança':(dp>0?'+':'−')+n1(dp)+' kg')+'\n';}
+  var u=cnUltimos(c,hojeK,14),cnt={ef:0,el:0,ba:0,qn:0},ne=0;
+  u.forEach(function(x){
+    if(x.r.e===2)cnt.ef++;if(x.r.e===1)cnt.el++;if(x.r.g===3)cnt.ba++;if(x.r.a===3)cnt.qn++;ne++;
+  });
+  if(ne)t+='Últimos 14 dias ('+ne+' com registro): enjoo forte em '+cnt.ef+', leve em '+cnt.el+'; energia baixa em '+cnt.ba+'; apetite quase nenhum em '+cnt.qn+'\n';
+  var R=resumoSemana(somaDias(hojeK,-dateDe(hojeK).getDay()));
+  if(R.protM!==null)t+='Proteína (média desta semana): '+fmtN(Math.round(R.protM))+' g por dia (meta '+fmtN(Math.round(R.protMeta))+' g)\n';
+  var et=cnEstoqueTxt(c);if(et)t+=et+'\n';
+  t+='\nRegistro feito no app Rotina Fitness. São anotações pessoais e estimativas, que não substituem a avaliação médica.';
+  return t;
+}
+function cnDocHtml(c){
+  return '<h2>Resumo para a consulta</h2><p class="nota">Reúne dose, aplicações, local, peso e sintomas dos últimos dias em um texto para levar ao médico ou à nutricionista.</p><div class="lin"><button type="button" class="selb" data-act="doccp">Copiar resumo</button><button type="button" data-act="docsh">Compartilhar</button></div><p class="nota" id="cndMsg" role="status"></p><details class="cndet"><summary>Ver o texto</summary><p class="nota" style="white-space:pre-line">'+esc(cnDocTxt(c))+'</p></details><p class="nota cnaviso">Informação geral, que não substitui orientação médica. Não mude a dose nem o dia da aplicação por conta própria.</p>';
+}
+
+/* ---------- tela ---------- */
+function cnDesenhaGraficos(c){
+  var W=cnLargura();
+  var a=$('cnpNivel'),b=$('cnpPeso');
+  if(a){a.innerHTML=cnNivelHtml(c);var g=$('cnGN');if(g)cnTipLiga(g,cnNivelPontos(c,W),W);}
+  if(b){b.innerHTML=cnPesoHtml(c);var g2=$('cnGP');if(g2)cnTipLiga(g2,cnPesoPontos(c,W),W);}
+  cnLarg=W;
+}
+function renderCnProg(){
+  var c=db.caneta;
+  if(!c||!c.on||!$('cnpHero'))return;
+  $('cnpHero').innerHTML=cnHeroHtml(c);
+  $('cnpResumo').innerHTML=cnResumoHtml(c);
+  cnDesenhaGraficos(c);
+  $('cnpSint').innerHTML=cnSintHtml(c);
+  $('cnpReg').innerHTML=cnRegHtml(c);
+  $('cnpDoc').innerHTML=cnDocHtml(c);
+}
+function cnAct(el,raiz){
+  while(el&&el!==raiz){if(el.getAttribute&&(el.getAttribute('data-act')||el.getAttribute('data-loc')))return el;el=el.parentNode;}
+  return null;
+}
+function cnToastDesfaz(msg,antes){
+  toast(msg,function(){db.caneta=JSON.parse(antes);salvar();render();renderCaneta();});
+}
+function ligarCnProg(){
+  var raiz=$('ps-caneta');
+  if(!raiz)return;
+  raiz.addEventListener('click',function(ev){
+    var c=db.caneta;if(!c||!c.on)return;
+    var el=cnAct(ev.target,raiz);if(!el)return;
+    var loc=el.getAttribute('data-loc'),ac=el.getAttribute('data-act'),antes=JSON.stringify(c);
+    if(loc){cnF.loc=(cnF.loc===loc)?null:loc;$('cnpReg').innerHTML=cnRegHtml(c);vib(8);return;}
+    if(ac==='hoje'){
+      cnRegistra(hojeK,c.dose,undefined);salvar();vib();render();renderCaneta();renderCnProg();
+      cnToastDesfaz('Aplicação de hoje registrada.',antes);
+    }else if(ac==='salvar'||ac==='semloc'){
+      var dk=($('cnfData')&&$('cnfData').value)||hojeK,dose=num($('cnfDose')&&$('cnfDose').value),msg=$('cnfMsg');
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(dk)||dk>hojeK){if(msg)msg.textContent='Escolha uma data de hoje ou de antes.';return;}
+      if(dk<'2015-01-01'){if(msg)msg.textContent='Essa data está muito antiga.';return;}
+      var ja=dk in c.apl,ob=($('cnfObs')&&$('cnfObs').value)||'';
+      cnRegistra(dk,dose>0?dose:c.dose,ac==='semloc'?null:(cnF.loc||null),ob);
+      cnF.loc=null;cnF.obs='';cnF.dk=hojeK;
+      salvar();vib();render();renderCaneta();renderCnProg();
+      cnToastDesfaz(ja?'Aplicação de '+fmtData(dk)+' atualizada.':'Aplicação de '+fmtData(dk)+' registrada.',antes);
+    }else if(ac==='rem'){
+      var k=el.getAttribute('data-k');
+      cnRemove(k);salvar();vib();render();renderCaneta();renderCnProg();
+      cnToastDesfaz('Aplicação de '+fmtData(k)+' removida.',antes);
+    }else if(ac==='est4'||ac==='estp'||ac==='estm'||ac==='estx'){
+      if(ac==='est4')c.est=4;
+      else if(ac==='estp')c.est=Math.min(99,(c.est||0)+1);
+      else if(ac==='estm')c.est=Math.max(0,(c.est||0)-1);
+      else c.est=null;
+      salvar();vib(8);render();renderCnProg();
+    }else if(ac==='doccp'||ac==='docsh'){
+      var t=cnDocTxt(c),m=$('cndMsg');
+      if(ac==='doccp')copiarTexto(t,function(){if(m)m.textContent='Resumo copiado. Cole onde quiser.';},function(){if(m)m.textContent='Não consegui copiar. Abra "Ver o texto" e copie à mão.';});
+      else compartilharTexto('Resumo da caneta',t,function(r){
+        if(!m)return;
+        m.textContent=r==='ok'?'Enviado.':(r==='wa'?'Abrindo o WhatsApp…':(r==='cancelado'?'':'Não foi possível compartilhar. Use "Copiar resumo".'));
+      });
+    }
+  });
+  raiz.addEventListener('input',function(ev){
+    if(ev.target.id==='cnfObs')cnF.obs=ev.target.value;
+  });
+  raiz.addEventListener('change',function(ev){
+    if(ev.target.id==='cnfData')cnF.dk=ev.target.value||hojeK;
+    if(ev.target.id==='cnfDose')cnF.dose=num(ev.target.value)||cnF.dose;
+  });
+  document.addEventListener('pointerdown',function(ev){
+    document.querySelectorAll('.cng').forEach(function(b){
+      if(b.contains(ev.target))return;
+      var t=b.querySelector('.cntip'),x=b.querySelector('.cx');
+      if(t)t.hidden=true;
+      if(x)x.style.display='none';
+    });
+  });
+  var tm=null;
+  window.addEventListener('resize',function(){
+    clearTimeout(tm);
+    tm=setTimeout(function(){
+      var c=db.caneta;
+      if(c&&c.on&&ativa==='prog'&&progSec==='caneta'&&Math.abs(cnLargura()-cnLarg)>8)cnDesenhaGraficos(c);
+    },200);
+  });
+  if($('cnVerAj'))$('cnVerAj').addEventListener('click',function(){progSec='caneta';irAba('prog');});
+}
+
 /* ---------- início ---------- */
 function virouDia(){var k=key(new Date());if(k!==hojeK){hojeK=k;agora=new Date();irParaDia(hojeK);render();}}
-montaIcones();montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarFoto();ligarUx();ligarAparencia();ligarAlarmes();ligarPrefs();ligarFp();ligarExtras();fillPerfil();renderRes();renderCanetaCard();irAba('hoje');
+montaIcones();montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarFoto();ligarUx();ligarAparencia();ligarAlarmes();ligarPrefs();ligarFp();ligarExtras();ligarCnProg();fillPerfil();renderRes();renderCanetaCard();irAba('hoje');
 if(temPin(perfilAtual()))abreLock();else if(db.novo)abreOnb();
 fotosCarregar(function(){if(ativa==='treino')renderTreino();});
 setTimeout(checaBackupAuto,2500);
