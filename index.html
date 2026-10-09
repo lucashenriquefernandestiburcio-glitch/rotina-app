@@ -418,6 +418,7 @@ body[data-aba=agua]{--bg:#e7f0fb;--hd1:#0b4a96;--hd2:#1565b4;--pool:#1971c2;--po
 body[data-aba=prog]{--bg:#efeafb;--hd1:#4528b0;--hd2:#6741d9;--pool:#6741d9;--pool-soft:#e5dcfc;--on-pool:#ffffff}
 body[data-aba=dieta]{--bg:#e8f5ea;--hd1:#17562a;--hd2:#1f6f30;--pool:#237a35;--pool-soft:#d5f0da;--on-pool:#ffffff}
 body[data-aba=ajustes]{--bg:#edeff3;--hd1:#2d3748;--hd2:#4a5568;--pool:#4a5568;--pool-soft:#e1e6ec;--on-pool:#ffffff}
+body[data-aba=caneta]{--bg:#fbebf2;--hd1:#8c1d4f;--hd2:#b0245f;--pool:#b0245f;--pool-soft:#fadbe8;--on-pool:#ffffff}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) body,:root:not([data-theme="light"]) body[data-aba=hoje]{--bg:#0d1d24;--hd1:#0a2f3d;--hd2:#0e4d4f;--pool:#3cc0cc;--pool-soft:#143a42;--on-pool:#06222a}
   :root:not([data-theme="light"]) body[data-aba=treino]{--bg:#1d1511;--hd1:#3d1b0b;--hd2:#6e2a0b;--pool:#ff9a4d;--pool-soft:#432611;--on-pool:#2b1100}
@@ -425,6 +426,7 @@ body[data-aba=ajustes]{--bg:#edeff3;--hd1:#2d3748;--hd2:#4a5568;--pool:#4a5568;-
   :root:not([data-theme="light"]) body[data-aba=prog]{--bg:#15122a;--hd1:#1f1450;--hd2:#38258f;--pool:#b69cff;--pool-soft:#2a2057;--on-pool:#1a0f45}
   :root:not([data-theme="light"]) body[data-aba=dieta]{--bg:#0e1d14;--hd1:#0d2e17;--hd2:#1b5a2c;--pool:#6fdc8c;--pool-soft:#173a22;--on-pool:#052010}
   :root:not([data-theme="light"]) body[data-aba=ajustes]{--bg:#14181d;--hd1:#1b2128;--hd2:#343d48;--pool:#b7c3cf;--pool-soft:#25303a;--on-pool:#10161c}
+  :root:not([data-theme="light"]) body[data-aba=caneta]{--bg:#220f19;--hd1:#4a0f2a;--hd2:#7a1c47;--pool:#ff8fb8;--pool-soft:#42182d;--on-pool:#2d0516}
 }
 :root[data-theme="dark"] body,:root[data-theme="dark"] body[data-aba=hoje]{--bg:#0d1d24;--hd1:#0a2f3d;--hd2:#0e4d4f;--pool:#3cc0cc;--pool-soft:#143a42;--on-pool:#06222a}
 :root[data-theme="dark"] body[data-aba=treino]{--bg:#1d1511;--hd1:#3d1b0b;--hd2:#6e2a0b;--pool:#ff9a4d;--pool-soft:#432611;--on-pool:#2b1100}
@@ -432,6 +434,7 @@ body[data-aba=ajustes]{--bg:#edeff3;--hd1:#2d3748;--hd2:#4a5568;--pool:#4a5568;-
 :root[data-theme="dark"] body[data-aba=prog]{--bg:#15122a;--hd1:#1f1450;--hd2:#38258f;--pool:#b69cff;--pool-soft:#2a2057;--on-pool:#1a0f45}
 :root[data-theme="dark"] body[data-aba=dieta]{--bg:#0e1d14;--hd1:#0d2e17;--hd2:#1b5a2c;--pool:#6fdc8c;--pool-soft:#173a22;--on-pool:#052010}
 :root[data-theme="dark"] body[data-aba=ajustes]{--bg:#14181d;--hd1:#1b2128;--hd2:#343d48;--pool:#b7c3cf;--pool-soft:#25303a;--on-pool:#10161c}
+:root[data-theme="dark"] body[data-aba=caneta]{--bg:#220f19;--hd1:#4a0f2a;--hd2:#7a1c47;--pool:#ff8fb8;--pool-soft:#42182d;--on-pool:#2d0516}
 
 @supports (color:color-mix(in srgb,red,blue)){
   @media (prefers-color-scheme: dark){
@@ -660,9 +663,10 @@ details.acc>summary::after{margin-left:auto}
 :root{--ft:1}
 html[data-tam="g"]{--ft:1.15}
 html[data-tam="x"]{--ft:1.3}
-nav>div{grid-template-columns:repeat(6,minmax(0,1fr))}
-nav button{font-size:calc(11.5px + 0px);min-width:0}
-nav button .ni{width:min(58px,calc(100% - 4px))}
+nav>div{display:flex}
+nav button{flex:1 1 auto;min-width:0;padding-left:2px;padding-right:2px;white-space:nowrap;font-size:calc(11px*min(var(--ft),1.12))}
+nav.n7 button{font-size:calc(10px*min(var(--ft),1.1))}
+nav button .ni{width:100%;max-width:58px;min-width:34px}
 html[data-simples] nav button{font-size:calc(11.5px*min(var(--ft),1.25))}
 .aptam{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:6px 0 8px}
 .aptam button{font:inherit;font-weight:600;min-height:48px;padding:6px 4px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;line-height:1.15}
@@ -674,7 +678,6 @@ html[data-simples] nav button{font-size:calc(11.5px*min(var(--ft),1.25))}
 html[data-tam="x"] #apTema{grid-template-columns:minmax(0,1fr)}
 @media (max-width:359px){html[data-tam="g"] #apTema{grid-template-columns:minmax(0,1fr)}}
 .apex{margin:2px 0 12px;padding:10px 12px;border-radius:10px;background:var(--pool-soft);color:var(--ink)}
-html[data-simples] nav>div{grid-template-columns:repeat(4,minmax(0,1fr))}
 html[data-simples] nav button[data-aba="prog"],html[data-simples] nav button[data-aba="agua"]{display:none}
 html[data-simples] .regra,html[data-simples] .dica,html[data-simples] #reset,html[data-simples] #dicaHoje,html[data-simples] #dicaFoto,html[data-simples] #sub{display:none!important}
 .lista-n li>span{min-width:0;overflow-wrap:anywhere}
@@ -840,6 +843,91 @@ html[data-tam=x] .cnst{grid-template-columns:minmax(0,1fr)}
 #pausaOp .pausab{margin:0 0 8px}
 .btn.reset{border-color:var(--line);color:var(--mute);font-weight:600}
 html[data-simples] #oqAgora,html[data-simples] #rsHoje,html[data-simples] #calMais,html[data-simples] #calX{display:none!important}
+
+/* ---------- v20: abas Caneta e Cardápio, visão geral na aba Hoje ---------- */
+.cnw{margin:0;min-width:0}
+.cnp>.card{margin-bottom:12px}
+.bxb h3{margin:16px 0 6px;font-size:calc(16px*var(--ft))}
+.bxb h3:first-child{margin-top:4px}
+.bxb .cnleg{margin:8px 0}
+.cnleg .k7{background:var(--amber)}
+.cnleg svg{width:24px;height:12px;flex:none;overflow:visible}
+.anres{margin:0 0 10px;font-weight:600;color:var(--mute);font-size:calc(14px*var(--ft))}
+.anl{list-style:none;margin:0 0 10px;padding:0;display:flex;flex-direction:column;gap:8px}
+.an{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:var(--bg);font-size:calc(14.5px*var(--ft));line-height:1.38}
+.an .ani{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--pool-soft);color:var(--pool)}
+.an .ani svg{width:18px;height:18px}
+.an .ant{min-width:0;overflow-wrap:anywhere}
+.an .ant b{display:block;font-size:calc(15.5px*var(--ft));margin-bottom:1px}
+.an.al{background:var(--gold-soft);color:var(--gold)}
+.an.al .ani{background:var(--card);color:var(--gold);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.cng .sb1,.cng .pb1{fill:var(--pool)}
+.cng .sb2,.cng .pb2{fill:var(--amber)}
+.cng .pb0{fill:var(--pool-soft);stroke:var(--pool);stroke-width:1.5}
+.cng .vl{font-size:calc(11px*min(var(--ft),1.15));font-weight:600;fill:var(--ink)}
+.cng .pm{stroke:var(--mute);stroke-width:1.5;stroke-dasharray:5 4}
+.cng .dsel{fill:var(--pool-soft);opacity:.6}
+.ls{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.ls.e{stroke:var(--danger)}
+.ls.a{stroke:var(--pool);stroke-dasharray:6 4}
+.ls.g{stroke:var(--amber);stroke-dasharray:1 5}
+.mk{stroke:var(--card);stroke-width:1.5}
+.mk.e{fill:var(--danger)}
+.mk.a{fill:var(--pool)}
+.mk.g{fill:var(--amber)}
+/* cardápio */
+.cdres h2{margin:0 0 8px}
+.cdl{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:8px}
+.cdi{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.cdi.ok{background:var(--pool-soft);border-color:transparent}
+.cdh{flex:none;min-width:46px;font-weight:700;color:var(--pool);font-variant-numeric:tabular-nums}
+.cdt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.cdt b{display:flex;align-items:center;gap:6px;font-size:calc(15.5px*var(--ft));line-height:1.25}
+.cdt>span{font-size:calc(14px*var(--ft));color:var(--mute);overflow-wrap:anywhere;line-height:1.35}
+.cdt em{font-style:normal;font-weight:600;font-size:calc(13.5px*var(--ft));color:var(--pool)}
+.cdk{flex:none;text-align:right;font-weight:700;font-size:calc(14px*var(--ft));white-space:nowrap;line-height:1.3}
+.cdk small{display:block;color:var(--mute);font-weight:600;font-size:calc(12.5px*var(--ft))}
+.cdok{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--pool);color:var(--on-pool);flex:none}
+.cdok svg{width:13px;height:13px}
+.cdat{margin:0 0 12px}
+.cdat button{min-height:44px}
+#cdBody>.bxs{margin-top:4px}
+/* visão geral */
+.vg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.vgt{font:inherit;text-align:left;display:flex;flex-direction:column;gap:3px;min-width:0;padding:8px 6px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.vgh{display:flex;align-items:center;gap:4px;min-width:0}
+.vgi{flex:none;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;background:var(--t-soft);color:var(--t)}
+.vgi svg{width:13px;height:13px}
+.vgh small{color:var(--mute);font-size:calc(11.5px*var(--ft));font-weight:700;min-width:0;line-height:1.15}
+.vgt b{font-size:calc(15px*var(--ft));line-height:1.2;overflow-wrap:anywhere}
+.vgc{font-size:calc(12px*var(--ft));color:var(--mute);line-height:1.25;overflow-wrap:anywhere}
+html[data-tam="g"] .vg,html[data-tam="x"] .vg{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-tam="x"] .vg{grid-template-columns:minmax(0,1fr)}
+html[data-simples] .vgt[data-vg=prog],html[data-simples] .vgt[data-vg=agua]{display:none}
+.vgt.t-treino{--t:#c2410c;--t-soft:#ffe4d1}
+.vgt.t-agua{--t:#1971c2;--t-soft:#d6e8fb}
+.vgt.t-cardapio{--t:#237a35;--t-soft:#d5f0da}
+.vgt.t-prog{--t:#6741d9;--t-soft:#e5dcfc}
+.vgt.t-caneta{--t:#b0245f;--t-soft:#fadbe8}
+.vgt.t-ajustes{--t:#4a5568;--t-soft:#e1e6ec}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .vgt.t-treino{--t:#ff9a4d;--t-soft:#432611}
+  :root:not([data-theme="light"]) .vgt.t-agua{--t:#74b6ff;--t-soft:#12304f}
+  :root:not([data-theme="light"]) .vgt.t-cardapio{--t:#6fdc8c;--t-soft:#173a22}
+  :root:not([data-theme="light"]) .vgt.t-prog{--t:#b69cff;--t-soft:#2a2057}
+  :root:not([data-theme="light"]) .vgt.t-caneta{--t:#ff8fb8;--t-soft:#42182d}
+  :root:not([data-theme="light"]) .vgt.t-ajustes{--t:#b7c3cf;--t-soft:#25303a}
+}
+:root[data-theme="dark"] .vgt.t-treino{--t:#ff9a4d;--t-soft:#432611}
+:root[data-theme="dark"] .vgt.t-agua{--t:#74b6ff;--t-soft:#12304f}
+:root[data-theme="dark"] .vgt.t-cardapio{--t:#6fdc8c;--t-soft:#173a22}
+:root[data-theme="dark"] .vgt.t-prog{--t:#b69cff;--t-soft:#2a2057}
+:root[data-theme="dark"] .vgt.t-caneta{--t:#ff8fb8;--t-soft:#42182d}
+:root[data-theme="dark"] .vgt.t-ajustes{--t:#b7c3cf;--t-soft:#25303a}
+.dseg{grid-template-columns:repeat(4,minmax(0,1fr))}
+.dseg button{padding:8px 2px;font-size:calc(13.5px*var(--ft));line-height:1.15}
+html[data-tam="g"] .dseg,html[data-tam="x"] .dseg{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-tam="g"] .dseg button,html[data-tam="x"] .dseg button{padding:10px 4px}
 </style>
 <script>(function(){try{var u=JSON.parse(localStorage.getItem('rotina_ui_v1')||'{}'),h=document.documentElement;
 if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true)h.setAttribute('data-simples','');if(u.tema==='claro')h.setAttribute('data-theme','light');else if(u.tema==='escuro')h.setAttribute('data-theme','dark');}catch(e){}})();</script>
@@ -877,6 +965,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
     </div>
 
     <div class="bxs" id="bxHoje">
+      <div class="bxw vgw" id="vgHoje" hidden></div>
       <div class="bxw cnhoje" id="cnHoje" hidden></div>
       <div class="bxw" id="pAviso" hidden></div>
       <div class="bxw" id="bkAviso" hidden><div class="bx warn" data-bx="bk" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-bk"><span class="bxi" aria-hidden="true"><i class="ii" data-i="alerta"></i></span><span class="bxt"><b>Faça um backup</b><small id="bkSub"></small></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-bk" hidden><p class="bxp" id="bkAvisoT"></p><div class="bxbt"><button type="button" id="bkAgora">Baixar backup agora</button><button type="button" id="bkIr">Abrir backup</button></div></div></div></div>
@@ -1043,16 +1132,6 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
       </div>
     </div>
 
-    <div class="psec cnp" id="ps-caneta" hidden>
-      <div class="card" id="cnpHero"></div>
-      <div class="card" id="cnpResumo"></div>
-      <div class="card" id="cnpNivel"></div>
-      <div class="card" id="cnpPeso"></div>
-      <div class="card" id="cnpSint"></div>
-      <div class="card" id="cnpReg"></div>
-      <div class="card" id="cnpDoc"></div>
-    </div>
-
     <div class="psec" id="ps-rel" hidden>
       <div class="card">
         <h2>Relatório para nutricionista ou personal</h2>
@@ -1066,6 +1145,14 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
   </section>
 
   <!-- DIETA: trocas -->
+  <!-- DIETA: cardápio -->
+  <section class="aba" id="a-cardapio">
+    <div class="dseg" data-cur="cardapio"></div>
+    <h1>Cardápio</h1>
+    <p class="pfn" hidden></p>
+    <div id="cdBody"></div>
+  </section>
+
   <section class="aba" id="a-trocas">
     <div class="dseg" data-cur="trocas"></div>
     <h1>Substituições</h1>
@@ -1131,7 +1218,7 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
         <div class="lin"><button type="button" id="cnAplic" class="selb">Ajustar cardápio e metas</button><button type="button" id="cnDesf" hidden>Desfazer ajustes</button></div>
         <p class="nota" id="cnMsg" role="status" style="margin-top:8px"></p>
         <p class="nota" id="cnUlt"></p>
-        <button type="button" id="cnVerAj" class="btn sec">Ver gráficos e histórico da caneta</button>
+        <button type="button" id="cnVerAj" class="btn sec">Abrir a aba Caneta (gráficos e análise)</button>
         <div id="cnRegBox" hidden><div class="bx" data-bx="mp-reg" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-mp-reg"><span class="bxt"><b>Como você tem se sentido</b></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-mp-reg" hidden><ul id="cnRegL" class="lista-n"></ul></div></div></div>
         <div id="cnHistBox" hidden><div class="bx" data-bx="mp-hist" data-def="0"><div class="bxc"><button type="button" class="bxh" aria-expanded="false" aria-controls="bxb-mp-hist"><span class="bxt"><b>Histórico de doses</b></span><span class="bxv" aria-hidden="true"></span></button></div><div class="bxb" id="bxb-mp-hist" hidden><ul id="cnHist" class="lista-n"></ul></div></div></div>
         <details class="cndet"><summary>Dicas para quem usa caneta</summary><ul id="cnDicas" class="lista-n"></ul></details>
@@ -1139,6 +1226,24 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
       </div>
     </div></div>
     <div id="res"></div>
+  </section>
+
+  <!-- CANETA -->
+  <section class="aba" id="a-caneta">
+    <h1>Caneta</h1>
+    <p class="pfn" hidden></p>
+    <div class="cnp" id="ps-caneta">
+      <div class="card" id="cnpHero"></div>
+      <div class="card" id="cnpAna"></div>
+      <div class="cnw" id="cnpResumo"></div>
+      <div class="cnw" id="cnpNivel"></div>
+      <div class="cnw" id="cnpPeso"></div>
+      <div class="cnw" id="cnpSem"></div>
+      <div class="cnw" id="cnpSint"></div>
+      <div class="cnw" id="cnpTempo"></div>
+      <div class="cnw" id="cnpReg"></div>
+      <div class="cnw" id="cnpDoc"></div>
+    </div>
   </section>
 
   <!-- AJUSTES -->
@@ -1340,7 +1445,8 @@ if(u.tam==='g'||u.tam==='x')h.setAttribute('data-tam',u.tam);if(u.simples===true
   <button role="tab" aria-selected="false" data-aba="treino"><span class="ni" data-i="musc" aria-hidden="true"></span>Treino</button>
   <button role="tab" aria-selected="false" data-aba="agua"><span class="ni" data-i="agua" aria-hidden="true"></span>Água</button>
   <button role="tab" aria-selected="false" data-aba="prog"><span class="ni" data-i="prog" aria-hidden="true"></span>Progresso</button>
-  <button role="tab" aria-selected="false" data-aba="dieta"><span class="ni" data-i="dieta" aria-hidden="true"></span>Dieta</button>
+  <button role="tab" aria-selected="false" data-aba="dieta"><span class="ni" data-i="dieta" aria-hidden="true"></span>Cardápio</button>
+  <button role="tab" aria-selected="false" data-aba="caneta" hidden><span class="ni" data-i="seringa" aria-hidden="true"></span>Caneta</button>
   <button role="tab" aria-selected="false" data-aba="ajustes"><span class="ni" data-i="ajustes" aria-hidden="true"></span>Ajustes</button>
 </div></nav>
 
@@ -1376,7 +1482,7 @@ montaSemana(agora);
 function irParaDia(dk){var d=dateDe(dk);montaSemana(d);selIdx=d.getDay();}
 function somaDias(dk,n){var d=dateDe(dk);d.setDate(d.getDate()+n);return key(d);}
 function fmtDataL(k){var p=k.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
-var trAb={},ativa='hoje',ultDieta='trocas',edAberto=null,cpModo='prot',progSec='corpo',calMes=null,evSel=null;
+var trAb={},ativa='hoje',ultDieta='cardapio',edAberto=null,cpModo='prot',progSec='corpo',calMes=null,evSel=null;
 
 /* ---------- rotina padrão (k = kcal e p = proteína, estimativas médias) ---------- */
 var ROT0=[
@@ -2157,9 +2263,10 @@ function pdfBytes(linhas){
 }
 
 /* ---------- navegação ---------- */
-var GRUPOS={hoje:['hoje'],treino:['treino'],agua:['agua'],prog:['prog'],dieta:['trocas','compras','perfil'],ajustes:['ajustes']};
+var GRUPOS={hoje:['hoje'],treino:['treino'],agua:['agua'],prog:['prog'],dieta:['cardapio','trocas','compras','perfil'],caneta:['caneta'],ajustes:['ajustes']};
 function grupoDe(id){var g='hoje';Object.keys(GRUPOS).forEach(function(k){if(GRUPOS[k].indexOf(id)>-1)g=k;});return g;}
 function irAba(id){
+  if(id==='caneta'&&!canetaOn())id='hoje';
   ativa=id;if(GRUPOS.dieta.indexOf(id)>-1)ultDieta=id;
   document.querySelectorAll('.aba').forEach(function(a){a.classList.toggle('on',a.id==='a-'+id);});
   var g=grupoDe(id);temaAba(g);
@@ -2171,7 +2278,7 @@ function irAba(id){
   window.scrollTo(0,0);
 }
 function renderSeg(){
-  var SEGS=db.onb?[['perfil','Meu plano'],['trocas','Trocas'],['compras','Compras']]:[['trocas','Trocas'],['compras','Compras'],['perfil','Meu plano']];
+  var SEGS=db.onb?[['cardapio','Cardápio'],['perfil','Meu plano'],['trocas','Trocas'],['compras','Compras']]:[['cardapio','Cardápio'],['trocas','Trocas'],['compras','Compras'],['perfil','Meu plano']];
   document.querySelectorAll('.dseg').forEach(function(el){
     el.innerHTML=SEGS.map(function(s){return '<button type="button" data-ir="'+s[0]+'"'+(el.getAttribute('data-cur')===s[0]?' aria-current="true"':'')+'>'+s[1]+'</button>';}).join('');
     el.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){irAba(b.getAttribute('data-ir'));});});
@@ -2224,6 +2331,9 @@ function render(){
   else if(ativa==='compras')renderCompras();
   else if(ativa==='trocas')renderTrocas();
   else if(ativa==='perfil')renderCanetaCard();
+  else if(ativa==='caneta')renderCnProg();
+  else if(ativa==='cardapio')renderCardapio();
+  navCaneta();
 }
 
 /* ---------- HOJE ---------- */
@@ -2322,6 +2432,7 @@ function renderHoje(){
   renderPausa(dk,isHoje);
   renderOQ(dk,dw,isHoje,minAgora);
   renderRsHoje(isHoje,dw);
+  renderVisao(dk,dw,isHoje);
   if(isHoje){var sq=sequencia();if(sq>=2)$('sub').textContent+=' · Sequência: '+sq+' dias';}
 
   // extras
@@ -2730,7 +2841,6 @@ function renderProg(){
   if(progSec==='mes')renderMes();
   if(progSec==='cargas')renderEv();
   if(progSec==='rel')renderRel();
-  if(progSec==='caneta')renderCnProg();
 }
 
 /* ---------- COMPRAS ---------- */
@@ -3206,9 +3316,7 @@ function ligar(){
 /* ---------- PROGRESSO: abas internas, meta de peso, calendário, cargas, relatório ---------- */
 function renderPseg(){
   var S=[['corpo','Corpo'],['mes','Mês'],['cargas','Cargas'],['rel','Relatório']],el=$('pseg');
-  if(canetaOn())S.splice(1,0,['caneta','Caneta']);
-  else if(progSec==='caneta')progSec='corpo';
-  el.classList.toggle('c5',S.length>4);
+  if(progSec==='caneta')progSec='corpo';
   el.innerHTML=S.map(function(x){return '<button type="button" data-ps="'+x[0]+'"'+(progSec===x[0]?' aria-current="true"':'')+'>'+x[1]+'</button>';}).join('');
   el.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){progSec=b.getAttribute('data-ps');renderProg();});});
   S.forEach(function(x){$('ps-'+x[0]).hidden=x[0]!==progSec;});
@@ -3535,7 +3643,7 @@ function renderTrocas(){
   box.innerHTML=h;
 }
 
-function dietaInicial(){return db.onb?'perfil':'trocas';}
+function dietaInicial(){return 'cardapio';}
 
 /* cor do tema por aba (também pinta a barra de status do celular) */
 function temaAba(g){
@@ -4245,7 +4353,7 @@ function renderCanetaHoje(dk,dw){
     if(cnAbriu){cnAbriu=false;bxSet('cn',null);}
     render();
   });
-  if($('cnVer'))$('cnVer').addEventListener('click',function(){progSec='caneta';irAba('prog');});
+  if($('cnVer'))$('cnVer').addEventListener('click',function(){irAba('caneta');});
   if($('cnIrAj'))$('cnIrAj').addEventListener('click',function(){
     bxSet('mp-cn',1);
     irAba('perfil');
@@ -4879,7 +4987,7 @@ function concluirOnb(){
   perfilAtual().nome=nome;salvarIdx();
   salvar();vib();
   fechaOnb();
-  ultDieta='perfil';renderSeg();
+  ultDieta='cardapio';renderSeg();
   fillPerfil();renderRes();
   irAba('hoje');
 }
@@ -6140,7 +6248,7 @@ function ligarExtras(){
   }
 }
 
-/* ---------- v18: acompanhamento da caneta (Progresso › Caneta): aplicações, local, nível estimado e gráficos ---------- */
+/* ---------- v18: acompanhamento da caneta (aba Caneta): aplicações, local, nível estimado e gráficos ---------- */
 /* locais de aplicação (esquerda e direita são as do próprio corpo) */
 var CN_LOCS=[['ae','Abdômen esquerdo'],['ad','Abdômen direito'],['ce','Coxa esquerda'],['cd','Coxa direita'],['be','Braço esquerdo'],['bd','Braço direito']];
 /* modelo simplificado (1 compartimento, absorção de 1ª ordem) com valores médios das bulas: meia-vida (dias), taxa de absorção (1/dia),
@@ -6221,7 +6329,7 @@ function cnProx(c){
 }
 function cnDiaTxt(c,k){return DIAS_NOME[dateDe(k).getDay()].toLowerCase()+', '+fmtData(k);}
 function cnGuia(c,p){
-  var M=MEDS[c.med],dica=' Se você já aplicou, registre a data certa em Progresso › Caneta.';
+  var M=MEDS[c.med],dica=' Se você já aplicou, registre a data certa na aba Caneta.';
   if(p.st==='atraso'){
     var t='A aplicação estava marcada para '+cnDiaTxt(c,p.due)+' e está atrasada '+p.late+(p.late===1?' dia':' dias')+'. ';
     t+=p.atr!==null?'Pela bula do '+M.cur+', ainda dá para aplicar até '+p.atr+' dias depois do dia combinado; depois disso o certo é pular a dose. Nunca aplique duas doses com menos de 3 dias de intervalo.':'Veja na bula, ou com o seu médico, se ainda dá para aplicar.';
@@ -6316,8 +6424,8 @@ function cnTipLiga(box,pts,W){
   svg.addEventListener('blur',esconde);
 }
 function cnLargura(){
-  var el=$('cnpNivel')||$('ps-caneta'),w=el?el.clientWidth:0;
-  return Math.max(240,Math.min(560,Math.round((w||300)-32)));
+  var el=$('ps-caneta'),w=el?el.clientWidth:0;
+  return Math.max(240,Math.min(560,Math.round((w||334)-34)));
 }
 function cnNivelHtml(c){
   var h='<h2>Nível estimado no organismo</h2>',D=cnNivelDados(c);
@@ -6613,23 +6721,6 @@ function cnDocHtml(c){
 }
 
 /* ---------- tela ---------- */
-function cnDesenhaGraficos(c){
-  var W=cnLargura();
-  var a=$('cnpNivel'),b=$('cnpPeso');
-  if(a){a.innerHTML=cnNivelHtml(c);var g=$('cnGN');if(g)cnTipLiga(g,cnNivelPontos(c,W),W);}
-  if(b){b.innerHTML=cnPesoHtml(c);var g2=$('cnGP');if(g2)cnTipLiga(g2,cnPesoPontos(c,W),W);}
-  cnLarg=W;
-}
-function renderCnProg(){
-  var c=db.caneta;
-  if(!c||!c.on||!$('cnpHero'))return;
-  $('cnpHero').innerHTML=cnHeroHtml(c);
-  $('cnpResumo').innerHTML=cnResumoHtml(c);
-  cnDesenhaGraficos(c);
-  $('cnpSint').innerHTML=cnSintHtml(c);
-  $('cnpReg').innerHTML=cnRegHtml(c);
-  $('cnpDoc').innerHTML=cnDocHtml(c);
-}
 function cnAct(el,raiz){
   while(el&&el!==raiz){if(el.getAttribute&&(el.getAttribute('data-act')||el.getAttribute('data-loc')))return el;el=el.parentNode;}
   return null;
@@ -6644,7 +6735,7 @@ function ligarCnProg(){
     var c=db.caneta;if(!c||!c.on)return;
     var el=cnAct(ev.target,raiz);if(!el)return;
     var loc=el.getAttribute('data-loc'),ac=el.getAttribute('data-act'),antes=JSON.stringify(c);
-    if(loc){cnF.loc=(cnF.loc===loc)?null:loc;$('cnpReg').innerHTML=cnRegHtml(c);vib(8);return;}
+    if(loc){cnF.loc=(cnF.loc===loc)?null:loc;cnPintaReg(c);vib(8);return;}
     if(ac==='hoje'){
       cnRegistra(hojeK,c.dose,undefined);salvar();vib();render();renderCaneta();renderCnProg();
       cnToastDesfaz('Aplicação de hoje registrada.',antes);
@@ -6696,10 +6787,10 @@ function ligarCnProg(){
     clearTimeout(tm);
     tm=setTimeout(function(){
       var c=db.caneta;
-      if(c&&c.on&&ativa==='prog'&&progSec==='caneta'&&Math.abs(cnLargura()-cnLarg)>8)cnDesenhaGraficos(c);
+      if(c&&c.on&&ativa==='caneta'&&Math.abs(cnLargura()-cnLarg)>8)cnDesenhaGraficos(c);
     },200);
   });
-  if($('cnVerAj'))$('cnVerAj').addEventListener('click',function(){progSec='caneta';irAba('prog');});
+  if($('cnVerAj'))$('cnVerAj').addEventListener('click',function(){irAba('caneta');});
 }
 /* ---------- v19: caixas que abrem e fecham (aba Hoje e Meu plano) ----------
    Cada caixa tem uma chave (data-bx) e um padrão (data-def: 1 aberta, 0 fechada).
@@ -6768,9 +6859,522 @@ function mpSubs(){
   bxUm(d,bxCx());
 }
 
+/* barra de baixo: a aba Caneta só aparece quando a caneta está ligada */
+function navCaneta(){
+  var b=document.querySelector('nav [data-aba=caneta]');
+  if(b)b.hidden=!canetaOn();
+  var nv=document.querySelector('nav');
+  if(nv)nv.classList.toggle('n7',canetaOn());
+  if(ativa==='caneta'&&!canetaOn())irAba('hoje');
+}
+
+/* ---------- v20: aba Caneta: análise automática, caixas e gráficos novos ---------- */
+var CN_DL=['Dia da dose','1 dia depois','2 dias depois','3 dias depois','4 dias depois','5 dias depois','6 dias depois'];
+var cnPts={};
+function cnSemH2(h){return h.replace(/^<h2[^>]*>[\s\S]*?<\/h2>/,'');}
+function cnSgn(v){return Math.abs(v)<0.05?'±0':(v>0?'+':'−')+n1(v);}
+function cnQuandoTxt(d){return d===0?'no dia da aplicação':(d===1?'1 dia depois da aplicação':d+' dias depois da aplicação');}
+function cnUltApl(ks,k){var u=null,i;for(i=0;i<ks.length;i++){if(ks[i]<=k)u=ks[i];else break;}return u;}
+function cnCaixa(id,k,ic,t,sub,corpo,ab){
+  var e=$(id);
+  if(e)e.innerHTML=bxHtml(k,ic,t,sub,corpo,{tom:'cd',aberto:!!ab});
+}
+
+/* ---------- análise automática ---------- */
+function cnAnaLista(c){
+  var out=[],p=cnProx(c),i;
+  function add(n,t,x){out.push({n:n,t:t,x:x});}
+  /* aplicação */
+  if(p.st==='pular')add('al','Dose para pular','Já se passaram mais de '+p.atr+' dias do dia combinado. Leia o aviso no topo antes de aplicar e não dobre a dose.');
+  else if(p.st==='atraso')add('al','Aplicação atrasada','Está atrasada '+p.late+(p.late===1?' dia':' dias')+'. Veja o aviso no topo para saber se ainda dá para aplicar.');
+  else if(p.st==='longo')add('al','Muito tempo sem aplicar','A última aplicação registrada foi há '+p.dias+' dias. Se você aplicou e não registrou, use "Registrar aplicação"; se ficou sem aplicar, converse com o seu médico antes de retomar.');
+  else if(p.st==='hoje')add(c.apl[hojeK]?'ok':'in',c.apl[hojeK]?'Aplicação de hoje registrada':'Hoje é dia de aplicação',c.apl[hojeK]?'Tudo certo por aqui.':'Ainda não está registrada. Marque no topo desta tela quando aplicar.');
+  else if(p.st==='ok')add('ok',p.last===hojeK?'Aplicação de hoje registrada':'Aplicação em dia','A próxima é '+cnDiaTxt(c,p.due)+' (em '+p.dias+(p.dias===1?' dia':' dias')+').');
+  else if(p.st==='sem')add('in','Nenhuma aplicação registrada','Registre a primeira aplicação para liberar o gráfico de nível estimado e a contagem dos dias.');
+  else if(p.st==='diaria')add('in','Caneta de uso diário','Os gráficos de nível e de dias depois da dose servem para as canetas semanais. Histórico, peso e sintomas funcionam normalmente.');
+  /* estoque */
+  var et=cnEstoqueTxt(c);
+  if(et)add('al',c.est<=0?'A caneta acabou':'Resta pouco na caneta',et);
+  /* peso */
+  var an=analisePeso();
+  if(an.falta)add('in','Peso: poucos registros','Pese-se em pelo menos 3 dias, com uma semana entre o primeiro e o último, para o app calcular a tendência.');
+  else{
+    var sem=n1(an.sem),pct=Math.abs(an.pct).toFixed(1).replace('.',',');
+    if(an.alerta)add('al','Perda de peso rápida','O peso está caindo cerca de '+sem+' kg por semana ('+pct+'% do peso), acima de 1%. Perder rápido demais tende a custar músculo: cuide da proteína e fale com o médico ou nutricionista.');
+    else if(an.sem<=-0.1)add('ok','Peso em queda','A tendência é de −'+sem+' kg por semana ('+pct+'% do peso), um ritmo seguro.');
+    else if(an.sem>=0.1)add('in','Peso subindo','A tendência é de +'+sem+' kg por semana. Confira porções, proteína e água, e fale com o médico ou nutricionista se continuar.');
+    else add('in','Peso estável','A tendência está em ±0 kg por semana. Platôs são comuns: olhe a tendência de várias semanas, não um dia só.');
+    if(an.chegou)add('ok','Meta de peso alcançada','Você está a menos de 0,3 kg da sua meta. Converse com o médico sobre como manter o resultado.');
+  }
+  /* proteína e água dos últimos 7 dias fechados */
+  var R=resumoSemana(somaDias(hojeK,-7));
+  if(R.prot.length>=3&&R.protMeta>0){
+    var rp=R.protM/R.protMeta,tp='Média de '+fmtN(Math.round(R.protM))+' g por dia nos últimos 7 dias, para uma meta de '+fmtN(Math.round(R.protMeta))+' g.';
+    if(rp<0.7)add('al','Proteína bem abaixo da meta',tp+' Com a caneta o apetite cai e o músculo é o primeiro a perder. Use mini-refeições proteicas; o cartão "O que comer agora", na aba Hoje, ajuda.');
+    else if(rp<0.9)add('in','Proteína um pouco abaixo da meta',tp+' Coloque uma fonte de proteína em cada refeição.');
+    else add('ok','Proteína na meta',tp);
+  }
+  if(R.agTot>=3){
+    var ra=R.agOk/R.agTot,ta='Meta de água batida em '+R.agOk+' de '+R.agTot+' dias.';
+    if(ra<0.5)add('al','Água abaixo da meta',ta+' Com a caneta é comum sentir menos sede, e o risco de desidratação cresce com enjoo. Beba aos poucos ao longo do dia.');
+    else if(ra<0.8)add('in','Água quase na meta',ta+' Deixe uma garrafa à vista.');
+    else add('ok','Água na meta',ta);
+  }
+  /* sintomas */
+  var u7=cnUltimos(c,hojeK,7),ef=0,el=0,eb=0,qn=0;
+  u7.forEach(function(x){if(x.r.e===2)ef++;if(x.r.e===1)el++;if(x.r.g===3)eb++;if(x.r.a===3)qn++;});
+  if(!u7.length)add('in','Sem registro de sintomas','Registre apetite, enjoo e energia na aba Hoje (um toque cada) para a análise acompanhar como você está se sentindo.');
+  else{
+    var ruim=false;
+    if(ef>=2){add('al','Enjoo forte frequente','Enjoo forte em '+ef+' dos últimos 7 dias. Fale com o seu médico antes da próxima aplicação, em vez de mexer na dose ou na dieta por conta própria.');ruim=true;}
+    else if(ef+el>=3){add('in','Enjoo recorrente','Enjoo em '+(ef+el)+' dos últimos 7 dias. Refeições leves, em porções pequenas e sem gordura costumam ajudar.');ruim=true;}
+    if(eb>=2){add('al','Energia baixa','Energia baixa em '+eb+' dos últimos 7 dias. Confira proteína, água e se você não está comendo menos que o plano; se continuar, converse com o médico ou nutricionista.');ruim=true;}
+    if(qn>=3){add('in','Apetite quase nenhum','Apetite quase nenhum em '+qn+' dos últimos 7 dias. Pular refeições custa proteína: prefira porções pequenas e líquidos proteicos.');ruim=true;}
+    if(!ruim)add('ok','Sintomas sob controle','Nos últimos 7 dias, em '+u7.length+(u7.length===1?' dia':' dias')+' com registro, não houve enjoo forte nem energia baixa frequentes.');
+  }
+  var pd=cnPadrao(c);
+  if(pd)add('in','Padrão do enjoo',pd);
+  /* tempo na dose */
+  var sm=cnSemDose(c);
+  if(sm!==null&&sm>=4)add('in',sm+' semanas na dose atual','Aumentar a dose é decisão do médico, em geral depois de 4 semanas ou mais em cada degrau. Leve esta análise e o resumo da consulta.');
+  var ord={al:0,in:1,ok:2};
+  return out.map(function(x,ix){return {x:x,ix:ix};}).sort(function(a,b){return (ord[a.x.n]-ord[b.x.n])||(a.ix-b.ix);}).map(function(o){return o.x;}).slice(0,8);
+}
+function cnAnaHtml(c){
+  var L=cnAnaLista(c),nal=L.filter(function(x){return x.n==='al';}).length;
+  var h='<h2 class="h2i">'+ico('info')+'Análise automática</h2>';
+  h+='<p class="anres" role="status">'+(nal?(nal===1?'1 ponto de atenção':nal+' pontos de atenção'):'Nenhum ponto de atenção agora')+' · '+L.length+(L.length===1?' item':' itens')+'</p><ul class="anl">';
+  L.forEach(function(x){
+    h+='<li class="an '+x.n+'"><span class="ani" aria-hidden="true">'+ico(x.n==='al'?'alerta':(x.n==='ok'?'check':'info'))+'</span><span class="ant"><span class="sr">'+(x.n==='al'?'Atenção: ':(x.n==='ok'?'Tudo certo: ':'Informação: '))+'</span><b>'+esc(x.t)+'</b>'+esc(x.x)+'</span></li>';
+  });
+  return h+'</ul><p class="nota">Gerada agora com o que você registrou (aplicações, peso, comida, água e sintomas). São estimativas e não substituem o seu médico.</p>';
+}
+
+/* ---------- variação semanal do peso ---------- */
+function cnSemDados(c){
+  var pk=Object.keys(db.peso).sort().filter(function(k){return typeof db.peso[k]==='number';});
+  if(pk.length<2)return {erro:1};
+  var wk={},ls=cnLista(c);
+  pk.forEach(function(k){var ini=somaDias(k,-dateDe(k).getDay());(wk[ini]=wk[ini]||[]).push(db.peso[k]);});
+  var ks=Object.keys(wk).sort(),out=[],prev=null;
+  ks.forEach(function(ini){
+    var m=soma(wk[ini])/wk[ini].length;
+    if(prev){
+      var g=difDias(prev.ini,ini)/7;
+      if(g<=2){
+        var fim=somaDias(ini,6),dose=null;
+        ls.forEach(function(a){if(a.k<=fim)dose=a.dose;});
+        out.push({ini:ini,m:m,d:(m-prev.m)/g,dose:dose});
+      }
+    }
+    prev={ini:ini,m:m};
+  });
+  if(out.length<2)return {erro:1};
+  return {sem:out};
+}
+function cnSemHtml(c){
+  var h='<h2>Variação semanal do peso</h2>',D=cnSemDados(c);
+  if(D.erro)return h+'<p class="nota">Registre o peso (em Progresso › Corpo) em pelo menos 3 semanas diferentes para ver quanto ele mudou a cada semana.</p>';
+  var W=cnLargura(),H=190,L=8,R=8,T=18,B=34;
+  var nb=Math.max(4,Math.min(D.sem.length,12,Math.floor((W-L-R)/34))),v=D.sem.slice(-nb),slot=(W-L-R)/v.length,bw=Math.min(28,slot*0.6);
+  var mn=0,mx=0;
+  v.forEach(function(x){if(x.d<mn)mn=x.d;if(x.d>mx)mx=x.d;});
+  var pad=Math.max(0.15,(mx-mn)*0.25);
+  if(mn<0)mn-=pad;
+  if(mx>0)mx+=pad;
+  if(mx-mn<0.6){var ex=(0.6-(mx-mn))/2;mx+=ex;mn-=ex;}
+  function Y(val){return T+(H-T-B)*(1-(val-mn)/(mx-mn));}
+  var y0=Y(0),pts=[],media=soma(v.map(function(x){return x.d;}))/v.length;
+  var s='<div class="cng" id="cnGS"><svg viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="Gráfico de barras da variação do peso por semana, de '+esc(fmtData(v[0].ini))+' a '+esc(fmtData(v[v.length-1].ini))+'. Média de '+esc(Math.abs(media)<0.05?'zero':cnSgn(media))+' kg por semana. Use as setas para ver cada semana.">';
+  s+='<line class="gl" x1="'+L+'" x2="'+(W-R)+'" y1="'+y0.toFixed(1)+'" y2="'+y0.toFixed(1)+'"/>';
+  v.forEach(function(x,i){
+    var cx=L+slot*(i+0.5),y=Y(x.d),top=Math.min(y,y0),ht=Math.max(2,Math.abs(y-y0));
+    s+='<rect class="'+(x.d<=0?'sb1':'sb2')+'" x="'+(cx-bw/2).toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+ht.toFixed(1)+'" rx="3"/>';
+    s+='<text class="vl" x="'+cx.toFixed(1)+'" y="'+(x.d<=0?Math.max(y,y0)+13:y-5).toFixed(1)+'" text-anchor="middle">'+esc(cnSgn(x.d))+'</text>';
+    s+='<text x="'+cx.toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle">'+esc(fmtData(x.ini))+'</text>';
+    pts.push({x:cx,t:'<b>'+esc(cnSgn(x.d))+' kg</b> na semana de '+esc(fmtData(x.ini))+'<br>média da semana '+esc(fmtKg(x.m))+(x.dose!==null?' · '+esc(fmtK(x.dose))+' mg':'')});
+  });
+  s+='<line class="cx" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" style="display:none"/></svg><div class="cntip" hidden></div></div>';
+  cnPts.S=pts;
+  h+=s;
+  h+='<p class="cnleg"><span><i class="k1"></i>perdeu peso</span><span><i class="k7"></i>ganhou peso</span><span>kg por semana</span></p>';
+  var rows='';
+  v.forEach(function(x){rows+='<tr><td>'+esc(fmtData(x.ini))+'</td><td>'+esc(cnSgn(x.d))+' kg</td><td>'+esc(fmtKg(x.m))+'</td></tr>';});
+  h+='<details class="cndet"><summary>Ver os valores em tabela</summary><table class="cntab"><thead><tr><th scope="col">Semana de</th><th scope="col">Variação</th><th scope="col">Média</th></tr></thead><tbody>'+rows+'</tbody></table></details>';
+  h+='<p class="nota">Cada barra é a média de peso da semana (domingo a sábado) menos a da semana anterior. Barras para baixo: perdeu peso; para cima: ganhou. Média das últimas '+v.length+' semanas: <b>'+(Math.abs(media)<0.05?'estável':cnSgn(media)+' kg por semana')+'</b>.</p>';
+  return h;
+}
+function cnSemSub(c){
+  var D=cnSemDados(c);
+  if(D.erro)return 'Registre o peso em 3 semanas';
+  var v=D.sem.slice(-12),m=soma(v.map(function(x){return x.d;}))/v.length;
+  return Math.abs(m)<0.05?'Peso estável nas últimas semanas':'Média de '+cnSgn(m)+' kg por semana';
+}
+
+/* ---------- sintomas e proteína por dias depois da dose ---------- */
+function cnTempoDados(c){
+  if(!MEDS[c.med].sem)return {erro:'tipo'};
+  var ks=Object.keys(c.apl).sort(),S=[],d,tot=0;
+  for(d=0;d<7;d++)S.push({n:0,e:0,ne:0,a:0,na:0,g:0,ng:0});
+  Object.keys(c.reg||{}).forEach(function(k){
+    var r=c.reg[k];if(!r)return;
+    var u=cnUltApl(ks,k);if(u===null)return;
+    var dd=difDias(u,k);if(dd<0||dd>6)return;
+    var s=S[dd],had=false;
+    if(typeof r.e==='number'){s.e+=r.e;s.ne++;had=true;}
+    if(typeof r.a==='number'){s.a+=r.a;s.na++;had=true;}
+    if(typeof r.g==='number'){s.g+=r.g;s.ng++;had=true;}
+    if(had){s.n++;tot++;}
+  });
+  var com=S.filter(function(s){return s.n>0;}).length;
+  if(tot<5||com<3)return {erro:'poucos',tot:tot};
+  return {S:S,tot:tot};
+}
+function cnTVal(s,t){
+  if(t==='e')return s.ne?s.e/s.ne/2:null;
+  if(t==='a')return s.na?(s.a/s.na-1)/2:null;
+  return s.ng?(s.g/s.ng-1)/2:null;
+}
+function cnTLab(s,t){
+  if(t==='e'){var e=s.e/s.ne;return e<0.5?'nenhum':(e<1.5?'leve':'forte');}
+  if(t==='a'){var a=s.a/s.na;return a<1.5?'normal':(a<2.5?'menor':'quase nenhum');}
+  var g=s.g/s.ng;return g<1.5?'boa':(g<2.5?'média':'baixa');
+}
+function cnTempoPico(D){
+  var g={},ord=[];
+  [['e','o enjoo foi mais forte'],['a','o apetite foi menor'],['g','a energia foi mais baixa']].forEach(function(x){
+    var bd=-1,bv=0;
+    D.S.forEach(function(s,d){var v=cnTVal(s,x[0]);if(v!==null&&v>bv+1e-9){bv=v;bd=d;}});
+    if(bd>=0&&bv>=0.25){if(!g[bd]){g[bd]=[];ord.push(bd);}g[bd].push(x[1]);}
+  });
+  return ord.map(function(d){
+    var a=g[d];
+    return {d:d,t:(a.length>1?a.slice(0,-1).join(', ')+' e '+a[a.length-1]:a[0])+' '+cnQuandoTxt(d),first:a[0]+' '+cnQuandoTxt(d)};
+  });
+}
+function cnLegGl(t){
+  var f=t==='e'?'<circle class="mk e" cx="12" cy="6" r="4"/>':(t==='a'?'<rect class="mk a" x="8" y="2" width="8" height="8"/>':'<path class="mk g" d="M12 1.5L16.5 10H7.5Z"/>');
+  return '<svg viewBox="0 0 24 12" aria-hidden="true" focusable="false"><line class="ls '+t+'" x1="1" x2="23" y1="6" y2="6"/>'+f+'</svg>';
+}
+function cnTempoSintHtml(c){
+  var D=cnTempoDados(c);
+  if(D.erro==='tipo')return '<p class="nota">Este gráfico é para as canetas semanais (Mounjaro, Ozempic/Wegovy e Trulicity).</p>';
+  if(D.erro)return '<p class="nota">Registre apetite, enjoo e energia na aba Hoje por alguns dias. Quando houver pelo menos 5 registros, em 3 dias diferentes depois da aplicação, o gráfico mostra em que dia da semana cada sintoma pesa mais'+(D.tot?' (por enquanto: '+D.tot+')':'')+'.</p>';
+  var W=cnLargura(),H=196,L=12,R=12,T=14,B=44,i;
+  var xs=L+12,xw=W-L-R-24;
+  function X(d){return xs+xw*d/6;}
+  function Y(v){return T+(H-T-B)*(1-v);}
+  var off={e:-6,a:0,g:6},pts=[];
+  var s='<div class="cng" id="cnGT"><svg viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="Gráfico de linhas de enjoo, apetite e energia por dias depois da aplicação. Use as setas para ver cada dia.">';
+  [0,0.5,1].forEach(function(v){s+='<line class="gl" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'"/>';});
+  ['e','a','g'].forEach(function(t){
+    var seg=[],segs=[];
+    D.S.forEach(function(st,d){
+      var v=cnTVal(st,t);
+      if(v===null){if(seg.length)segs.push(seg);seg=[];return;}
+      seg.push([X(d)+off[t],Y(v)]);
+    });
+    if(seg.length)segs.push(seg);
+    segs.forEach(function(sg){
+      if(sg.length>1)s+='<polyline class="ls '+t+'" points="'+sg.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ')+'"/>';
+      sg.forEach(function(p){
+        if(t==='e')s+='<circle class="mk e" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4.2"/>';
+        else if(t==='a')s+='<rect class="mk a" x="'+(p[0]-4).toFixed(1)+'" y="'+(p[1]-4).toFixed(1)+'" width="8" height="8"/>';
+        else s+='<path class="mk g" d="M'+p[0].toFixed(1)+' '+(p[1]-5).toFixed(1)+'L'+(p[0]+5).toFixed(1)+' '+(p[1]+4).toFixed(1)+'L'+(p[0]-5).toFixed(1)+' '+(p[1]+4).toFixed(1)+'Z"/>';
+      });
+    });
+  });
+  for(i=0;i<7;i++){
+    s+='<text x="'+X(i).toFixed(1)+'" y="'+(H-B+18)+'" text-anchor="middle">'+(i===0?'dose':i)+'</text>';
+    var st=D.S[i];
+    if(st.n>0){
+      var t='<b>'+esc(CN_DL[i])+'</b>';
+      if(st.ne)t+='<br>Enjoo: '+cnTLab(st,'e');
+      if(st.na)t+='<br>Apetite: '+cnTLab(st,'a');
+      if(st.ng)t+='<br>Energia: '+cnTLab(st,'g');
+      t+='<br>'+st.n+(st.n===1?' dia':' dias')+' com registro';
+      pts.push({x:X(i),t:t});
+    }
+  }
+  s+='<line class="cx" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" style="display:none"/></svg><div class="cntip" hidden></div></div>';
+  cnPts.T=pts;
+  var h=s+'<p class="cnleg"><span>'+cnLegGl('e')+'Enjoo</span><span>'+cnLegGl('a')+'Apetite menor</span><span>'+cnLegGl('g')+'Energia baixa</span></p>';
+  h+='<p class="nota">Em baixo: dias depois da aplicação ("dose" é o dia em que você aplicou). Quanto mais alta a linha, mais forte o sintoma. Vale a média de todos os dias com registro.</p>';
+  var pk=cnTempoPico(D);
+  h+='<p class="cnins in" role="status">'+ico('info')+'<span>'+esc(pk.length?'Pelo que você registrou: '+pk.map(function(x){return x.t;}).join('; ')+'.':'Seus registros mostram poucos sintomas, em qualquer dia depois da aplicação.')+' Com poucas semanas de registro, o padrão ainda pode mudar.</span></p>';
+  return h;
+}
+function cnProtDados(c){
+  if(!MEDS[c.med].sem)return {erro:'tipo'};
+  var ks=Object.keys(c.apl).sort(),S=[],d,i,k,tot=0;
+  for(d=0;d<7;d++)S.push({n:0,pct:0});
+  for(i=1;i<=56;i++){
+    k=somaDias(hojeK,-i);
+    if(pausado(k))continue;
+    var u=cnUltApl(ks,k);if(u===null)continue;
+    var dd=difDias(u,k);if(dd>6)continue;
+    var st=statDia(k);if(!(st.p>0))continue;
+    var meta=metaProt(dateDe(k).getDay());if(!(meta>0))continue;
+    S[dd].n++;S[dd].pct+=st.p/meta*100;tot++;
+  }
+  var com=S.filter(function(s){return s.n>0;}).length;
+  if(tot<6||com<3)return {erro:'poucos',tot:tot};
+  S.forEach(function(s){s.m=s.n?s.pct/s.n:null;});
+  return {S:S,tot:tot};
+}
+function cnTempoProtHtml(c){
+  var D=cnProtDados(c);
+  if(D.erro==='tipo')return '';
+  if(D.erro)return '<p class="nota">Marque as refeições na aba Hoje. Com pelo menos 6 dias de comida registrada, em 3 dias diferentes depois da aplicação, o gráfico mostra quanto da meta de proteína você cumpre em cada dia da semana'+(D.tot?' (por enquanto: '+D.tot+')':'')+'.</p>';
+  var W=cnLargura(),H=190,L=10,R=10,T=20,B=34,i;
+  var mxv=100;D.S.forEach(function(s){if(s.m!==null&&s.m>mxv)mxv=s.m;});
+  var ymax=Math.max(120,Math.ceil(mxv*1.12/20)*20);
+  function Y(v){return T+(H-T-B)*(1-v/ymax);}
+  var slot=(W-L-R)/7,bw=Math.min(28,slot*0.62),pts=[],min=null;
+  var s='<div class="cng" id="cnGR"><svg viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="Gráfico de barras da proteína, em porcentagem da meta, por dias depois da aplicação. Use as setas para ver cada dia.">';
+  s+='<line class="gl" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(0).toFixed(1)+'" y2="'+Y(0).toFixed(1)+'"/>';
+  s+='<line class="pm" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(100).toFixed(1)+'" y2="'+Y(100).toFixed(1)+'"/>';
+  for(i=0;i<7;i++){
+    var cx=L+slot*(i+0.5),st=D.S[i];
+    if(st.m!==null){
+      var y=Y(st.m),bx=Math.round(st.m);
+      s+='<rect class="'+(st.m<85?'pb2':'pb1')+'" x="'+(cx-bw/2).toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(2,Y(0)-y).toFixed(1)+'" rx="3"/>';
+      s+='<text class="vl" x="'+cx.toFixed(1)+'" y="'+(y-5).toFixed(1)+'" text-anchor="middle">'+bx+'%</text>';
+      pts.push({x:cx,t:'<b>'+esc(CN_DL[i])+'</b><br>'+bx+'% da meta de proteína<br>'+st.n+(st.n===1?' dia':' dias')+' com registro'});
+      if(min===null||st.m<D.S[min].m)min=i;
+    }
+    s+='<text x="'+cx.toFixed(1)+'" y="'+(H-10)+'" text-anchor="middle">'+(i===0?'dose':i)+'</text>';
+  }
+  s+='<line class="cx" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" style="display:none"/></svg><div class="cntip" hidden></div></div>';
+  cnPts.R=pts;
+  var h=s+'<p class="cnleg"><span><i class="k1"></i>na faixa (85% ou mais)</span><span><i class="k7"></i>abaixo de 85%</span><span><i class="k3"></i>meta (100%)</span></p>';
+  if(min!==null&&D.S[min].m<85)h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>A proteína ficou mais baixa '+esc(cnQuandoTxt(min))+' ('+Math.round(D.S[min].m)+'% da meta). Nesses dias, planeje mini-refeições proteicas, que pedem pouco apetite.</span></p>';
+  else h+='<p class="nota">A proteína ficou perto da meta em todos os dias da semana com registro.</p>';
+  return h;
+}
+function cnTempoHtml(c){
+  var h='<h3>Sintomas depois de cada aplicação</h3>'+cnTempoSintHtml(c);
+  var p=cnTempoProtHtml(c);
+  if(p)h+='<h3>Proteína depois de cada aplicação</h3>'+p;
+  return h;
+}
+function cnTempoSub(c){
+  var D=cnTempoDados(c);
+  if(D.erro==='tipo')return 'Só para canetas semanais';
+  if(D.erro)return 'Precisa de mais registros';
+  var pk=cnTempoPico(D);
+  return pk.length?pk[0].first.charAt(0).toUpperCase()+pk[0].first.slice(1):'Poucos sintomas registrados';
+}
+
+/* ---------- caixas da aba ---------- */
+function cnSubs(c){
+  var ls=cnLista(c),ini=cnInicio(c),pi=cnPesoInicio(c),s={},D=cnNivelDados(c),sm=ini?Math.floor(Math.max(0,difDias(ini,hojeK))/7)+1:null;
+  s.res=(sm?'Semana '+sm+' · ':'')+ls.length+(ls.length===1?' aplicação':' aplicações')+(pi?' · '+cnSgn(pi.v1-pi.v0)+' kg':'');
+  s.niv=D.erro?(D.erro==='tipo'?'Só para canetas semanais':'Registre uma aplicação'):'Agora ≈ '+cnFmtMg(D.now)+' mg · pico ≈ '+cnFmtMg(D.pico)+' mg';
+  var pk=Object.keys(db.peso).sort().filter(function(k){return typeof db.peso[k]==='number';});
+  s.pes=pk.length>=2?fmtKg(db.peso[pk[0]])+' → '+fmtKg(db.peso[pk[pk.length-1]]):'Registre o peso em 2 dias';
+  s.sem=cnSemSub(c);
+  var r=c.reg&&c.reg[hojeK],t=[];
+  if(r){
+    if(r.a)t.push('apetite '+cnRotulo('a',r.a).toLowerCase());
+    if(typeof r.e==='number')t.push('enjoo '+cnRotulo('e',r.e).toLowerCase());
+    if(r.g)t.push('energia '+cnRotulo('g',r.g).toLowerCase());
+  }
+  s.sin=t.length?'Hoje: '+t.join(', '):(Object.keys(c.reg||{}).length?'Sem registro hoje':'Sem registros ainda');
+  s.tem=cnTempoSub(c);
+  var sug=cnSugerido(c);
+  s.reg=ls.length?'Última em '+fmtData(ls[ls.length-1].k)+(sug?' · sugerido: '+cnLocNome(sug):''):'Nenhuma aplicação ainda';
+  s.doc='Copiar ou compartilhar com o médico';
+  return s;
+}
+function cnGraficos(c){
+  var W=cnLargura(),s=cnSubs(c),g;
+  cnLarg=W;
+  cnCaixa('cnpNivel','cn-niv','seringa','Nível estimado no organismo',s.niv,cnSemH2(cnNivelHtml(c)),true);
+  g=$('cnGN');if(g)cnTipLiga(g,cnNivelPontos(c,W),W);
+  cnCaixa('cnpPeso','cn-pes','prog','Peso por fase de dose',s.pes,cnSemH2(cnPesoHtml(c)),false);
+  g=$('cnGP');if(g)cnTipLiga(g,cnPesoPontos(c,W),W);
+  cnCaixa('cnpSem','cn-sem','prog','Variação semanal do peso',s.sem,cnSemH2(cnSemHtml(c)),false);
+  g=$('cnGS');if(g)cnTipLiga(g,cnPts.S||[],W);
+  cnCaixa('cnpTempo','cn-tem','relogio','Sintomas e proteína por dia da semana',s.tem,cnTempoHtml(c),false);
+  g=$('cnGT');if(g)cnTipLiga(g,cnPts.T||[],W);
+  g=$('cnGR');if(g)cnTipLiga(g,cnPts.R||[],W);
+  bxAplica($('a-caneta'));
+}
+function cnDesenhaGraficos(c){cnGraficos(c);}
+function cnPintaReg(c){
+  var b=$('bxb-cn-reg');
+  if(b)b.innerHTML=cnSemH2(cnRegHtml(c));
+}
+function renderCnProg(){
+  var c=db.caneta;
+  if(!c||!c.on||!$('cnpHero'))return;
+  var s=cnSubs(c);
+  $('cnpHero').innerHTML=cnHeroHtml(c);
+  $('cnpAna').innerHTML=cnAnaHtml(c);
+  cnCaixa('cnpResumo','cn-res','alvo','Resumo do tratamento',s.res,cnSemH2(cnResumoHtml(c)),true);
+  cnGraficos(c);
+  cnCaixa('cnpSint','cn-sin','sol','Como você se sente',s.sin,cnSemH2(cnSintHtml(c)),false);
+  cnCaixa('cnpReg','cn-reg','lapis','Registrar aplicação e histórico',s.reg,cnSemH2(cnRegHtml(c)),false);
+  cnCaixa('cnpDoc','cn-doc','copiar','Resumo para a consulta',s.doc,cnSemH2(cnDocHtml(c)),false);
+  bxAplica($('a-caneta'));
+}
+
+/* ---------- v20: aba Cardápio e visão geral na aba Hoje ---------- */
+var cdLarg=0,cdPts=[];
+function cdLargura(){var e=$('cdBody');return Math.max(240,Math.min(560,Math.round(((e&&e.clientWidth)||334)-34)));}
+function cdCaixa(k,ic,t,sub,corpo,ab){return bxHtml(k,ic,t,sub,corpo,{tom:'cd',aberto:!!ab});}
+
+/* calorias da semana: planejado x registrado, com a meta tracejada */
+function cdSemHtml(selDk,kM){
+  var W=cdLargura(),H=196,L=10,R=10,T=20,B=42,dias=[],mx=kM;
+  semana.forEach(function(d){
+    var k=key(d),dw=d.getDay(),st=statDia(k),pl=planoKcal(dw,k),ok=(k<=hojeK&&temRegistro(k))?st.k:null;
+    if(pl>mx)mx=pl;
+    if(ok!==null&&ok>mx)mx=ok;
+    dias.push({k:k,dw:dw,pl:pl,ok:ok,pau:pausado(k)});
+  });
+  var step=cnNice(mx*1.12/3),ymax=Math.max(step,Math.ceil(mx*1.1/step)*step);
+  function Y(v){return T+(H-T-B)*(1-v/ymax);}
+  var slot=(W-L-R)/7,bw=Math.min(14,slot*0.34),pts=[];
+  var s='<div class="cng" id="cdGS"><svg viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="Gráfico de barras das calorias da semana: planejado e registrado em cada dia, com a meta de '+esc(fmtN(kM))+' kcal. Use as setas para ver cada dia.">';
+  s+='<line class="gl" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(0).toFixed(1)+'" y2="'+Y(0).toFixed(1)+'"/>';
+  dias.forEach(function(x,i){
+    var cx=L+slot*(i+0.5),top=Math.max(x.pl,x.ok||0);
+    if(x.k===selDk)s+='<rect class="dsel" x="'+(cx-slot/2+1).toFixed(1)+'" y="'+(T-6)+'" width="'+(slot-2).toFixed(1)+'" height="'+(H-T-B+6+30)+'" rx="8"/>';
+    if(x.pl>0)s+='<rect class="pb0" x="'+(cx-bw-1).toFixed(1)+'" y="'+Y(x.pl).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(2,Y(0)-Y(x.pl)).toFixed(1)+'" rx="3"/>';
+    if(x.ok!==null&&x.ok>0)s+='<rect class="pb1" x="'+(cx+1).toFixed(1)+'" y="'+Y(x.ok).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(2,Y(0)-Y(x.ok)).toFixed(1)+'" rx="3"/>';
+    if(x.ok!==null&&x.ok>0)s+='<text class="vl" x="'+cx.toFixed(1)+'" y="'+(Y(top)-5).toFixed(1)+'" text-anchor="middle">'+esc(fmtN(x.ok))+'</text>';
+    s+='<text class="'+(x.k===selDk?'fl':'')+'" x="'+cx.toFixed(1)+'" y="'+(H-22)+'" text-anchor="middle">'+NOMES[x.dw]+'</text><text x="'+cx.toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(x.k.slice(8))+'</text>';
+    pts.push({x:cx,t:'<b>'+NOMES[x.dw]+' '+esc(fmtData(x.k))+'</b><br>planejado '+esc(fmtN(x.pl))+' kcal'+(x.pau?'<br>dia de pausa':(x.ok!==null?'<br>registrado '+esc(fmtN(x.ok))+' kcal':'<br>sem registro'))+'<br>meta '+esc(fmtN(kM))+' kcal'});
+  });
+  s+='<line class="pm" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(kM).toFixed(1)+'" y2="'+Y(kM).toFixed(1)+'"/>';
+  s+='<line class="cx" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" style="display:none"/></svg><div class="cntip" hidden></div></div>';
+  cdPts=pts;
+  var h=s+'<p class="cnleg"><span><i class="k5"></i>planejado</span><span><i class="k1"></i>registrado</span><span><i class="k3"></i>meta ('+esc(fmtN(kM))+' kcal)</span></p>';
+  var rows='';
+  dias.forEach(function(x){rows+='<tr><td>'+NOMES[x.dw]+' '+esc(fmtData(x.k))+'</td><td>'+esc(fmtN(x.pl))+' kcal</td><td>'+(x.ok!==null?esc(fmtN(x.ok))+' kcal':'–')+'</td></tr>';});
+  h+='<details class="cndet"><summary>Ver os valores em tabela</summary><table class="cntab"><thead><tr><th scope="col">Dia</th><th scope="col">Planejado</th><th scope="col">Registrado</th></tr></thead><tbody>'+rows+'</tbody></table></details>';
+  h+='<p class="nota">O planejado já considera as trocas de cada dia. O registrado soma as refeições marcadas e os extras.</p>';
+  return h;
+}
+
+function renderCardapio(){
+  var el=$('cdBody');
+  if(!el)return;
+  var d=semana[selIdx],dk=key(d),dw=d.getDay(),isHoje=dk===hojeK,fut=dk>hojeK,marc=db.dias[dk]||{};
+  var its=itensDia(dw).filter(function(i){return ativo(i,dw)&&((+i.k>0)||(+i.p>0));});
+  var st=statDia(dk),kM=Math.max(1,db.kcalMeta),pM=metaProt(dw),pk=planoKcal(dw,dk),pp=0,fe=0,txt;
+  its.forEach(function(i){pp+=protItem(dk,i);if(marc[i.id])fe++;});
+  try{txt=d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});}catch(e){txt=NOMES[dw]+' '+fmtData(dk);}
+  txt=txt.charAt(0).toUpperCase()+txt.slice(1)+(isHoje?' (hoje)':'');
+  var h='<div class="card cdres"><h2>'+esc(txt)+'</h2>';
+  if(pausado(dk))h+='<p class="cnins al" role="status">'+ico('alerta')+'<span>'+esc(pzTxt(db.livre[dk])[0])+': a rotina deste dia está em pausa e não entra nas médias.</span></p>';
+  h+='<div class="rsg">';
+  h+='<div class="rst"><b>≈ '+esc(fmtN(pk))+' kcal</b><span>Planejado</span><small>meta '+esc(fmtN(kM))+' kcal</small></div>';
+  h+='<div class="rst"><b>≈ '+esc(fmtN(pp))+' g</b><span>Proteína planejada</span><small>meta '+esc(fmtN(pM))+' g</small></div>';
+  if(fut)h+='<div class="rst"><b>–</b><span>Registrado</span><small>o dia ainda não chegou</small></div>';
+  else h+='<div class="rst"><b>'+esc(fmtN(st.k))+' kcal</b><span>Registrado</span><small>'+esc(fmtN(st.p))+' g de proteína · '+fe+' de '+its.length+' refeições</small></div>';
+  h+='</div>';
+  var nota;
+  if(pk>0&&pk<kM*0.9)nota='O cardápio planejado soma ≈ '+fmtN(pk)+' kcal, abaixo da meta de '+fmtN(kM)+'. Use "Adicionar extra" na aba Hoje ou ajuste as quantidades em Ajustes.';
+  else if(pk>kM*1.1)nota='O cardápio planejado soma ≈ '+fmtN(pk)+' kcal, acima da meta de '+fmtN(kM)+'.';
+  else nota='Estimativa pelas quantidades de cada refeição, já com as trocas do dia.';
+  h+='<p class="nota">'+esc(nota)+'</p></div>';
+  if(db.caneta&&db.caneta.on&&db.caneta.aplic)h+='<p class="cnflag">'+ico('seringa')+'<span>Cardápio ajustado para a caneta: porções menores e 6 refeições.</span></p>';
+  if(!its.length)h+='<p class="nota">Não há refeições neste dia.</p>';
+  else{
+    h+='<ul class="cdl" aria-label="Refeições do dia">';
+    its.forEach(function(i){
+      var on=!!marc[i.id],tt=trocaTxt(dk,i);
+      h+='<li class="cdi'+(on?' ok':'')+'"><span class="cdh">'+esc(hh(i,dw))+'</span><span class="cdt"><b>'+esc(tit(i,dw))+(on?'<span class="cdok">'+ico('check')+'<span class="sr"> (feita)</span></span>':'')+'</b><span>'+esc(desc(i,dw))+'</span>'+(tt?'<em>'+esc(tt)+'</em>':'')+(i.opc?'<em>Opcional</em>':'')+'</span><span class="cdk">'+esc(fmtN(kcalItem(dk,i)))+' kcal<small>P '+esc(fmtN(protItem(dk,i)))+' g</small></span></li>';
+    });
+    h+='</ul>';
+  }
+  h+='<div class="lin cdat"><button type="button" class="selb" data-cdir="hoje">'+(isHoje?'Marcar na aba Hoje':'Ver este dia na aba Hoje')+'</button><button type="button" data-cdir="trocas">Trocar alimentos</button><button type="button" data-cdir="compras">Lista de compras</button></div>';
+  var R=resumoSemana(key(semana[0])),P=resumoSemana(somaDias(key(semana[0]),-7));
+  var atual=key(semana[0])<=hojeK&&hojeK<=key(semana[6]);
+  var okS=0,nS=0;
+  semana.forEach(function(x){var k=key(x);if(k<=hojeK&&temRegistro(k)){nS++;okS+=statDia(k).k;}});
+  h+='<div class="bxs">';
+  h+=cdCaixa('cd-sem','prog','Calorias da semana',nS?'Média registrada: '+fmtN(okS/nS)+' kcal por dia (meta '+fmtN(kM)+')':'Meta de '+fmtN(kM)+' kcal por dia',cdSemHtml(dk,kM),false);
+  h+=cdCaixa('cd-rs','alvo','Resumo '+(atual?'desta semana':'da semana'),R.n?R.ok+' de '+R.n+' dias cumpridos':(R.pau?'Semana em pausa':'A semana ainda não começou'),(R.n===0&&R.pau===0)?'<p class="nota">Esta semana ainda não começou.</p>':rsHtml(R,P),false);
+  h+='</div>';
+  el.innerHTML=h;
+  cdLarg=cdLargura();
+  var g=$('cdGS');if(g)cnTipLiga(g,cdPts,cdLarg);
+  bxAplica($('a-cardapio'));
+}
+
+/* ---------- visão geral na aba Hoje ---------- */
+function vgTile(t,ir,ic,tit,val,cap){
+  return '<button type="button" class="vgt t-'+t+'" data-vg="'+ir+'"><span class="vgh"><span class="vgi" aria-hidden="true">'+ico(ic)+'</span><small>'+esc(tit)+'</small></span><b>'+esc(val)+'</b><span class="vgc">'+esc(cap)+'</span></button>';
+}
+function renderVisao(dk,dw,isHoje){
+  var box=$('vgHoje');
+  if(!box)return;
+  var st=statDia(dk),kM=Math.max(1,db.kcalMeta),c=db.caneta,h='<div class="vg">';
+  /* treino */
+  var ss=sessDia(dw),T=plano()[dw],tv,tc;
+  if(!ss.length){tv='Descanso';tc='sem treino';}
+  else if(T&&temMusc(dw)){
+    var tr=db.tr[dk]||{},fe=T.ex.filter(function(e,ix){return !!tr[ix];}).length;
+    tv=T.n;tc=fe+' de '+T.ex.length+' exercícios';
+  }else{tv=ss.map(sessNome).join(' + ');tc='às '+ss[0].h;}
+  h+=vgTile('treino','treino','musc','Treino',tv,tc);
+  /* água */
+  var ml=soma(db.agua[dk]||[]),mM=Math.max(1,db.meta);
+  h+=vgTile('agua','agua','agua','Água',fmtL(ml),'meta '+fmtL(mM));
+  /* cardápio */
+  h+=vgTile('cardapio','cardapio','prato','Cardápio',fmtN(st.k)+' kcal','meta '+fmtN(kM));
+  /* progresso */
+  var pks=Object.keys(db.peso).sort().filter(function(k){return typeof db.peso[k]==='number';}),an=analisePeso(),pc;
+  if(!an.falta)pc=cnSgn(an.sem)+' kg por semana';
+  else{var sq=sequencia();pc=sq>=2?'sequência de '+sq+' dias':'sem tendência ainda';}
+  h+=vgTile('prog','prog','prog','Progresso',pks.length?fmtKg(db.peso[pks[pks.length-1]]):'Sem peso',pc);
+  /* caneta */
+  if(c&&c.on){
+    var p=cnProx(c),M=MEDS[c.med],cv;
+    if(p.st==='hoje')cv='Hoje';
+    else if(p.st==='atraso')cv='Atrasada';
+    else if(p.st==='pular')cv='Pular dose';
+    else if(p.st==='longo')cv='Sem registro';
+    else if(p.st==='diaria')cv='Todo dia';
+    else cv='Em '+p.dias+(p.dias===1?' dia':' dias');
+    h+=vgTile('caneta','caneta','seringa','Caneta',cv,M.cur+' '+fmtK(c.dose)+' mg');
+  }
+  /* ajustes */
+  var bk;
+  if(bkAutoAtivo())bk='Backup automático';
+  else if(db.ultBackup){var bd=Math.round((dateDe(hojeK)-dateDe(db.ultBackup))/864e5);bk=bd<=0?'Backup hoje':'Backup há '+bd+(bd===1?' dia':' dias');}
+  else bk='Sem backup';
+  h+=vgTile('ajustes','ajustes','ajustes','Ajustes',bk,'perfil '+perfilAtual().nome);
+  h+='</div>';
+  box.innerHTML=bxHtml('vg','hoje','Visão geral',isHoje?'Todas as abas de relance':'Dia '+fmtData(dk)+' e as outras abas',h,{aberto:true});
+  box.hidden=false;
+}
+
+function ligarCardapio(){
+  var v=$('vgHoje');
+  if(v)v.addEventListener('click',function(ev){
+    var b=ev.target&&ev.target.closest?ev.target.closest('.vgt'):null;
+    if(b)irAba(b.getAttribute('data-vg'));
+  });
+  var c=$('cdBody');
+  if(c)c.addEventListener('click',function(ev){
+    var b=ev.target&&ev.target.closest?ev.target.closest('[data-cdir]'):null;
+    if(b)irAba(b.getAttribute('data-cdir'));
+  });
+  var tm=null;
+  window.addEventListener('resize',function(){
+    clearTimeout(tm);
+    tm=setTimeout(function(){if(ativa==='cardapio'&&Math.abs(cdLargura()-cdLarg)>8)renderCardapio();},200);
+  });
+}
+
 /* ---------- início ---------- */
 function virouDia(){var k=key(new Date());if(k!==hojeK){hojeK=k;agora=new Date();irParaDia(hojeK);render();}}
-montaIcones();montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarFoto();ligarUx();ligarAparencia();ligarAlarmes();ligarPrefs();ligarFp();ligarExtras();ligarCnProg();ligarCaixas();fillPerfil();renderRes();renderCanetaCard();irAba('hoje');
+montaIcones();montaForms();ultDieta=dietaInicial();renderSeg();ligar();ligar2();ligarAgenda();ligarCaneta();ligarSync();ligarPerfis();ligarFoto();ligarUx();ligarAparencia();ligarAlarmes();ligarPrefs();ligarFp();ligarExtras();ligarCnProg();ligarCaixas();ligarCardapio();fillPerfil();renderRes();renderCanetaCard();irAba('hoje');
 if(temPin(perfilAtual()))abreLock();else if(db.novo)abreOnb();
 fotosCarregar(function(){if(ativa==='treino')renderTreino();});
 setTimeout(checaBackupAuto,2500);
